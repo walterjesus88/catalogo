@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#f0eded",
+                        "on-surface": "#1b1c1c",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dcd9d9",
+                        "primary-fixed-dim": "#b9c3ff",
+                        "on-surface-variant": "#454651",
+                        "surface-bright": "#fbf9f8",
+                        "secondary-fixed": "#ffdad4",
+                        "on-primary-container": "#7687de",
+                        "inverse-surface": "#303030",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "inverse-primary": "#b9c3ff",
+                        "on-secondary-fixed-variant": "#930001",
+                        "surface-variant": "#e4e2e1",
+                        "surface-container-highest": "#e4e2e1",
+                        "background": "#fbf9f8",
+                        "surface": "#fbf9f8",
+                        "primary-container": "#001970",
+                        "on-tertiary-fixed-variant": "#004785",
+                        "tertiary": "#001127",
+                        "on-primary-fixed": "#001258",
+                        "on-tertiary-fixed": "#001c3a",
+                        "surface-container-high": "#eae8e7",
+                        "on-secondary-fixed": "#410000",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#fffbff",
+                        "tertiary-container": "#00264b",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#757683",
+                        "inverse-on-surface": "#f3f0f0",
+                        "on-background": "#1b1c1c",
+                        "surface-container-low": "#f6f3f2",
+                        "error": "#ba1a1a",
+                        "primary": "#00093c",
+                        "on-primary-fixed-variant": "#2e3f92",
+                        "surface-tint": "#4758ab",
+                        "secondary": "#ba0a06",
+                        "on-tertiary-container": "#3b8eec",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#a5c8ff",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#df2d1f",
+                        "primary-fixed": "#dee1ff",
+                        "tertiary-fixed": "#d4e3ff",
+                        "outline-variant": "#c5c5d3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "xl": "64px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "margin-desktop": "32px",
+                        "base": "8px",
+                        "lg": "40px",
+                        "margin-mobile": "16px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Work Sans"],
+                        "h1": ["Work Sans"],
+                        "body-sm": ["Work Sans"],
+                        "body-lg": ["Work Sans"],
+                        "h2": ["Work Sans"],
+                        "button": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "h3": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "h1": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "button": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "h3": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .premium-dark-bg {
+            background: linear-gradient(180deg, #00093c 0%, #001970 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md antialiased">
+<!-- TopAppBar from JSON -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline docked full-width top-0 sticky z-50 flex justify-between items-center w-full px-margin-mobile h-16">
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
+                menu
+            </button>
+<h1 class="font-h2 text-h2 font-bold text-primary dark:text-primary-fixed-dim">TeleCom</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full">
+                shopping_cart
+            </button>
+</div>
+</header>
+<main class="min-h-screen pb-32">
+<!-- Hero Search Section (Premium Dark Aesthetic) -->
+<section class="premium-dark-bg px-margin-mobile pt-lg pb-xl flex flex-col gap-md">
+<div class="flex flex-col gap-xs">
+<h2 class="font-h1 text-h1 text-on-primary">Modern Connectivity</h2>
+<p class="font-body-lg text-primary-fixed-dim">Explore the latest devices and premium network plans designed for your lifestyle.</p>
+</div>
+<!-- Search Bar -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border-none rounded-xl font-body-md shadow-lg focus:ring-2 focus:ring-secondary" placeholder="Search devices, plans or accessories..." type="text"/>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-sm overflow-x-auto pb-base no-scrollbar">
+<button class="px-md py-base bg-secondary text-on-secondary rounded-full font-button whitespace-nowrap">All Devices</button>
+<button class="px-md py-base glass-card text-on-primary rounded-full font-button whitespace-nowrap hover:bg-white/10 transition-colors">Apple</button>
+<button class="px-md py-base glass-card text-on-primary rounded-full font-button whitespace-nowrap hover:bg-white/10 transition-colors">Samsung</button>
+<button class="px-md py-base glass-card text-on-primary rounded-full font-button whitespace-nowrap hover:bg-white/10 transition-colors">Google</button>
+<button class="px-md py-base glass-card text-on-primary rounded-full font-button whitespace-nowrap hover:bg-white/10 transition-colors">Xiaomi</button>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="px-margin-mobile -mt-lg flex flex-col gap-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex flex-col group transition-transform hover:-translate-y-1">
+<div class="aspect-square bg-surface-container-low p-md flex items-center justify-center relative">
+<span class="absolute top-4 left-4 bg-secondary text-on-secondary px-sm py-1 rounded-full font-label-caps text-label-caps">NEW RELEASE</span>
+<img alt="Latest Smartphone" class="w-full h-full object-contain mix-blend-multiply" data-alt="A professional high-end smartphone featuring a sleek titanium frame and a large edge-to-edge display showing vibrant colors. The phone is positioned against a clean, minimalist studio background with soft cinematic lighting. The color palette is dominated by deep navy blue and metallic accents, conveying a sense of premium technology and corporate elegance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBml6OhIK7qH7bnq-CbhhtfENjGaw1FvaC2MTAChkJ2XsjA-APBAKYZ1zPnv7JXoizkb_uSTyUSYMqeDvgWXCsgas8pcmJwFWEUbvIjFdC6Eov3c-izyOmm3Pz_BPeg7Esetp2wZRjYC7P42W50cSCYvR_EaeAs85rxF2h8z9zQCQpKtkKbBkFwnMjs4l58Vy_5HQB2UtNUjrQi8jiBEbad93LlHC9tALXx4mNzBvF92Kyo4HNSLwWhC3SzE-y-aqxGY8CdrwcYQAo"/>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-outline-variant font-label-caps text-label-caps">SMARTPHONE</p>
+<h3 class="font-h3 text-h3 text-primary">Titan Pro 15 Max</h3>
+</div>
+<span class="font-h3 text-h3 text-secondary-container font-bold">$1,099</span>
+</div>
+<div class="flex gap-xs">
+<div class="w-4 h-4 rounded-full bg-slate-800 border border-outline"></div>
+<div class="w-4 h-4 rounded-full bg-blue-900 border border-outline"></div>
+<div class="w-4 h-4 rounded-full bg-neutral-300 border border-outline"></div>
+</div>
+<button class="w-full mt-base py-4 bg-secondary text-on-secondary font-button rounded-lg active:scale-95 transition-transform">
+                            Select Plan
+                        </button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex flex-col group transition-transform hover:-translate-y-1">
+<div class="aspect-square bg-surface-container-low p-md flex items-center justify-center relative">
+<img alt="Foldable Phone" class="w-full h-full object-contain mix-blend-multiply" data-alt="A cutting-edge foldable smartphone displayed half-open on a reflective dark glass surface. The screen glow creates a soft blue ambient light that highlights the precision engineering of the hinge. The atmosphere is sophisticated and futuristic, using a rich palette of deep primary blues and sharp white highlights to emphasize high-stakes telecommunications quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDUZhC0HnKwIjpuY0WHAqQ3U0JTUZC2ToJxe80TtSM3QEm-YkPLhYOcE-gJtKovV8dEkKWMb4lwCNgUtEzPAUPbBFZgE_88TqckdxZOAOhW8_dxIhFYMXRGw2P-ZvVG6YzMZzLEmX9iX3MVhlgGBz9wTgfhn1gA1gOl15VLYo2ua7G4xh0rywP8wQHbaL_x0hYHu8ZXb_36pTPAiMBKOsER5rEoY_x5ulsFolSTHhYJfF7YHyl6NnHu2b--IFUKeUgm4AOUbbps-s"/>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-outline-variant font-label-caps text-label-caps">FOLDABLE</p>
+<h3 class="font-h3 text-h3 text-primary">Galaxy Zen Fold</h3>
+</div>
+<span class="font-h3 text-h3 text-secondary-container font-bold">$1,799</span>
+</div>
+<div class="flex gap-base mt-xs">
+<span class="px-sm py-1 border border-outline-variant rounded text-body-sm">256GB</span>
+<span class="px-sm py-1 border border-outline text-primary font-bold rounded text-body-sm">512GB</span>
+</div>
+<button class="w-full mt-base py-4 bg-secondary text-on-secondary font-button rounded-lg active:scale-95 transition-transform">
+                            Select Plan
+                        </button>
+</div>
+</div>
+<!-- Featured Plan Card (Asymmetric Layout) -->
+<div class="bg-primary-container rounded-xl p-md flex flex-col justify-between relative overflow-hidden h-full min-h-[320px] md:col-span-2 lg:col-span-1">
+<div class="relative z-10 flex flex-col gap-md">
+<h3 class="font-h1 text-h1 text-on-primary">Unlimited 5G<br/>Ultra Gold</h3>
+<div class="flex items-baseline gap-xs">
+<span class="text-[48px] font-bold text-secondary-fixed-dim leading-none">$65</span>
+<span class="text-primary-fixed text-body-md">/mo</span>
+</div>
+<ul class="flex flex-col gap-sm">
+<li class="flex items-center gap-base text-primary-fixed">
+<span class="material-symbols-outlined text-secondary-fixed-dim">check_circle</span>
+<span class="font-body-md">Unlimited High-Speed Data</span>
+</li>
+<li class="flex items-center gap-base text-primary-fixed">
+<span class="material-symbols-outlined text-secondary-fixed-dim">check_circle</span>
+<span class="font-body-md">50GB Mobile Hotspot</span>
+</li>
+<li class="flex items-center gap-base text-primary-fixed">
+<span class="material-symbols-outlined text-secondary-fixed-dim">check_circle</span>
+<span class="font-body-md">4K UHD Video Streaming</span>
+</li>
+</ul>
+</div>
+<button class="relative z-10 w-full py-4 bg-surface-container-lowest text-primary font-button rounded-lg active:scale-95 transition-transform mt-lg">
+                        Get This Plan
+                    </button>
+<!-- Background accent -->
+<div class="absolute -bottom-10 -right-10 w-48 h-48 bg-secondary rounded-full blur-[80px] opacity-30"></div>
+</div>
+</div>
+</section>
+<!-- Categories / Bento Grid Style Section -->
+<section class="px-margin-mobile mt-xl flex flex-col gap-lg">
+<h2 class="font-h2 text-h2 text-primary">Discover More</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<div class="col-span-2 row-span-2 bg-surface-container rounded-xl p-md flex flex-col justify-end min-h-[240px] relative overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-60" data-alt="A top-down view of high-tech tablets and accessories arranged on a clean, professional workspace with subtle architectural lighting. The environment is bright and modern, utilizing a sophisticated light-mode theme with pristine whites and deep blue accents. The visual style is crisp and high-contrast, representing clarity and digital productivity for telecommunications customers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSfukVz6vxCJT4n-HTTQlJ1MsX4zj7Ekqp-NUAZWCwLuN9ZWne2aBez_9aZLHBPB3HaT8n8d459uzD-Pr_JPYUkHP3z_LESxJFLnAodALfHP8JO6jOkBQW3vXgSo2aziaxbwoNfwUNetM5znCy8slNoGjOyq3IQcTGZWapx_5y0ZynNxHAELA485asRfCQE6p4lIl83J8lQPdeEU_6XBAucJBdHRcW9eZLm1odmc5pSQtFl9js7zHZ8rBZU6q8kMdctBEDSJBlGn0"/>
+<div class="relative z-10">
+<h4 class="font-h3 text-h3 text-primary">Tablets &amp; Computing</h4>
+<p class="text-on-surface-variant text-body-sm">Work from anywhere with 5G</p>
+</div>
+</div>
+<div class="bg-secondary-container/10 rounded-xl p-md flex flex-col gap-sm border border-secondary-container/20">
+<span class="material-symbols-outlined text-secondary text-3xl">watch</span>
+<h4 class="font-button text-button text-primary">Wearables</h4>
+</div>
+<div class="bg-primary-container/10 rounded-xl p-md flex flex-col gap-sm border border-primary-container/20">
+<span class="material-symbols-outlined text-primary text-3xl">headphones</span>
+<h4 class="font-button text-button text-primary">Audio</h4>
+</div>
+<div class="col-span-2 bg-surface-container-high rounded-xl p-md flex justify-between items-center border border-outline-variant">
+<div class="flex flex-col">
+<h4 class="font-h3 text-h3 text-primary">Trade-in Program</h4>
+<p class="text-on-surface-variant text-body-sm">Save up to $800 on new arrivals</p>
+</div>
+<span class="material-symbols-outlined text-primary">arrow_forward_ios</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer from JSON -->
+<footer class="w-full py-lg px-margin-mobile flex flex-col md:flex-row justify-between items-center gap-base bg-surface-container-high dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<h3 class="font-h3 text-h3 text-primary dark:text-primary-fixed">TeleCom</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant">© 2024 TeleCom Inc. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Support</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Store Locator</a>
+</div>
+</footer>
+<!-- BottomNavBar from JSON -->
+<nav class="fixed bottom-0 w-full flex justify-around items-center h-16 px-4 bg-surface dark:bg-background border-t border-outline-variant dark:border-outline z-50">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">phone_iphone</span>
+<span class="font-label-caps text-label-caps">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-caps text-label-caps">Plans</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-caps text-label-caps">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+</nav>
+</body></html>

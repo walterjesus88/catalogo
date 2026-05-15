@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#3b8eec",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#4758ab",
+                    "on-primary-fixed-variant": "#2e3f92",
+                    "on-secondary-fixed": "#410000",
+                    "surface-container": "#f0eded",
+                    "on-primary": "#ffffff",
+                    "secondary": "#ba0a06",
+                    "on-background": "#1b1c1c",
+                    "surface-container-low": "#f6f3f2",
+                    "primary": "#00093c",
+                    "error-container": "#ffdad6",
+                    "outline": "#757683",
+                    "secondary-fixed-dim": "#ffb4a8",
+                    "surface-dim": "#dcd9d9",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#ffdad4",
+                    "outline-variant": "#c5c5d3",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#00264b",
+                    "primary-fixed": "#dee1ff",
+                    "on-primary-fixed": "#001258",
+                    "inverse-surface": "#303030",
+                    "on-primary-container": "#7687de",
+                    "on-surface-variant": "#454651",
+                    "error": "#ba1a1a",
+                    "inverse-primary": "#b9c3ff",
+                    "on-tertiary-fixed-variant": "#004785",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#d4e3ff",
+                    "primary-fixed-dim": "#b9c3ff",
+                    "surface-variant": "#e4e2e1",
+                    "on-secondary-fixed-variant": "#930001",
+                    "surface-bright": "#fbf9f8",
+                    "surface-container-high": "#eae8e7",
+                    "secondary-container": "#df2d1f",
+                    "on-tertiary-fixed": "#001c3a",
+                    "on-secondary-container": "#fffbff",
+                    "background": "#fbf9f8",
+                    "surface": "#fbf9f8",
+                    "tertiary": "#001127",
+                    "surface-container-highest": "#e4e2e1",
+                    "inverse-on-surface": "#f3f0f0",
+                    "primary-container": "#001970",
+                    "tertiary-fixed-dim": "#a5c8ff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#1b1c1c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "gutter": "16px",
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "32px",
+                    "md": "24px",
+                    "sm": "12px",
+                    "xl": "64px",
+                    "lg": "40px"
+            },
+            "fontFamily": {
+                    "h2": ["Work Sans"],
+                    "label-caps": ["Work Sans"],
+                    "body-md": ["Work Sans"],
+                    "h3": ["Work Sans"],
+                    "body-lg": ["Work Sans"],
+                    "body-sm": ["Work Sans"],
+                    "h1": ["Work Sans"],
+                    "button": ["Work Sans"]
+            },
+            "fontSize": {
+                    "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "h3": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "h1": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "button": ["16px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: #fbf9f8;
+            color: #1b1c1c;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .plan-card-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface sticky top-0 z-50 border-b border-outline-variant flex justify-between items-center w-full px-margin-mobile h-16">
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-primary">menu</span>
+<h2 class="font-h2 text-h2 font-bold text-primary">TeleCom</h2>
+</div>
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-primary">shopping_cart</span>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile pt-lg">
+<!-- Hero / Header Section -->
+<section class="mb-xl">
+<h1 class="font-h1 text-h1 text-primary mb-base">Choose Your Freedom</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">High-speed 5G connectivity tailored to your lifestyle. Switch today and keep the number you love.</p>
+</section>
+<!-- Portability CTA Banner -->
+<section class="mb-xl bg-primary-container text-on-primary rounded-xl p-lg flex flex-col md:flex-row items-center justify-between gap-lg relative overflow-hidden">
+<div class="z-10 relative">
+<h3 class="font-h3 text-h3 mb-sm">Bringing your number to TeleCom?</h3>
+<p class="font-body-md text-body-md opacity-90 mb-base max-w-lg">Get a $100 bill credit when you port your existing number to any Unlimited plan. Smooth transition, zero downtime.</p>
+<button class="bg-secondary text-white font-button text-button px-lg py-sm rounded-full hover:opacity-90 transition-opacity">
+                    Port Your Number
+                </button>
+</div>
+<div class="hidden md:block w-1/3 h-48 bg-cover bg-center rounded-lg" data-alt="A clean, professional photo of a modern smartphone showing a successful network transition notification. The background is a minimalist corporate office with soft, bright lighting in shades of white and primary blue. The image evokes a sense of reliability and seamless technological integration in a modern business environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0JFQnGIsSJjWpQ8Tb-5WMwaxj316lFZrH5YD-jR168d3iKczPaxktzRCfHAp4sBYwB8mgBNshXmLfEbm_p-sTGOItbchJL1uALiTYglqWZ2Sy5ODGfvbD_9ofqHNkCdH51gsYjkFqPICqaUhwZo518kpmBMzwlVfr6B8B_wLZP1XinvbgKbGbT4TwBeZaI0TNmqnEl-cA7Anw7qRmSIFUT6a2Nzf3rtmZXvviPnarvJhMCmyD8KTs8b_cGoaM2EFxFCx-T30tFaU');">
+</div>
+</section>
+<!-- Plans Grid -->
+<section class="mb-xl">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-h2 text-h2 text-primary">Mobile Plans</h2>
+<div class="flex gap-xs">
+<span class="px-sm py-xs bg-surface-container-high rounded-full font-label-caps text-label-caps text-on-surface-variant">Monthly</span>
+<span class="px-sm py-xs border border-outline-variant rounded-full font-label-caps text-label-caps text-outline">Prepaid</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Plan Card 1 -->
+<article class="bg-white p-md rounded-lg border border-outline-variant plan-card-shadow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-base">
+<span class="px-sm py-xs bg-surface-container-low text-primary font-label-caps text-label-caps rounded-full">BEST SELLER</span>
+<span class="material-symbols-outlined text-outline-variant">info</span>
+</div>
+<h3 class="font-h3 text-h3 text-primary mb-xs">Plan Pro 50GB</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Perfect for daily creators and power users.</p>
+<div class="flex items-end gap-xs mb-md">
+<span class="font-h1 text-h1 text-primary">$45</span>
+<span class="font-body-sm text-body-sm text-outline mb-base">/mo</span>
+</div>
+<ul class="space-y-sm mb-lg">
+<li class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-md">check_circle</span>
+<span class="font-body-md text-body-md">50GB High-Speed 5G Data</span>
+</li>
+<li class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-md">check_circle</span>
+<span class="font-body-md text-body-md">Unlimited Social Media Data</span>
+</li>
+<li class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-md">check_circle</span>
+<span class="font-body-md text-body-md">HD Video Streaming</span>
+</li>
+</ul>
+</div>
+<button class="w-full bg-secondary text-white font-button text-button py-sm rounded-lg hover:bg-red-700 transition-colors">Select Plan</button>
+</article>
+<!-- Plan Card 2 (Premium Highlight) -->
+<article class="bg-white p-md rounded-lg border-2 border-primary plan-card-shadow flex flex-col justify-between relative">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white px-md py-xs rounded-full font-label-caps text-label-caps">PREMIUM CHOICE</div>
+<div class="mt-base">
+<div class="flex justify-between items-start mb-base">
+<span class="px-sm py-xs bg-tertiary-container text-tertiary-fixed font-label-caps text-label-caps rounded-full">UNLIMITED</span>
+<span class="material-symbols-outlined text-outline-variant">info</span>
+</div>
+<h3 class="font-h3 text-h3 text-primary mb-xs">Unlimited Premium</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Infinite data for those who never stop.</p>
+<div class="flex items-end gap-xs mb-md">
+<span class="font-h1 text-h1 text-primary">$65</span>
+<span class="font-body-sm text-body-sm text-outline mb-base">/mo</span>
+</div>
+<ul class="space-y-sm mb-lg">
+<li class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-md">check_circle</span>
+<span class="font-body-md text-body-md">Truly Unlimited 5G Data</span>
+</li>
+<li class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-md">check_circle</span>
+<span class="font-body-md text-body-md">Global Roaming Included</span>
+</li>
+<li class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-md">check_circle</span>
+<span class="font-body-md text-body-md">20GB Hotspot Allocation</span>
+</li>
+<li class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-md">check_circle</span>
+<span class="font-body-md text-body-md">Premium Customer Support</span>
+</li>
+</ul>
+</div>
+<button class="w-full bg-secondary text-white font-button text-button py-sm rounded-lg hover:bg-red-700 transition-colors">Select Plan</button>
+</article>
+<!-- Plan Card 3 -->
+<article class="bg-white p-md rounded-lg border border-outline-variant plan-card-shadow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-base">
+<span class="px-sm py-xs bg-surface-container-low text-primary font-label-caps text-label-caps rounded-full">VALUE</span>
+<span class="material-symbols-outlined text-outline-variant">info</span>
+</div>
+<h3 class="font-h3 text-h3 text-primary mb-xs">Starter 15GB</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">The essential plan for staying connected.</p>
+<div class="flex items-end gap-xs mb-md">
+<span class="font-h1 text-h1 text-primary">$30</span>
+<span class="font-body-sm text-body-sm text-outline mb-base">/mo</span>
+</div>
+<ul class="space-y-sm mb-lg">
+<li class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-md">check_circle</span>
+<span class="font-body-md text-body-md">15GB 5G Connectivity</span>
+</li>
+<li class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-md">check_circle</span>
+<span class="font-body-md text-body-md">Unlimited Messaging</span>
+</li>
+<li class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-md">check_circle</span>
+<span class="font-body-md text-body-md">National Calling Included</span>
+</li>
+</ul>
+</div>
+<button class="w-full border border-primary text-primary font-button text-button py-sm rounded-lg hover:bg-primary-container hover:text-white transition-all">Select Plan</button>
+</article>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="mb-xl pt-lg border-t border-outline-variant">
+<h2 class="font-h2 text-h2 text-primary mb-lg text-center">Frequently Asked Questions</h2>
+<div class="max-w-3xl mx-auto space-y-md">
+<div class="p-md bg-surface-container-low rounded-lg">
+<div class="flex justify-between items-center cursor-pointer">
+<h4 class="font-h3 text-h3 text-primary text-base">How long does it take to port my number?</h4>
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Most numbers are ported within 2 to 24 hours. During this time, your old service remains active so you never lose connection.</p>
+</div>
+<div class="p-md bg-white border border-outline-variant rounded-lg">
+<div class="flex justify-between items-center cursor-pointer">
+<h4 class="font-h3 text-h3 text-primary text-base">Is there a contract required?</h4>
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+<div class="p-md bg-white border border-outline-variant rounded-lg">
+<div class="flex justify-between items-center cursor-pointer">
+<h4 class="font-h3 text-h3 text-primary text-base">What is "Unlimited Social Media"?</h4>
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+<div class="p-md bg-white border border-outline-variant rounded-lg">
+<div class="flex justify-between items-center cursor-pointer">
+<h4 class="font-h3 text-h3 text-primary text-base">Can I upgrade my plan later?</h4>
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg px-margin-mobile flex flex-col md:flex-row justify-between items-center gap-base bg-surface-container-high border-t border-outline-variant">
+<div class="flex flex-col items-center md:items-start">
+<h3 class="font-h3 text-h3 text-primary font-bold">TeleCom</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">© 2024 TeleCom Inc. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Store Locator</a>
+</div>
+</footer>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full flex justify-around items-center h-16 px-4 bg-surface border-t border-outline-variant z-50 md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">phone_iphone</span>
+<span class="font-label-caps text-label-caps">Shop</span>
+</div>
+<!-- Active Tab: Plans -->
+<div class="flex flex-col items-center justify-center text-secondary font-bold scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-caps text-label-caps">Plans</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-caps text-label-caps">Cart</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</div>
+</nav>
+</body></html>

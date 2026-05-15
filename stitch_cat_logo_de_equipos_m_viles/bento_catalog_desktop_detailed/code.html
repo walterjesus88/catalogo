@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdcbe",
+                    "on-tertiary-fixed": "#2d1600",
+                    "primary": "#7200c2",
+                    "surface-bright": "#fff7fe",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#4d4354",
+                    "on-secondary-fixed": "#1b1b1d",
+                    "secondary-container": "#e2dfe1",
+                    "surface-tint": "#8621da",
+                    "primary-fixed": "#f0dbff",
+                    "on-primary-fixed": "#2c0050",
+                    "surface-dim": "#e1d6e5",
+                    "on-secondary-fixed-variant": "#474649",
+                    "tertiary-fixed-dim": "#ffb872",
+                    "surface-variant": "#eadfed",
+                    "outline": "#7e7386",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#cfc2d7",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#8e2de2",
+                    "on-primary-container": "#f1dcff",
+                    "on-surface": "#1f1924",
+                    "inverse-primary": "#ddb7ff",
+                    "background": "#fff7fe",
+                    "surface-container": "#f6eaf9",
+                    "on-background": "#1f1924",
+                    "secondary": "#5f5e60",
+                    "surface-container-highest": "#eadfed",
+                    "tertiary-container": "#955600",
+                    "on-background": "#1f1924",
+                    "secondary": "#5f5e60",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#e4e2e4",
+                    "surface-container-high": "#f0e4f3",
+                    "surface-container-low": "#fbf0ff",
+                    "secondary-fixed-dim": "#c8c6c8",
+                    "inverse-on-surface": "#f9edfc",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#342e39",
+                    "on-primary-fixed-variant": "#6900b3",
+                    "tertiary": "#734100",
+                    "on-secondary-container": "#636264",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#ffddc1",
+                    "primary-fixed-dim": "#ddb7ff",
+                    "on-tertiary-fixed-variant": "#6a3c00",
+                    "surface": "#fff7fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "container-max": "1440px",
+                    "margin": "48px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .bento-tile {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #cfc2d7; /* outline-variant */
+            background-color: #ffffff;
+        }
+        .bento-tile:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(114, 0, 194, 0.15);
+        }
+        .glass-effect {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 247, 254, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface overflow-x-hidden">
+<!-- Side Navigation Shell -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-4 border-r border-outline-variant bg-surface-container-low w-64 z-40 hidden md:flex">
+<div class="mb-10 px-4">
+<h1 class="font-headline-sm text-headline-sm font-black text-primary">Nexus Pro</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mt-1">Fleet Management</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="bg-primary-container text-on-primary-container rounded-xl flex items-center px-4 py-3 mb-2 translate-x-1 duration-300" href="#">
+<span class="material-symbols-outlined mr-3">grid_view</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mb-2 hover:bg-surface-container-highest rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined mr-3">router</span>
+<span class="font-label-caps text-label-caps">Equipment</span>
+</a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mb-2 hover:bg-surface-container-highest rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined mr-3">settings_input_antenna</span>
+<span class="font-label-caps text-label-caps">Network</span>
+</a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mb-2 hover:bg-surface-container-highest rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined mr-3">currency_exchange</span>
+<span class="font-label-caps text-label-caps">Trade-in</span>
+</a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mb-2 hover:bg-surface-container-highest rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined mr-3">construction</span>
+<span class="font-label-caps text-label-caps">Gear</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-primary-fixed rounded-xl">
+<p class="font-label-caps text-label-caps text-on-primary-fixed mb-2">PRO UPGRADE</p>
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-label-caps text-label-caps hover:scale-95 transition-transform">Upgrade to 5G</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center w-full px-margin py-4 max-w-container-max mx-auto z-50 sticky top-0 bg-surface-bright border-b border-outline-variant">
+<div class="flex items-center gap-12">
+<span class="font-headline-md text-headline-md font-bold text-primary">Nexus Telecom</span>
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-caps text-label-caps" href="#">Catalog</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Solutions</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">5G</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden sm:block">
+<input class="bg-surface-container-high rounded-full px-4 py-2 pl-10 text-body-md w-64 border-none focus:ring-2 focus:ring-primary outline-none" placeholder="Search devices..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-95 transition-transform">shopping_cart</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-95 transition-transform">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Bento Grid Catalog -->
+<section class="p-margin max-w-container-max mx-auto w-full flex-1">
+<div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 grid-rows-auto gap-gutter">
+<!-- Hero Block: PHONIX Ultra -->
+<div class="md:col-span-4 lg:col-span-4 row-span-2 bento-tile rounded-[24px] overflow-hidden flex flex-col lg:flex-row bg-white relative group">
+<div class="p-10 flex flex-col justify-center flex-1 z-10 relative">
+<span class="bg-primary text-on-primary px-3 py-1 rounded-full text-label-caps font-label-caps inline-block w-fit mb-4">FLAGSHIP RELEASE</span>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-4">PHONIX Ultra</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-md">Experience the pinnacle of mobile connectivity. 10Gbps 5G capability, AI-driven core performance, and an edge-to-edge crystalline display.</p>
+<div class="flex items-center gap-6">
+<div>
+<p class="text-label-caps font-label-caps text-on-surface-variant uppercase">Starting At</p>
+<p class="font-headline-md text-headline-md text-primary">$1,199</p>
+</div>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-[16px] font-label-caps text-label-caps hover:bg-primary-container transition-all shadow-lg shadow-primary/20">Pre-order Now</button>
+</div>
+</div>
+<div class="flex-1 min-h-[300px] lg:min-h-full relative overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:scale-105 transition-transform duration-700" data-alt="A high-end, studio-lit photograph of a sleek, deep purple titanium smartphone floating against a minimalist soft gray background. The lighting is dramatic and precise, highlighting the premium metallic textures and the expansive, edge-to-edge screen. The overall aesthetic is professional, minimalist, and technologically advanced, echoing a premium telecom brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvfXBTkIZkDJ30DW_qcbpldYE_c3EX18ONBBlX_u5pKgU0IBuBglIXZgQZ3S6dCzKQAhCmuxLfr3QJiGFMA_uDdYH4tI8LuUZsvkjH24AEkyKjMth8NkaedWs0EngOZTW8GgP2vI6IFtB4jq32PxsOkRUuQbuc38kKxEBQu7JB9GP4sNrzuo61yYRJvnyEDCjTREmI79Whpxg48wrZO5WevLWBNgIFkTxm3Pjm0Y299wBFLkLK0CwEJYHrSoQrTCBgv6WdzBzGkio"/>
+</div>
+</div>
+<!-- Latest Arrivals -->
+<div class="md:col-span-2 lg:col-span-2 row-span-1 bento-tile rounded-[24px] p-8 flex flex-col justify-between bg-surface-container-high border-none">
+<div>
+<div class="flex justify-between items-start mb-6">
+<h3 class="font-headline-sm text-headline-sm">Latest Arrivals</h3>
+<span class="material-symbols-outlined text-primary">arrow_outward</span>
+</div>
+<ul class="space-y-4">
+<li class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary">watch</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface">Nexus Watch Pro</p>
+<p class="text-[12px] text-on-surface-variant">Cellular Edition</p>
+</div>
+</li>
+<li class="flex items-center gap-4 group cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary">headphones</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface">Acoustix Gen 2</p>
+<p class="text-[12px] text-on-surface-variant">Lossless Audio</p>
+</div>
+</li>
+</ul>
+</div>
+<button class="w-full mt-6 py-3 border border-primary text-primary rounded-[16px] font-label-caps text-label-caps hover:bg-primary-container hover:text-white transition-all">Explore New Tech</button>
+</div>
+<!-- Current Offers -->
+<div class="md:col-span-2 lg:col-span-2 row-span-1 bento-tile rounded-[24px] overflow-hidden bg-primary relative">
+<div class="p-8 h-full flex flex-col justify-between relative z-10">
+<div>
+<p class="text-on-primary-container font-label-caps text-label-caps mb-2 opacity-80 uppercase">Limited Time</p>
+<h3 class="font-headline-md text-headline-md text-white">Save $400 on Family Plans</h3>
+</div>
+<div class="flex items-center text-white gap-2 font-label-caps text-label-caps group cursor-pointer">
+<span>Claim Offer</span>
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</div>
+</div>
+<div class="absolute bottom-0 right-0 w-32 h-32 bg-white/10 rounded-tl-full blur-2xl"></div>
+</div>
+<!-- 5G Coverage -->
+<div class="md:col-span-2 lg:col-span-2 row-span-1 bento-tile rounded-[24px] p-8 flex flex-col bg-surface-container-low overflow-hidden">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary">sensors</span>
+<h3 class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-widest">Network Reach</h3>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">99% Coverage</h4>
+<p class="text-body-md text-on-surface-variant mb-6">Our 5G+ network now covers all major metropolitan areas with gigabit speeds.</p>
+<div class="mt-auto h-24 w-full bg-surface-container-high rounded-xl relative overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover opacity-60" data-alt="A stylized digital map showing heat-mapped connectivity zones in vibrant purple and soft white. The map features a minimalist grid overlay with glowing nodes representing network towers. The aesthetic is clean and corporate, utilizing the brand's electric violet accents to highlight high-speed coverage areas against a light mode background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZgupaIYkPAYJ4ULZiVi00LI7yydtzNWAwhjnklz-lKtPXpLgk7Y7zWFdB7DMTq9fXO4O-OTIdS6hRvC2vlN_PXwCPVFkRxwwvlXKgA8lDn6fi_peh3uLk7lxNBVDLUxwpVxgMudq0ldx5Hbh6YErbAzo2PS6SWHs4lFi-fJPaMHR7vhZ6f-Cqk6EsBmcqU3Pl88kJOX0araHuQF9n_LpBmq2IHv3iSVk0ukkbd6rOHrnDR-YgG01E6kTid2Fl3kT1e3jwKYB8HX0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent"></div>
+</div>
+</div>
+<!-- Trade-in -->
+<div class="md:col-span-2 lg:col-span-1 row-span-1 bento-tile rounded-[24px] p-8 flex flex-col items-center text-center justify-center bg-white">
+<div class="w-16 h-16 rounded-full bg-tertiary-fixed flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-tertiary text-3xl">currency_exchange</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface mb-1">TRADE-IN</p>
+<p class="font-headline-sm text-headline-sm text-primary">$800 Credit</p>
+<p class="text-[12px] text-on-surface-variant mt-2">Get maximum value for your current device.</p>
+</div>
+<!-- Accessories -->
+<div class="md:col-span-2 lg:col-span-1 row-span-1 bento-tile rounded-[24px] p-8 flex flex-col items-center text-center justify-center bg-secondary-container">
+<div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">charging_station</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface mb-1">GEAR</p>
+<p class="font-headline-sm text-headline-sm text-secondary">Essential Kit</p>
+<p class="text-[12px] text-on-surface-variant mt-2">20% off all bundled protection.</p>
+</div>
+<!-- Sustainability Card -->
+<div class="md:col-span-4 lg:col-span-2 row-span-1 bento-tile rounded-[24px] p-8 bg-surface-bright flex items-center gap-6 border-dashed">
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm mb-2 text-on-surface">Earth First</h3>
+<p class="text-body-md text-on-surface-variant">Carbon neutral delivery and 100% recycled packaging for all PHONIX series.</p>
+</div>
+<span class="material-symbols-outlined text-5xl text-primary opacity-20">eco</span>
+</div>
+</div>
+</section>
+<!-- Detailed Footer Shell -->
+<footer class="w-full py-unit px-margin bg-surface-container-highest flex flex-col md:flex-row justify-between items-start max-w-container-max mx-auto mt-gutter border-t border-outline-variant">
+<div class="flex flex-col gap-6 mb-8 md:mb-0">
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Nexus Telecom</span>
+<p class="font-body-md text-body-md text-on-secondary-fixed-variant mt-2 max-w-xs">Precision Engineered Connectivity for the next generation of professional users.</p>
+</div>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white border border-outline-variant flex items-center justify-center hover:bg-primary-container group transition-all" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-white transition-colors">public</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-white border border-outline-variant flex items-center justify-center hover:bg-primary-container group transition-all" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-white transition-colors">alternate_email</span>
+</a>
+</div>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-12">
+<div class="flex flex-col gap-4">
+<p class="font-label-caps text-label-caps text-on-surface font-bold mb-2">Company</p>
+<a class="text-on-secondary-fixed-variant hover:text-primary underline-offset-4 hover:underline font-label-caps text-label-caps transition-opacity" href="#">Privacy</a>
+<a class="text-on-secondary-fixed-variant hover:text-primary underline-offset-4 hover:underline font-label-caps text-label-caps transition-opacity" href="#">Terms</a>
+<a class="text-on-secondary-fixed-variant hover:text-primary underline-offset-4 hover:underline font-label-caps text-label-caps transition-opacity" href="#">Compliance</a>
+<a class="text-on-secondary-fixed-variant hover:text-primary underline-offset-4 hover:underline font-label-caps text-label-caps transition-opacity" href="#">Contact</a>
+</div>
+<div class="flex flex-col gap-4">
+<p class="font-label-caps text-label-caps text-on-surface font-bold mb-2">Products</p>
+<a class="text-on-secondary-fixed-variant hover:text-primary font-label-caps text-label-caps transition-opacity" href="#">Mobile Plans</a>
+<a class="text-on-secondary-fixed-variant hover:text-primary font-label-caps text-label-caps transition-opacity" href="#">Business Gear</a>
+<a class="text-on-secondary-fixed-variant hover:text-primary font-label-caps text-label-caps transition-opacity" href="#">Fiber Optic</a>
+<a class="text-on-secondary-fixed-variant hover:text-primary font-label-caps text-label-caps transition-opacity" href="#">Cloud Core</a>
+</div>
+</div>
+</footer>
+<div class="w-full py-6 px-margin bg-surface-container-highest text-center md:text-left border-t border-outline-variant/30">
+<p class="text-[12px] text-on-secondary-fixed-variant opacity-80">© 2024 Nexus Telecom. Precision Engineered Connectivity. All rights reserved.</p>
+</div>
+</main>
+</body></html>

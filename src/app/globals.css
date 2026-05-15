@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-inter antialiased;
+  }
+}
+
+@layer components {
+  .bento-tile {
+    @apply rounded-bento border border-outline-variant/30 bg-surface-container-lowest transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5;
+  }
+  .btn-bento {
+    @apply w-full bg-primary-container text-on-primary-container py-4 rounded-bento-sm font-bold text-body-md hover:bg-primary hover:text-on-primary transition-all active:scale-[0.98] duration-150;
+  }
+  .btn-bento-outline {
+    @apply w-full border-2 border-outline-variant text-on-surface-variant py-3 rounded-bento-sm hover:bg-surface-container-highest transition-colors text-label-caps;
+  }
+  .chip {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-label-caps;
+  }
+  .section-title {
+    @apply text-headline-sm text-on-surface;
+  }
+  .label-section {
+    @apply text-label-caps text-on-surface-variant uppercase tracking-wide;
+  }
+}

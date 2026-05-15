@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Work Sans', sans-serif;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#3b8eec",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#4758ab",
+                        "on-primary-fixed-variant": "#2e3f92",
+                        "on-secondary-fixed": "#410000",
+                        "surface-container": "#f0eded",
+                        "on-primary": "#ffffff",
+                        "secondary": "#ba0a06",
+                        "on-background": "#1b1c1c",
+                        "surface-container-low": "#f6f3f2",
+                        "primary": "#00093c",
+                        "error-container": "#ffdad6",
+                        "outline": "#757683",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "surface-dim": "#dcd9d9",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#ffdad4",
+                        "outline-variant": "#c5c5d3",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#00264b",
+                        "primary-fixed": "#dee1ff",
+                        "on-primary-fixed": "#001258",
+                        "inverse-surface": "#303030",
+                        "on-primary-container": "#7687de",
+                        "on-surface-variant": "#454651",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#b9c3ff",
+                        "on-tertiary-fixed-variant": "#004785",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#d4e3ff",
+                        "primary-fixed-dim": "#b9c3ff",
+                        "surface-variant": "#e4e2e1",
+                        "on-secondary-fixed-variant": "#930001",
+                        "surface-bright": "#fbf9f8",
+                        "surface-container-high": "#eae8e7",
+                        "secondary-container": "#df2d1f",
+                        "on-tertiary-fixed": "#001c3a",
+                        "on-secondary-container": "#fffbff",
+                        "background": "#fbf9f8",
+                        "surface": "#fbf9f8",
+                        "tertiary": "#001127",
+                        "surface-container-highest": "#e4e2e1",
+                        "inverse-on-surface": "#f3f0f0",
+                        "primary-container": "#001970",
+                        "tertiary-fixed-dim": "#a5c8ff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#1b1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "margin-desktop": "32px",
+                        "md": "24px",
+                        "sm": "12px",
+                        "xl": "64px",
+                        "lg": "40px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Work Sans"],
+                        "label-caps": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "h3": ["Work Sans"],
+                        "body-lg": ["Work Sans"],
+                        "body-sm": ["Work Sans"],
+                        "h1": ["Work Sans"],
+                        "button": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "h3": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "h1": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "button": ["16px", {"lineHeight": "24px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-20">
+<header class="bg-surface sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile h-16 border-b border-outline-variant">
+<div class="flex items-center gap-base">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low transition-colors p-2 rounded">menu</button>
+<span class="font-h2 text-h2 font-bold text-primary">TeleCom</span>
+</div>
+<div class="flex items-center gap-base">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low transition-colors p-2 rounded">shopping_cart</button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-base">
+<section class="mt-sm mb-lg">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-white border border-on-surface-variant rounded-lg py-4 pl-12 pr-4 font-body-md focus:outline-none focus:border-primary-container transition-all" placeholder="Search for devices, plans, or accessories" type="text"/>
+</div>
+</section>
+<section class="mb-xl overflow-hidden rounded-xl">
+<div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-gutter pb-4">
+<div class="min-w-full md:min-w-[80%] lg:min-w-[60%] snap-center relative aspect-[21/9] rounded-xl overflow-hidden bg-primary-container group">
+<img class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" data-alt="A cinematic close-up of a sleek titanium smartphone against a dark, moody background with subtle red ambient lighting. The device displays a vibrant, high-resolution screen with futuristic abstract patterns. The lighting is professional and high-key, highlighting the premium metallic textures of the phone's frame. This modern corporate visual emphasizes reliability and cutting-edge technology in the telecommunications sector." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7FBPhxs1S8CvpsJBw4Lz-kZnWs6phB0In-QvgZKj53e8UBDNJXZoOgD2eXKGhZ0OJ36mtT0eze2LvG150xyIW34B2wTrHpjM7f1BQ-rUXA_EntwJq_EXF2kmgG1EQo_ibFaIaqX6Y_Md5XCHaTCdr0R4QnIvEfP29ggjNyCQNq4pdz-dgucX2u7rmfqrPycwvOtepRQhti_-D9cUOlJ9n1KC0bdcLdSbcBh9PL5GpDTch_qlSpf62A8QqmAr5CIRPc6L4P-f4ny0"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent p-md flex flex-col justify-center">
+<span class="text-white font-label-caps uppercase mb-2">New Arrival</span>
+<h2 class="text-white font-h1 text-h1 mb-4">iPhone 15 Pro</h2>
+<button class="bg-secondary text-white font-button px-lg py-base rounded-lg w-fit hover:opacity-90 transition-opacity">Shop Now</button>
+</div>
+</div>
+<div class="min-w-full md:min-w-[80%] lg:min-w-[60%] snap-center relative aspect-[21/9] rounded-xl overflow-hidden bg-tertiary-container group">
+<img class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" data-alt="A clean, minimalist corporate office scene where a professional is holding a smartphone, showcasing a portability offer. The environment is bright and modern with soft daylighting and a primary blue color palette. The focus is on the device's interface and the sense of seamless connectivity. High-quality commercial photography style that exudes trust and transparency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRZBewGKjNJIBEbOP27gD-_aC2dd8f8Q5y2Bl38EIuXotx9UYF7S91xMTHhsRQR40nmF3EJ4QL72l9PIFyhyymwOYJS3iYG6tBmik2l1k2d7c1GiHdopbbnC9YuK6bFgvxYvLbCBiOIcdMWHs6QgWqj0_aPQFGPI7XBFSZozhTQdw1Cm2Mttp_IqFqVDD8mvVyadJTCji3ydQIhYgb_dyVkc9Dr8sgDomZJ4sTXz8RX3Hcnx8YEzH855YLtBERNLwTlclhxpOnbjg"/>
+<div class="absolute inset-0 bg-gradient-to-r from-tertiary-container to-transparent p-md flex flex-col justify-center">
+<span class="text-white font-label-caps uppercase mb-2">Exclusive Deal</span>
+<h2 class="text-white font-h1 text-h1 mb-4">Special Portability Offer</h2>
+<button class="bg-white text-primary font-button px-lg py-base rounded-lg w-fit hover:bg-surface-container-low transition-colors">Explore Plans</button>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-lg">
+<div class="flex gap-sm overflow-x-auto pb-4 hide-scrollbar">
+<button class="px-lg py-2 bg-primary text-white rounded-full font-label-caps whitespace-nowrap border border-primary">All Brands</button>
+<button class="px-lg py-2 bg-white text-on-surface-variant rounded-full font-label-caps whitespace-nowrap border border-outline-variant hover:border-primary-container transition-colors">Apple</button>
+<button class="px-lg py-2 bg-white text-on-surface-variant rounded-full font-label-caps whitespace-nowrap border border-outline-variant hover:border-primary-container transition-colors">Samsung</button>
+<button class="px-lg py-2 bg-white text-on-surface-variant rounded-full font-label-caps whitespace-nowrap border border-outline-variant hover:border-primary-container transition-colors">Xiaomi</button>
+<button class="px-lg py-2 bg-white text-on-surface-variant rounded-full font-label-caps whitespace-nowrap border border-outline-variant hover:border-primary-container transition-colors">Motorola</button>
+<button class="px-lg py-2 bg-white text-on-surface-variant rounded-full font-label-caps whitespace-nowrap border border-outline-variant hover:border-primary-container transition-colors">Google</button>
+</div>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-lg">
+<!-- Device Card 1 -->
+<div class="bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex flex-col hover:translate-y-[-4px] transition-transform duration-300">
+<div class="p-md bg-surface-container-low relative aspect-square flex items-center justify-center">
+<span class="absolute top-4 left-4 bg-secondary text-white text-[10px] font-bold px-2 py-1 rounded-full">NEW</span>
+<img class="max-h-full object-contain" data-alt="Studio shot of the latest flagship smartphone in titanium black, positioned centrally on a clean white surface. High-key lighting highlights the device's premium build quality and triple camera array. The image is crisp and professional, fitting a high-end corporate telecommunications catalog aesthetic with deep blues and subtle red accents in the environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj4P3K54OrFqrauAMnM7KA_0d4YP9ZMoWcPJnVW-LTTVWbWnYlqSgwcobcjWVsi0aX5daDOMTkrUnfW8lYamBb3ON7EKVC7igg-oj_IQEArxbQPWK5pPaxQdTcLqv5v8PWOVhmGnvXUd4pOHziSH3P4tqXESrREkCVpLhQqIncjK3si26DpFrEwhliYQ8ddjgk96SiYAAMFO1JZuc3_jqN3w8iVlnyNnegZ4kvQNcCM4k0sUIJP-BbKZvD3xx0g65XmcRgfFHPJNk"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-h3 text-h3 text-primary">iPhone 15 Pro Max</h3>
+<span class="material-symbols-outlined text-outline-variant">favorite</span>
+</div>
+<div class="mb-4">
+<span class="font-label-caps text-on-surface-variant">Apple</span>
+</div>
+<div class="mt-auto">
+<div class="flex items-baseline gap-xs mb-4">
+<span class="text-primary font-bold text-h2">$1,199</span>
+<span class="text-on-surface-variant font-body-sm">or $49.99/mo</span>
+</div>
+<button class="w-full bg-secondary text-white font-button py-3 rounded-lg hover:opacity-90 transition-opacity">View Details</button>
+</div>
+</div>
+</div>
+<!-- Device Card 2 -->
+<div class="bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex flex-col hover:translate-y-[-4px] transition-transform duration-300">
+<div class="p-md bg-surface-container-low relative aspect-square flex items-center justify-center">
+<img class="max-h-full object-contain" data-alt="Professional studio photography of a premium Samsung Galaxy smartphone in phantom black. The lighting is soft and directional, showcasing the curved glass edges and sophisticated matte finish. The composition is clean and minimalist, reflecting a modern corporate brand identity focused on high-tech reliability and luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABXXliLjvSrcknGKqFYw1ERw9H8qL2rcGtUXtnKIHx7dZMezlGlEoae99gw0iSmhSZXUj5FjFx-3NiWvqfpRM42D7hRGpG-0tU5rW6WvzpXE6rkrCiQPorLQ00hah9ZlQJa5y2Nt4fkaajb6hlqWKPVIx6FUWCWSQi3UEkanbE8cgP8YSN3gSD_hr5wSPUgDDIo126XV13JCuTP47-8ewIC4e2kis4pWuHZ9YtybbeMUWcbGnDiJgPWzsR4z92p7gzkG7omPj0MBc"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-h3 text-h3 text-primary">Galaxy S24 Ultra</h3>
+<span class="material-symbols-outlined text-outline-variant">favorite</span>
+</div>
+<div class="mb-4">
+<span class="font-label-caps text-on-surface-variant">Samsung</span>
+</div>
+<div class="mt-auto">
+<div class="flex items-baseline gap-xs mb-4">
+<span class="text-primary font-bold text-h2">$1,299</span>
+<span class="text-on-surface-variant font-body-sm">or $54.12/mo</span>
+</div>
+<button class="w-full bg-secondary text-white font-button py-3 rounded-lg hover:opacity-90 transition-opacity">View Details</button>
+</div>
+</div>
+</div>
+<!-- Device Card 3 -->
+<div class="bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex flex-col hover:translate-y-[-4px] transition-transform duration-300">
+<div class="p-md bg-surface-container-low relative aspect-square flex items-center justify-center">
+<span class="absolute top-4 left-4 bg-on-tertiary-container text-white text-[10px] font-bold px-2 py-1 rounded-full">PROMO</span>
+<img class="max-h-full object-contain" data-alt="A high-resolution image of a modern Xiaomi smartphone featuring a large edge-to-edge display. The device is shown at an angle to emphasize its slim profile and high-gloss back finish. Lighting is bright and neutral, creating a clean, professional look consistent with a corporate digital storefront using primary blue and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxrE81y0C6hxxrhWqsFAv_F5To9767n256oESlXRc7YDWR7hdE_qEg01edIy64EbN9fnNeKPuISHcsrwhpSuR2egNiVCKwEE5IcWYavOnBVUNbWW9KAA6UPPrP6fh-EQniwBDDEqOqOUjzyhw1_bTqzoTgvf6ApvS7TgrZuwHMmWw8_cGADuX6jguoWAJwQSceHI2cqXonyo2KAKgY08p9Ui5_AuEX589-1qfZpUyJyL8_bT2yVfHaCgbLr_8hcodjJyZyBPeVVwc"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-h3 text-h3 text-primary">Xiaomi 14 Pro</h3>
+<span class="material-symbols-outlined text-outline-variant">favorite</span>
+</div>
+<div class="mb-4">
+<span class="font-label-caps text-on-surface-variant">Xiaomi</span>
+</div>
+<div class="mt-auto">
+<div class="flex items-baseline gap-xs mb-4">
+<span class="text-primary font-bold text-h2">$899</span>
+<span class="text-on-surface-variant font-body-sm">or $37.45/mo</span>
+</div>
+<button class="w-full bg-secondary text-white font-button py-3 rounded-lg hover:opacity-90 transition-opacity">View Details</button>
+</div>
+</div>
+</div>
+<!-- Device Card 4 -->
+<div class="bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex flex-col hover:translate-y-[-4px] transition-transform duration-300">
+<div class="p-md bg-surface-container-low relative aspect-square flex items-center justify-center">
+<img class="max-h-full object-contain" data-alt="A studio portrait of a sleek Motorola smartphone with a focus on its unique textural back panel. The lighting creates subtle highlights on the metallic elements of the camera housing. The image exudes a sense of modern engineering and corporate excellence, presented in a clean and accessible format for a device catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy2skoct5im8Cir9lHyqvBlVY3lcUChd0rGHUO5iH_hJ2NGACOn_POh0OG3DmFsZCVWNek7zHcsgEIUzjEF003RM2dTbgFKoD1KcEABAbsH2P2WbKijQGWF7rQmcpiuD2jPkNWVNXd4YMKzxcILXOA4mFV4Kbb7CzHCPtfCSmYkjCVjPMr37k8dGPDT3LuWLDLMzrsR05-03IPpxRgq5vuZtlLzw2wvN7v3LCWGt_VIKF7fJ7_8ylFBNLOaXfR3tDrPl5jq_gg99M"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-h3 text-h3 text-primary">Motorola Edge 50</h3>
+<span class="material-symbols-outlined text-outline-variant">favorite</span>
+</div>
+<div class="mb-4">
+<span class="font-label-caps text-on-surface-variant">Motorola</span>
+</div>
+<div class="mt-auto">
+<div class="flex items-baseline gap-xs mb-4">
+<span class="text-primary font-bold text-h2">$699</span>
+<span class="text-on-surface-variant font-body-sm">or $29.12/mo</span>
+</div>
+<button class="w-full bg-secondary text-white font-button py-3 rounded-lg hover:opacity-90 transition-opacity">View Details</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="w-full py-lg px-margin-mobile flex flex-col md:flex-row justify-between items-center gap-base bg-surface-container-high border-t border-outline-variant">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<span class="font-h3 text-h3 text-primary font-bold">TeleCom</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 TeleCom Inc. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Store Locator</a>
+</div>
+</footer>
+<nav class="fixed bottom-0 w-full flex justify-around items-center h-16 px-4 bg-surface border-t border-outline-variant z-50">
+<a class="flex flex-col items-center justify-center text-secondary font-bold active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">phone_iphone</span>
+<span class="font-label-caps text-label-caps">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-caps text-label-caps">Plans</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-caps text-label-caps">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+</nav>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

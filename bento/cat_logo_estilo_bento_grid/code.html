@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#7e7386",
+                    "inverse-on-surface": "#f9edfc",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#eadfed",
+                    "on-background": "#1f1924",
+                    "on-secondary-fixed": "#1b1b1d",
+                    "inverse-surface": "#342e39",
+                    "surface-container-high": "#f0e4f3",
+                    "surface-dim": "#e1d6e5",
+                    "on-tertiary-fixed-variant": "#6a3c00",
+                    "primary-fixed": "#f0dbff",
+                    "surface-bright": "#fff7fe",
+                    "secondary-fixed-dim": "#c8c6c8",
+                    "on-tertiary-container": "#ffddc1",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#2d1600",
+                    "background": "#fff7fe",
+                    "surface": "#fff7fe",
+                    "on-secondary-fixed-variant": "#474649",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#636264",
+                    "inverse-primary": "#ddb7ff",
+                    "surface-tint": "#8621da",
+                    "on-surface-variant": "#4d4354",
+                    "tertiary": "#734100",
+                    "primary": "#7200c2",
+                    "primary-fixed-dim": "#ddb7ff",
+                    "tertiary-container": "#955600",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#ffdcbe",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "secondary": "#5f5e60",
+                    "secondary-container": "#e2dfe1",
+                    "primary-container": "#8e2de2",
+                    "surface-container": "#f6eaf9",
+                    "surface-container-low": "#fbf0ff",
+                    "on-primary-fixed-variant": "#6900b3",
+                    "on-primary-fixed": "#2c0050",
+                    "secondary-fixed": "#e4e2e4",
+                    "outline-variant": "#cfc2d7",
+                    "tertiary-fixed-dim": "#ffb872",
+                    "surface-variant": "#eadfed",
+                    "on-primary-container": "#f1dcff",
+                    "on-surface": "#1f1924"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "margin": "48px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-caps": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .bento-item-large {
+            grid-column: span 2;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 bg-surface-container-low dark:bg-inverse-surface flex justify-between items-center w-full px-gutter py-unit h-16">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full active:scale-95 transition-transform duration-150">
+                search
+            </button>
+</div>
+<div class="text-headline-sm font-headline-sm font-bold text-primary dark:text-primary-fixed-dim">
+            PHONIX
+        </div>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgCU2IqsaEqk_DajxRA1o5HgA85wLyFryrzrANjvkWge1yGsCC49J_s5baZt5W1ib8q8kcdl7kqigkiOpFdu331A6xlFFc5YPviTP_L276qfazhLTxmM4AB78Mlkj9slD095n7ESKDzkQDnCBC9ivZz2Bf8vqSuIYsghYu9bRJKFRWNI-Gk6WuSyonMHXgIErbHwkURMLNc0jhyrV2OcyOTLuiozgsmNZgWZxcGF9vgxuPFTwR5UzAbXgH8QbSUPA-jF3nua3YVQQ"/>
+</div>
+</div>
+</header>
+<main class="px-gutter pt-6 max-w-screen-md mx-auto">
+<div class="bento-grid">
+<!-- Featured Device: PHONIX Ultra -->
+<section class="bento-item-large bg-surface-container overflow-hidden rounded-[24px] relative min-h-[400px] flex flex-col justify-end p-8 border border-outline-variant/20">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-90" data-alt="A premium, sleek flagship smartphone in a deep phantom black finish, showcased in a professional studio setting. The lighting is dramatic and cinematic, highlighting the elegant curves of the titanium frame and the sophisticated multi-lens camera module. The background is a clean, minimalist gradient of soft violet and deep charcoal, creating a high-end light-mode aesthetic that communicates advanced technology and professional craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7ANUd3rmThfE_PKWHM3m9UsaImGvv2kCfAGJtRKt80ac6ilIle18dXEd6vCghQPbemwE0peNiZkA2T6zibjCWwflNP5_lvmEs_Sg_8D2UV-TgmvzX516S6bogt58A3GEWqdmo4AzvH5DXPLOt_bixhMHy3lsfN11E1BP3RjKOKNZPvdC9vSghLb0cRlZT6CBCYzOOUN32H4mDPzAOht60vqfmqNCIUbuZSwUOWphp9Bm0utNr9RKNse9HV36dNF765L0hMoh5gMU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10">
+<span class="inline-block px-3 py-1 mb-3 rounded-full bg-primary-container text-on-primary-container text-label-caps font-label-caps">FEATURED</span>
+<h1 class="text-headline-md font-headline-md text-white mb-2">PHONIX Ultra</h1>
+<p class="text-white/80 mb-6 max-w-[240px]">Experience the next era of mobile intelligence and cinematic capture.</p>
+<div class="flex items-center justify-between">
+<span class="text-headline-sm font-headline-sm text-white">From $1,199</span>
+<button class="bg-primary-container text-on-primary-container px-6 py-3 rounded-[16px] font-bold text-body-md hover:bg-opacity-90 active:scale-95 transition-all">
+                            Buy Now
+                        </button>
+</div>
+</div>
+</section>
+<!-- Latest Arrivals -->
+<div class="bg-surface-container-high rounded-[24px] p-6 flex flex-col justify-between border border-outline-variant/20 min-h-[220px]">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface mb-2">Latest Arrivals</h2>
+<p class="text-on-surface-variant text-label-caps">FRESH STOCK</p>
+</div>
+<div class="flex justify-end -mb-4 -mr-4">
+<img class="w-24 h-24 object-contain rotate-12 drop-shadow-xl" data-alt="A collection of the newest smartphone models arranged artistically in a staggered layout. The devices feature various vibrant colors like deep sea blue, forest green, and rose gold. The shot is taken from a top-down perspective on a clean white marble surface with soft, diffused natural lighting. The overall mood is modern, clean, and organized, emphasizing a fresh and desirable product catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPf2-GoWZrZBvHXuTDsQW5kFuWdRudyB8KbOMPJlIJBKSrt5n4z3L30LwW4c2UUrNL6_sA2YWiZb0WGixJ30mxD-sBrrvHAXPMEOhIEOf_zevJNacskIm7Z_tnQAHe6fErVMt2mQ0Mi3amv2I8jDza2FSdwwd67HW4oknf6bjmLHW06zZ-9qeQu3r_mgADO0u-MCGbPpo5kcdGZ6GzgyRaElLgmv9v72lw0D5vWSNvX2JC5xMAdHXzMbw3VQVxJsSX4eSS-bfAL2g"/>
+</div>
+</div>
+<!-- Current Offers -->
+<div class="bg-primary-container/10 rounded-[24px] p-6 flex flex-col justify-between border border-primary/10 min-h-[220px]">
+<div class="flex flex-col gap-1">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">local_offer</span>
+<h2 class="text-headline-sm font-headline-sm text-primary">Current Offers</h2>
+<p class="text-on-surface-variant text-body-md">Up to 30% off selected series.</p>
+</div>
+<div class="flex items-center gap-2 text-primary font-bold">
+<span>View Deals</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- 5G Ready Stat -->
+<div class="bg-tertiary-fixed rounded-[24px] p-6 flex flex-col items-center justify-center text-center border border-outline-variant/10">
+<span class="material-symbols-outlined text-tertiary text-5xl mb-3">5g</span>
+<p class="text-label-caps font-label-caps text-on-tertiary-fixed-variant">EVERYWHERE</p>
+<h3 class="font-bold text-on-tertiary-fixed">5G Ready</h3>
+</div>
+<!-- Trade-in Block -->
+<div class="bg-surface-container-low rounded-[24px] p-6 flex flex-col justify-between border border-outline-variant/20">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-secondary-container">swap_horiz</span>
+</div>
+<div>
+<h3 class="text-body-lg font-bold text-on-surface">Trade-in</h3>
+<p class="text-label-caps text-on-surface-variant">GET CREDIT</p>
+</div>
+</div>
+<!-- Accessories -->
+<div class="bento-item-large bg-surface-variant rounded-[24px] p-6 flex items-center justify-between border border-outline-variant/20">
+<div class="flex-1">
+<h2 class="text-headline-sm font-headline-sm text-on-surface mb-1">Essential Gear</h2>
+<p class="text-on-surface-variant text-body-md mb-4">Protect and power your Phonix device.</p>
+<button class="bg-secondary text-on-secondary px-4 py-2 rounded-[12px] text-label-caps font-bold">
+                        EXPLORE ACCESSORIES
+                    </button>
+</div>
+<div class="flex-1 flex justify-center gap-4">
+<img class="w-20 h-20 object-cover rounded-xl shadow-lg" data-alt="Minimalist wireless earbuds and a sleek phone case displayed together on a soft grey pedestal. The lighting is focused and clean, highlighting the smooth textures and high-quality finishes of the accessories. The color palette consists of neutral whites and cool greys with a single pop of vibrant violet light reflecting off the surface, maintaining a professional and high-tech product aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtc6uQ04IFpu_ZaQEyqlSkg5QDMnYEBiA5xaeYMBq-5raIrmPX7d9K0YkY97kuHHZPMSr98GbnY-7NErLQKRGWMBS0hKfKewvRiGwW5Gs4gVlKSLfOT-eN15tLFU_kzy6Z4fEDd84mSBUbYAbqcdxwfjapHVcet5ip7WN6S4Pd4OdG1yJ9u2q90cT9cdutN8z8vpMSA9buq5Y1EtI1QP6bQMDghaEr01xiX2ASsdkLf6rPTk8ykdx-uqjVgpmn9hbyGcugJru7nXs"/>
+<img class="w-20 h-20 object-cover rounded-xl shadow-lg mt-8" data-alt="A modern, high-speed wireless charging pad with a phone resting on it, glowing with a subtle charging indicator. The background is a clean office desk setup with a soft-focus wooden texture. The image uses bright, high-key lighting to create a light-mode friendly visual that feels both functional and premium, fitting perfectly within a clean technology catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0rvIuhWaPQ58tlbeMQGdny-UV2gdjo8vruUw17DlX5x9SIzY7YcAdqlGQ7NwodeB6QchlLOWFBOWhHKiktfJJjdSeLNt9Pe4H_EQq0Uqi_Q18iGGeBAfGs3ZWt-LX5YNTmKbu5h18TNORN5xTikb2UqBiQO_551QFFTO2SjOLxVjknHMAIDbPZd8EPnmV8U4OOzWaKIcQ6LCPuobEpEKRmHPzx5D2NLUvlA8lEt_ph6yUW1bfz3deuMvKolkKllH8DMaSx4V489A"/>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-gutter py-3 h-20 bg-surface-container-low dark:bg-inverse-surface z-50">
+<!-- Explore (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-2 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="text-label-caps font-label-caps">Explore</span>
+</a>
+<!-- Categories -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">category</span>
+<span class="text-label-caps font-label-caps">Categories</span>
+</a>
+<!-- My Account -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-caps font-label-caps">My Account</span>
+</a>
+<!-- Support -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="text-label-caps font-label-caps">Support</span>
+</a>
+</nav>
+</body></html>

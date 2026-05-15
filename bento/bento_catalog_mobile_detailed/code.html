@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TeleConnect Catalog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffdcbe",
+                        "on-tertiary-fixed": "#2d1600",
+                        "primary": "#7200c2",
+                        "surface-bright": "#fff7fe",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#4d4354",
+                        "on-secondary-fixed": "#1b1b1d",
+                        "secondary-container": "#e2dfe1",
+                        "surface-tint": "#8621da",
+                        "primary-fixed": "#f0dbff",
+                        "on-primary-fixed": "#2c0050",
+                        "surface-dim": "#e1d6e5",
+                        "on-secondary-fixed-variant": "#474649",
+                        "tertiary-fixed-dim": "#ffb872",
+                        "surface-variant": "#eadfed",
+                        "outline": "#7e7386",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#cfc2d7",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#8e2de2",
+                        "on-primary-container": "#f1dcff",
+                        "on-surface": "#1f1924",
+                        "inverse-primary": "#ddb7ff",
+                        "background": "#fff7fe",
+                        "surface-container": "#f6eaf9",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#eadfed",
+                        "tertiary-container": "#955600",
+                        "on-background": "#1f1924",
+                        "secondary": "#5f5e60",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#e4e2e4",
+                        "surface-container-high": "#f0e4f3",
+                        "surface-container-low": "#fbf0ff",
+                        "secondary-fixed-dim": "#c8c6c8",
+                        "inverse-on-surface": "#f9edfc",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#342e39",
+                        "on-primary-fixed-variant": "#6900b3",
+                        "tertiary": "#734100",
+                        "on-secondary-container": "#636264",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#ffddc1",
+                        "primary-fixed-dim": "#ddb7ff",
+                        "on-tertiary-fixed-variant": "#6a3c00",
+                        "surface": "#fff7fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "margin": "48px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface sticky top-0 z-40 flex justify-between items-center w-full px-gutter h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 duration-150" data-icon="menu">menu</span>
+<h1 class="text-headline-md font-headline-md font-bold text-primary-container">TeleConnect</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a Hispanic male in his mid-30s with a clean-cut beard and modern haircut. He is wearing a dark navy blazer over a light grey shirt. The background is a soft-focus office environment with warm, ambient lighting, matching the premium and minimalist aesthetic of a high-end technology brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsD19LHXmhamvWe48FkzuDMb7ChnzTnwR3S3yTpIsYVBOSCLZPEZ4odS-83PDgwNFlX-7A-mMV6RQZcL4pjysOOpBamELa7_CXQsc9YYrPIPNOKP8MwMxywyYYkMWgMqstG4guzUox5hPMVFAirbvSywiqhutTDVJI9AjxnKQst9lzlD4LxkZLST8aczjiGBIcmzb2kwTEuveseRizc4fG6ofdxTcBaLIkARKjeoTwXLHGFz3EkuoIKbvmxcB-6j2tRvh2nmRYMj0"/>
+</div>
+</header>
+<main class="px-gutter pt-4 space-y-6">
+<!-- Network Status Mini-Dashboard (Bento Section) -->
+<section class="grid grid-cols-2 gap-4">
+<div class="col-span-2 bg-surface-container rounded-[24px] p-6 flex flex-col justify-between border border-outline-variant/30">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-label-caps font-label-caps text-on-surface-variant mb-1">NETWORK STATUS</p>
+<h2 class="text-headline-sm font-headline-sm text-primary">Global 5G Ultra</h2>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="signal_cellular_alt">signal_cellular_alt</span>
+</div>
+<div class="flex items-end justify-between">
+<div class="flex gap-2">
+<div class="h-10 w-2 bg-primary rounded-full"></div>
+<div class="h-10 w-2 bg-primary rounded-full"></div>
+<div class="h-10 w-2 bg-primary rounded-full"></div>
+<div class="h-10 w-2 bg-primary/20 rounded-full"></div>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant">94% Signal Intensity</p>
+</div>
+</div>
+</section>
+<!-- Product Catalog Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Main Hero Product Tile -->
+<div class="bg-surface-container-low rounded-[24px] p-6 overflow-hidden flex flex-col border border-outline-variant/20">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-primary text-on-primary px-3 py-1 rounded-full text-label-caps font-label-caps">NEW ARRIVAL</span>
+<p class="text-headline-sm font-headline-sm text-on-surface">$1,199</p>
+</div>
+<div class="h-48 mb-6 flex justify-center items-center">
+<img class="h-full object-contain drop-shadow-2xl" data-alt="A sleek, high-end smartphone with a titanium frame displayed in a studio-lit setting. The phone features a large, borderless screen showing a vibrant violet and blue abstract wallpaper. The lighting is soft and directional, highlighting the premium metallic texture and the sophisticated camera module on the back. The background is a clean, neutral grey." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDSs3TsbfKma3HVH7nBEB8oS5aAU4iGFaWxQlneX_5O9Pi5wFi_rv0BjyCYJ23Gs0JGX9Tw41rQVbX6Stp4IYbpgsKzt9sMWARtZUMW4CQ9B0RmLvj3DZgfVMuvo5extj9t2fME5OLiV7Tgx6Jh1h2P99atjmI9KzvXlRRcClSmTvZtD2FeOPIfZzdVu9rpc_hRVbYFyedvVHBtu8EBhYXFS0N-0OsFEQ1WNSuSvpQw0b64U7zbGvbk4pWEkdlGr8v0TcgVeuLnhE"/>
+</div>
+<h3 class="text-headline-sm font-headline-sm mb-2">Titan Pro X1</h3>
+<div class="flex gap-2 mb-4">
+<span class="bg-surface-container-highest px-3 py-1 rounded-full text-label-caps font-label-caps text-on-surface-variant">256GB</span>
+<span class="bg-surface-container-highest px-3 py-1 rounded-full text-label-caps font-label-caps text-on-surface-variant">512GB</span>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-6 text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="photo_camera">photo_camera</span>
+<p class="text-label-caps font-label-caps">108MP TRIO</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="battery_charging_full">battery_charging_full</span>
+<p class="text-label-caps font-label-caps">5000MAH</p>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container py-4 rounded-[16px] font-bold hover:bg-primary transition-colors active:scale-95 duration-150">
+                    Pre-order Now
+                </button>
+</div>
+<!-- Featured Plan Block -->
+<div class="bg-primary rounded-[24px] p-6 text-on-primary flex flex-col justify-between shadow-lg">
+<div>
+<div class="flex items-center justify-between mb-6">
+<p class="text-label-caps font-label-caps opacity-80 uppercase tracking-widest">FEATURED PLAN</p>
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<h2 class="text-display-lg font-display-lg mb-2">Infinity</h2>
+<p class="text-body-lg font-body-lg opacity-90 mb-6">Truly unlimited 5G data with global roaming and premium streaming.</p>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+<p class="text-body-md font-body-md">Unlimited Data &amp; Hotspot</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+<p class="text-body-md font-body-md">4K Video Streaming</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+<p class="text-body-md font-body-md">Global Data Coverage</p>
+</div>
+</div>
+<div class="mt-8">
+<p class="text-headline-md font-headline-md">$65<span class="text-body-md opacity-70">/mo</span></p>
+</div>
+</div>
+<!-- Secondary Product Tiles (2x2 Grid on desktop feel) -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Product 2 -->
+<div class="bg-surface-container-high rounded-[24px] p-4 flex flex-col border border-outline-variant/10">
+<div class="h-32 mb-4">
+<img class="w-full h-full object-contain" data-alt="A modern, mid-range smartphone in a clean white finish, floating against a soft pastel lavender background. The device has a slim profile and a vibrant display showing a minimalist clock interface. The lighting is bright and airy, creating a fresh, contemporary tech feel that aligns with a clean and professional UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsPBvCokqffbkelIFLK22DKbirA317KZI5Z41v23bImV3CbFCuc_VGVYBZyotPl5zHMBzqlLYjjGjRe8TX_a-DdijxKx_AiC0kJYI4pQqQarECQupvj8Ge2dqjQ2DOzmrrHsy1BXgiBJJwbAymh-oegDH5RxRnOYcRzF5Ni8m8-vaoHWoMhcLiqEq1Qnore60NDFGgBOeAJzAVyLKog531TO5EDsCvRQyV75l2LHJb_9zihiNv9RcFz67w80a_-p1CMeWGGiOyrYM"/>
+</div>
+<h4 class="text-label-caps font-label-caps text-on-surface mb-1">NEXUS S22</h4>
+<p class="text-body-md font-bold text-primary mb-3">$799</p>
+<div class="flex gap-1 mb-3">
+<div class="w-4 h-4 rounded-full bg-on-surface border border-outline"></div>
+<div class="w-4 h-4 rounded-full bg-primary-fixed-dim border border-outline"></div>
+<div class="w-4 h-4 rounded-full bg-white border border-outline"></div>
+</div>
+<div class="text-[10px] text-on-surface-variant font-bold uppercase space-y-1">
+<p>128GB | 256GB</p>
+<p>6.1" OLED</p>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="bg-surface-container-high rounded-[24px] p-4 flex flex-col border border-outline-variant/10">
+<div class="h-32 mb-4">
+<img class="w-full h-full object-contain" data-alt="A pair of high-fidelity wireless earbuds in a sleek, glossy black charging case. The earbuds are positioned artistically next to the open case, reflecting soft studio lights. The aesthetic is extremely clean and premium, emphasizing the precision engineering and modern design of the accessory, suitable for a tech catalog's modular grid." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuBabXtrI9ZqHx6ZE8bnsr3d4ySMyOxMzT9zliA9etZxTeHgs1l1UpQmQCMOY_X1sbmgkqauHs-Y6y3VVfiOJQG6zk9iMakAZvmZXzeXl4cFaLmVogEbQFvLjg8eobLkWtAQiDlgu5t960xU4xg42ulRKQ_5VUbMgjpCbC4bQb0-c4BTtYMCMUq2qQdLzPxFxI6d1-EUP_vyZ72s0oOzVxy8g93w8bXt44ar0djewjAJHaduIodNId9ZN6QZXjDMpDR9T69WCYYAE"/>
+</div>
+<h4 class="text-label-caps font-label-caps text-on-surface mb-1">AURA BUDS PRO</h4>
+<p class="text-body-md font-bold text-primary mb-3">$199</p>
+<div class="flex gap-1 mb-3">
+<div class="w-4 h-4 rounded-full bg-on-surface border border-outline"></div>
+<div class="w-4 h-4 rounded-full bg-white border border-outline"></div>
+</div>
+<div class="text-[10px] text-on-surface-variant font-bold uppercase space-y-1">
+<p>Active ANC</p>
+<p>30H Battery</p>
+</div>
+</div>
+</div>
+<!-- Trade-In Promo -->
+<div class="bg-secondary-fixed rounded-[24px] p-6 flex flex-col justify-center items-center text-center border border-outline-variant/20">
+<div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="swap_horiz">swap_horiz</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-secondary-fixed mb-2">Trade-in &amp; Save</h3>
+<p class="text-body-md font-body-md text-on-secondary-fixed-variant mb-6">Get up to $600 credit towards your new device when you trade in your old phone.</p>
+<button class="bg-on-secondary-fixed text-white px-8 py-3 rounded-[16px] text-label-caps font-label-caps hover:bg-on-surface transition-all">
+                    GET ESTIMATE
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-4 bg-surface dark:bg-surface-dim shadow-sm rounded-t-xl border-t border-outline-variant">
+<div class="flex flex-col items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-xl px-3 py-1 translate-y-[-2px] duration-200">
+<span class="material-symbols-outlined" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="text-label-caps font-label-caps mt-1">Catalog</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="signal_cellular_alt">signal_cellular_alt</span>
+<span class="text-label-caps font-label-caps mt-1">5G Network</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="text-label-caps font-label-caps mt-1">Trade-in</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1 hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-caps font-label-caps mt-1">Account</span>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#3b8eec",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#4758ab",
+                    "on-primary-fixed-variant": "#2e3f92",
+                    "on-secondary-fixed": "#410000",
+                    "surface-container": "#f0eded",
+                    "on-primary": "#ffffff",
+                    "secondary": "#ba0a06",
+                    "on-background": "#1b1c1c",
+                    "surface-container-low": "#f6f3f2",
+                    "primary": "#00093c",
+                    "error-container": "#ffdad6",
+                    "outline": "#757683",
+                    "secondary-fixed-dim": "#ffb4a8",
+                    "surface-container-high": "#eae8e7",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#ffdad4",
+                    "outline-variant": "#c5c5d3",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#00264b",
+                    "primary-fixed": "#dee1ff",
+                    "on-primary-fixed": "#001258",
+                    "inverse-surface": "#303030",
+                    "on-primary-container": "#7687de",
+                    "on-surface-variant": "#454651",
+                    "error": "#ba1a1a",
+                    "inverse-primary": "#b9c3ff",
+                    "on-tertiary-fixed-variant": "#004785",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#d4e3ff",
+                    "primary-fixed-dim": "#b9c3ff",
+                    "surface-variant": "#e4e2e1",
+                    "on-secondary-fixed-variant": "#930001",
+                    "surface-bright": "#fbf9f8",
+                    "surface-container-high": "#eae8e7",
+                    "secondary-container": "#df2d1f",
+                    "on-tertiary-fixed": "#001c3a",
+                    "on-secondary-container": "#fffbff",
+                    "background": "#fbf9f8",
+                    "surface": "#fbf9f8",
+                    "tertiary": "#001127",
+                    "surface-container-highest": "#e4e2e1",
+                    "inverse-on-surface": "#f3f0f0",
+                    "primary-container": "#001970",
+                    "tertiary-fixed-dim": "#a5c8ff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#1b1c1c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "gutter": "16px",
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "32px",
+                    "md": "24px",
+                    "sm": "12px",
+                    "xl": "64px",
+                    "lg": "40px"
+            },
+            "fontFamily": {
+                    "h2": ["Work Sans"],
+                    "label-caps": ["Work Sans"],
+                    "body-md": ["Work Sans"],
+                    "h3": ["Work Sans"],
+                    "body-lg": ["Work Sans"],
+                    "body-sm": ["Work Sans"],
+                    "h1": ["Work Sans"],
+                    "button": ["Work Sans"]
+            },
+            "fontSize": {
+                    "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "h3": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "h1": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "button": ["16px", {"lineHeight": "24px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Work Sans', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<nav class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline flex justify-between items-center w-full px-margin-mobile h-16 sticky top-0 z-50">
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors p-base">menu</button>
+<span class="font-h2 text-h2 font-bold text-primary dark:text-primary-fixed-dim">TeleCom</span>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors p-base">shopping_cart</button>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-md">
+<!-- Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg lg:gap-xl">
+<!-- Left: Product Gallery (Bento-like for desktop, horizontal scroll for mobile) -->
+<div class="lg:col-span-7 space-y-md">
+<div class="aspect-square bg-white rounded-xl overflow-hidden flex items-center justify-center p-xl border border-outline-variant/30">
+<img alt="Product Main" class="object-contain w-full h-full" data-alt="A high-end modern smartphone in Titanium Grey shown from a dramatic 45-degree angle. The lighting is crisp and editorial, highlighting the polished metal frame and the triple-lens camera system. The background is a clean, minimalist studio white with soft, professional shadows. The overall aesthetic is corporate, premium, and sleek, aligning with the TeleCom brand's sophisticated visual identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2VH67MnyCQrkEPUu1JY-3LQ_Co0ZbLLQG-SRnIWJPRMAvIrptRMuqd18US835SKjaJQE-Bpj3rwUmBanIxp1thc4nUeCCqsn4FCWGrArLTwKnkI9nyArJPj6QqOmgHN1V1tdUM06MbCCkWa59zVNqk7ZIy76ebggutNgp6ygj5hrXC7A_xuh6BjG67CMPYQwqTrcQtaweYwsdPk0JcQ6qAPzJVN9FrWTdjx7kGTcSVPE5ih3qDXu0Xh9xyRlx7kxdeMWmvvmT1VI"/>
+</div>
+<div class="flex gap-base overflow-x-auto no-scrollbar">
+<div class="flex-shrink-0 w-32 aspect-square bg-white border border-secondary rounded-lg p-base">
+<img alt="View 1" class="object-contain w-full h-full" data-alt="Close up of a premium smartphone front display showing vibrant colorful high-resolution wallpaper. Studio lighting, flat corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0srWSFLlQPoCpDNSCwXyyvc_vhsvMa0q2RrrdMJrgiXVk04B00-Q--1chsNbqJdbn6DZUM413r4SgiURB2rbadifOzOn9q3CbsRP3DmUdc9rekVte6sFZKhhahH2-Xf8-gdT52WKD83Vkj7lqx428ef4thDDLvtyixBPLLKbPLVsjp_l7i5GI2AlTuLL-M4nZGJGxTUBdMLMJYKW1XbsdDokDszKsVe_Yf2Uizgq1i4z4nLoWnfvNqYaPpMv6uRvKL3Uo9xW9xsg"/>
+</div>
+<div class="flex-shrink-0 w-32 aspect-square bg-white border border-outline-variant/30 rounded-lg p-base hover:bg-surface-container-low transition-colors cursor-pointer">
+<img alt="View 2" class="object-contain w-full h-full" data-alt="Side profile of a sleek smartphone showcasing its ultra-thin bezel and polished chrome metallic rails. Minimalist studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPV74ECyT9mFnFAyKKeDIsU7uh-0ZlBUqYUT4ZPiooMNI-OODWYisdWpAxDJrl-ohwEgzQ8PRacPy-6hLCrlkmOdXKybzJ8haF23I18306BZwxjFoG7cWmXMmXkL5XRlXp08RByzqoxFlccGOnKyVT_GV3TtZrkn814UX2aBMb2VsRaTBuiiQ_H2hQpI1lYLlzCaQztCXkJV2MKC3v54qwt6lS1Cq9eNlRiwskUDyk2YKcR45b37zjpwyp0A0-30_TGAQf82XlMTg"/>
+</div>
+<div class="flex-shrink-0 w-32 aspect-square bg-white border border-outline-variant/30 rounded-lg p-base hover:bg-surface-container-low transition-colors cursor-pointer">
+<img alt="View 3" class="object-contain w-full h-full" data-alt="Rear view of a luxury smartphone featuring a triple-lens camera module with sapphire glass. High-key professional photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCigRncYHaBpNSbP1u_6f9O3OozdrXHhu3RVnzXkXn9s8MXmbX9QcuHDQlBH3h7oH9ueNhfNshpoxHE1l1ozEMV8p1bq1MkOEX72wxPszbZsvgFsWP5cb3VuEM95wUkAg5CrphUdZX67voxLQpOnYDtPvDIW7xnqM0QSQAIhZyglG3kbRnHWn5XisozuncxcD7J9J0pI7BRBbj6Pa_H0_-kiAk_NXXwMebZ9KwH9eo06OfIBfVYjsPRmGldU-BKmv6y1jnksZtiy3A"/>
+</div>
+</div>
+</div>
+<!-- Right: Product Controls -->
+<div class="lg:col-span-5 flex flex-col gap-lg">
+<div>
+<span class="inline-block bg-surface-container-high text-primary font-label-caps text-label-caps px-sm py-xs rounded-full mb-base">NEW RELEASE</span>
+<h1 class="font-h1 text-h1 text-primary">Galaxy S24 Ultra</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-base">The ultimate titanium powerhouse. Featuring AI-enhanced photography and the fastest processor in a Galaxy.</p>
+</div>
+<!-- Price & Financing -->
+<div class="p-md bg-white border border-outline-variant/20 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
+<div class="flex items-baseline gap-base">
+<span class="font-h1 text-h1 text-primary">$1,299.99</span>
+<span class="font-body-sm text-body-sm text-outline line-through">$1,399.99</span>
+</div>
+<div class="mt-base p-sm bg-surface-container-low rounded-lg border-l-4 border-secondary">
+<p class="font-body-md text-body-md text-primary font-bold">12 interest-free installments</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Only $108.33/month with TeleCom FlexPay</p>
+</div>
+</div>
+<!-- Color Selection -->
+<div class="space-y-base">
+<p class="font-label-caps text-label-caps text-on-surface-variant">SELECT COLOR: <span class="text-primary">TITANIUM GRAY</span></p>
+<div class="flex gap-sm">
+<button class="w-10 h-10 rounded-full border-2 border-secondary ring-2 ring-surface ring-offset-2 bg-[#4D4D4D]"></button>
+<button class="w-10 h-10 rounded-full border border-outline-variant bg-[#E5E5E5]"></button>
+<button class="w-10 h-10 rounded-full border border-outline-variant bg-[#2E333C]"></button>
+<button class="w-10 h-10 rounded-full border border-outline-variant bg-[#F7F2E3]"></button>
+</div>
+</div>
+<!-- Storage Options -->
+<div class="space-y-base">
+<p class="font-label-caps text-label-caps text-on-surface-variant">STORAGE CAPACITY</p>
+<div class="grid grid-cols-3 gap-sm">
+<button class="p-md border border-outline-variant rounded-lg text-center hover:bg-surface-container-low transition-colors">
+<span class="block font-button text-button text-primary">128GB</span>
+</button>
+<button class="p-md border-2 border-primary rounded-lg text-center bg-primary-container/10">
+<span class="block font-button text-button text-primary font-bold">256GB</span>
+</button>
+<button class="p-md border border-outline-variant rounded-lg text-center hover:bg-surface-container-low transition-colors">
+<span class="block font-button text-button text-primary">512GB</span>
+</button>
+</div>
+</div>
+<!-- Main CTA -->
+<button class="w-full bg-secondary text-on-secondary font-button text-button py-md rounded-lg active:scale-95 transition-transform duration-200 shadow-md">
+                    Buy Now
+                </button>
+<button class="w-full bg-transparent border border-primary text-primary font-button text-button py-md rounded-lg hover:bg-surface-container-low transition-colors">
+                    Compare with other models
+                </button>
+</div>
+</div>
+<!-- Technical Specifications Accordion -->
+<section class="mt-xl max-w-4xl">
+<h2 class="font-h2 text-h2 text-primary mb-lg">Technical Specifications</h2>
+<div class="divide-y divide-outline-variant border-y border-outline-variant">
+<details class="group py-md" open="">
+<summary class="flex justify-between items-center cursor-pointer list-none">
+<span class="font-h3 text-h3 text-primary">Display &amp; Camera</span>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-md grid grid-cols-1 md:grid-cols-2 gap-md font-body-md text-on-surface-variant">
+<div class="flex flex-col">
+<span class="font-bold text-primary">Screen</span>
+<span>6.8" Dynamic AMOLED 2X, 120Hz</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-primary">Rear Camera</span>
+<span>200MP Main + 50MP Periscope + 10MP Tele + 12MP UltraWide</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-primary">Front Camera</span>
+<span>12MP Selfie Camera</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-primary">Resolution</span>
+<span>3120 x 1440 (QHD+)</span>
+</div>
+</div>
+</details>
+<details class="group py-md">
+<summary class="flex justify-between items-center cursor-pointer list-none">
+<span class="font-h3 text-h3 text-primary">Performance &amp; Battery</span>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-md grid grid-cols-1 md:grid-cols-2 gap-md font-body-md text-on-surface-variant">
+<div class="flex flex-col">
+<span class="font-bold text-primary">Processor</span>
+<span>Snapdragon® 8 Gen 3 for Galaxy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-primary">RAM</span>
+<span>12GB LPDDR5X</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-primary">Battery</span>
+<span>5000 mAh with Super Fast Charging</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-primary">Connectivity</span>
+<span>5G, Wi-Fi 7, Bluetooth 5.3</span>
+</div>
+</div>
+</details>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full flex justify-around items-center h-16 px-4 bg-surface dark:bg-background border-t border-outline-variant dark:border-outline z-50">
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold active:scale-95 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">phone_iphone</span>
+<span class="font-label-caps text-label-caps">Shop</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:scale-95 transition-transform duration-200 cursor-pointer hover:bg-surface-container-low dark:hover:bg-surface-container-highest p-xs rounded">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-caps text-label-caps">Plans</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:scale-95 transition-transform duration-200 cursor-pointer hover:bg-surface-container-low dark:hover:bg-surface-container-highest p-xs rounded">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-caps text-label-caps">Cart</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:scale-95 transition-transform duration-200 cursor-pointer hover:bg-surface-container-low dark:hover:bg-surface-container-highest p-xs rounded">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</div>
+</nav>
+<!-- Footer -->
+<footer class="w-full py-lg px-margin-mobile flex flex-col md:flex-row justify-between items-center gap-base bg-surface-container-high dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline mt-xl mb-16">
+<div class="flex flex-col gap-xs">
+<span class="font-h3 text-h3 text-primary dark:text-primary-fixed">TeleCom</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant">© 2024 TeleCom Inc. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Support</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Store Locator</a>
+</div>
+</footer>
+</body></html>

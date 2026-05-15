@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#f0eded",
+                    "on-surface": "#1b1c1c",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#dcd9d9",
+                    "primary-fixed-dim": "#b9c3ff",
+                    "on-surface-variant": "#454651",
+                    "surface-bright": "#fbf9f8",
+                    "secondary-fixed": "#ffdad4",
+                    "on-primary-container": "#7687de",
+                    "inverse-surface": "#303030",
+                    "secondary-fixed-dim": "#ffb4a8",
+                    "inverse-primary": "#b9c3ff",
+                    "on-secondary-fixed-variant": "#930001",
+                    "surface-variant": "#e4e2e1",
+                    "surface-container-highest": "#e4e2e1",
+                    "background": "#fbf9f8",
+                    "surface": "#fbf9f8",
+                    "primary-container": "#001970",
+                    "on-tertiary-fixed-variant": "#004785",
+                    "tertiary": "#001127",
+                    "on-primary-fixed": "#001258",
+                    "on-tertiary-fixed": "#001c3a",
+                    "surface-container-high": "#eae8e7",
+                    "on-secondary-fixed": "#410000",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#fffbff",
+                    "tertiary-container": "#00264b",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#757683",
+                    "inverse-on-surface": "#f3f0f0",
+                    "on-background": "#1b1c1c",
+                    "surface-container-low": "#f6f3f2",
+                    "error": "#ba1a1a",
+                    "primary": "#00093c",
+                    "on-primary-fixed-variant": "#2e3f92",
+                    "surface-tint": "#4758ab",
+                    "secondary": "#ba0a06",
+                    "on-tertiary-container": "#3b8eec",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#a5c8ff",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#df2d1f",
+                    "primary-fixed": "#dee1ff",
+                    "tertiary-fixed": "#d4e3ff",
+                    "outline-variant": "#c5c5d3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "xl": "64px",
+                    "sm": "12px",
+                    "xs": "4px",
+                    "margin-desktop": "32px",
+                    "base": "8px",
+                    "lg": "40px",
+                    "margin-mobile": "16px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Work Sans"],
+                    "h1": ["Work Sans"],
+                    "body-sm": ["Work Sans"],
+                    "body-lg": ["Work Sans"],
+                    "h2": ["Work Sans"],
+                    "button": ["Work Sans"],
+                    "body-md": ["Work Sans"],
+                    "h3": ["Work Sans"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "h1": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "button": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "h3": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .bento-tall {
+            grid-row: span 2;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline docked full-width top-0 sticky z-50 flex justify-between items-center w-full px-margin-mobile h-16">
+<div class="flex items-center gap-base">
+<button class="text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors p-2 rounded-lg">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-h2 text-h2 font-bold text-primary dark:text-primary-fixed-dim">TeleCom</h1>
+</div>
+<div class="flex items-center gap-base">
+<button class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors p-2 rounded-lg">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+</div>
+</header>
+<main class="pb-24">
+<!-- Hero Section: Split Screen Aesthetic -->
+<section class="flex flex-col md:flex-row w-full min-h-[530px] bg-primary text-on-primary">
+<div class="flex-1 p-margin-mobile md:p-margin-desktop flex flex-col justify-center">
+<span class="font-label-caps text-label-caps bg-secondary px-3 py-1 inline-block w-fit mb-base rounded-full uppercase">Launch Deal</span>
+<h2 class="font-h1 text-h1 mb-md leading-tight">The Future is <br/><span class="text-secondary-container">Unlimited.</span></h2>
+<p class="font-body-lg text-body-lg mb-lg opacity-90 max-w-md">Experience blazing fast 5G speeds with the latest flagship devices. Switch today and save up to $800.</p>
+<div class="flex gap-md">
+<button class="bg-secondary text-on-secondary px-lg py-sm font-button text-button rounded-lg custom-shadow hover:opacity-80 transition-opacity active:scale-95">Shop Now</button>
+<button class="border border-on-primary px-lg py-sm font-button text-button rounded-lg hover:bg-white/10 transition-colors">Compare Plans</button>
+</div>
+</div>
+<div class="flex-1 relative min-h-[300px] md:min-h-full overflow-hidden">
+<img alt="Latest Smartphone" class="absolute inset-0 w-full h-full object-cover object-center" data-alt="A high-end smartphone with a sleek metallic finish and a vibrant OLED screen displaying colorful abstract art. The device is set against a split-screen background of deep corporate blue and energetic vibrant red. Professional studio lighting highlights the glass textures and premium build quality. The atmosphere is high-energy, modern, and clean, perfectly aligning with a premium telecommunications brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr_CZ4wT0_Mx6MHTLaRZQPzFP2sWv4fl1LsyM1x5v7PXza25_0kSI95HsvYO3llOVjm5CBLcPW0GIDnEHED5wMeN6O1DHaswVmmOVvaLA1YQ5DV471n2rvgOx-Nb-Kah8Swk775uB-gbe0St99cp6aZNsWQtKl0wmZrQSTiWV0d2dqR_2uK3mSswYEQJ1I0zXZCNqTrzs39LthE8EMUp1aDZ504GN6nE8Onj-wxLm4t4dfXdnBckVVJH7GtEIDuyecHwYs-TDsGUw"/>
+</div>
+</section>
+<!-- Featured Devices: Bento Grid Layout -->
+<section class="px-margin-mobile py-lg max-w-7xl mx-auto">
+<div class="flex justify-between items-end mb-lg">
+<h3 class="font-h1 text-h1">Hot Deals</h3>
+<a class="font-button text-button text-primary-container hover:underline" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Large Featured Card (Bento Tall) -->
+<div class="md:col-span-1 md:row-span-2 bg-surface-container-lowest rounded-xl p-md custom-shadow border border-outline-variant flex flex-col justify-between">
+<div>
+<span class="font-label-caps text-label-caps bg-tertiary-container text-on-tertiary-container px-2 py-0.5 rounded-full mb-sm inline-block">BEST SELLER</span>
+<h4 class="font-h2 text-h2 text-primary mb-xs">Pro Max Ultra</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Starting at $39.99/mo.</p>
+</div>
+<div class="my-lg">
+<img alt="Smart Device" class="w-full h-48 object-contain" data-alt="A premium flagship smartphone in a deep midnight blue color, positioned vertically to show off its triple-lens camera system. The lighting is crisp and sharp, creating elegant reflections on the glass back. The background is a minimalist white and light grey studio setting, maintaining a corporate yet sleek and high-tech feel. Red accent lighting subtly touches the edges to create depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO09mwPusEZghxerh-M6-yKDoZ0L7hLReZBW-IqNWXLADD32C5pdVuX2bViu-o6-ajy1HogcyVpwrpI-4frDVmS8Pk-DfQRB73eNxXULXqWjM9cBHz7w3RV5mBvOou1SEiV179ltFK28kMBoI75eDzvwMoZDI1bTwOl0fxVpS8SBOvchVnaVLRh9DQl32Ulp2C3L_JEOpv6Yx-QhDbh50uNuLIVQA2w-bYd3PVYYWnFn6ytl_sa7TyHmR64CyMf7_Gzj4uPoEcC5Q"/>
+</div>
+<button class="w-full bg-secondary text-on-secondary py-sm font-button text-button rounded-lg hover:opacity-90 transition-opacity active:scale-95 uppercase">Buy Now</button>
+</div>
+<!-- Plan Card -->
+<div class="md:col-span-2 bg-primary-container text-on-primary rounded-xl p-md flex flex-col md:flex-row items-center gap-md custom-shadow">
+<div class="flex-1">
+<h4 class="font-h2 text-h2 mb-xs">Unlimited Titanium</h4>
+<p class="font-body-md text-body-md opacity-80 mb-md">Our most powerful data plan with zero throttling and global roaming.</p>
+<div class="flex flex-wrap gap-xs mb-md">
+<span class="px-3 py-1 border border-on-primary/30 rounded-full font-label-caps text-label-caps">100GB HOTSPOT</span>
+<span class="px-3 py-1 border border-on-primary/30 rounded-full font-label-caps text-label-caps">4K STREAMING</span>
+<span class="px-3 py-1 border border-on-primary/30 rounded-full font-label-caps text-label-caps">5G ULTRA</span>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center p-md bg-white/10 rounded-xl min-w-[140px]">
+<p class="font-label-caps text-label-caps mb-1">PER LINE</p>
+<p class="font-h1 text-h1">$45</p>
+<button class="mt-sm bg-secondary text-on-secondary px-4 py-2 font-button text-button rounded-lg w-full text-center">Add Line</button>
+</div>
+</div>
+<!-- Device Mini Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow border border-outline-variant flex flex-col justify-between h-full">
+<div class="relative h-40 mb-md">
+<img alt="Earbuds" class="w-full h-full object-contain" data-alt="Modern wireless noise-canceling earbuds in a matte charcoal finish, resting inside their open charging case. The composition is dynamic and close-up, emphasizing the sleek textures and minimalist design. Bright daylight studio lighting ensures clarity and a high-end commercial look, with subtle blue and red color shifts in the shadows to maintain the brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn_WRzl2BQrgekomF10x8e8xHRbGhbO1ObqWgxGL8XwYyeUm8SY_fJgMOkSCzE3mgE850TSOwR_9EF3Myp_-wi1bpPtTKk7yRYWs6RrnWi6BTR4SWjBjMqKTBomOqLXFytz4MFqV3pq-uejZrCDp2fqCqc79rYEOwXZFU9vuc7ZzI24kl0eduyimsq3qjzw8I32IboGxreN0wsLHsaniZ3QlsuJvpiqQWC1-RDFPSH5Qwo4BKylywGcufWCvcoRMDw-R-JhNjW4uk"/>
+</div>
+<div>
+<h4 class="font-h3 text-h3 text-primary">Sonic Buds Pro</h4>
+<p class="text-secondary font-bold mb-md">$199.99</p>
+<button class="w-full border border-primary text-primary py-2 font-button text-button rounded-lg hover:bg-primary hover:text-on-primary transition-all">Add to Cart</button>
+</div>
+</div>
+<!-- Device Mini Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow border border-outline-variant flex flex-col justify-between h-full">
+<div class="relative h-40 mb-md">
+<img alt="Smartwatch" class="w-full h-full object-contain" data-alt="A sophisticated health-focused smartwatch with a vibrant circular display and a comfortable silicone strap. The watch screen displays a high-contrast heart rate monitor interface in red and blue. Set against a clean, professional corporate background with soft shadows, the image exudes reliability, precision, and modern technological elegance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKzg4DJnb-uCPUI2pLYc6XpjxA9KZyfYK1gxX26m6_1lhsEa4baN9L0zyZSdi6MZiQ4PLpGJIUiCxxI9FfAJ727hXVCpBwPFCuLDwbipgZxmOywSEK7uy75VV22AixcvMPZZGVsYN99IjM2hAGHLGrx9D9OZWs292kpbxpiN5Prs-1h1Gt6zMaSnoWM_99yStUGKT8fMtNCOpe7ON36ViXmbjZ9EnkLqKoY2xl9V4xbYw3zhZE3-ERj-lTDH8MIrsnqp851QtVrj8"/>
+</div>
+<div>
+<h4 class="font-h3 text-h3 text-primary">Active Watch 5</h4>
+<p class="text-secondary font-bold mb-md">$249.00</p>
+<button class="w-full border border-primary text-primary py-2 font-button text-button rounded-lg hover:bg-primary hover:text-on-primary transition-all">Add to Cart</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Dynamic Promo Banner -->
+<section class="px-margin-mobile py-lg">
+<div class="bg-secondary-container rounded-2xl p-lg flex flex-col md:flex-row items-center justify-between gap-lg relative overflow-hidden">
+<div class="z-10 text-center md:text-left">
+<h2 class="font-h1 text-h1 text-on-secondary-fixed mb-sm">Trade-In &amp; Level Up</h2>
+<p class="font-body-lg text-body-lg text-on-secondary-fixed opacity-90 max-w-lg">Bring in your old device and get up to $1000 credit towards the new 5G collection.</p>
+</div>
+<div class="z-10">
+<button class="bg-primary text-on-primary px-xl py-md font-button text-button rounded-full custom-shadow hover:scale-105 transition-transform active:scale-95">Estimate Value</button>
+</div>
+<!-- Abstract Geometric Background Shapes -->
+<div class="absolute -right-10 -bottom-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute -left-10 -top-10 w-48 h-48 bg-white/20 rounded-full blur-2xl"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-high dark:bg-surface-container-lowest w-full py-lg px-margin-mobile flex flex-col md:flex-row justify-between items-center gap-base border-t border-outline-variant dark:border-outline">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<h3 class="font-h3 text-h3 text-primary dark:text-primary-fixed">TeleCom</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant">© 2024 TeleCom Inc. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Support</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Store Locator</a>
+</div>
+</footer>
+<!-- BottomNavBar (Visible on Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center h-16 px-4 bg-surface dark:bg-background border-t border-outline-variant dark:border-outline z-50">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold transition-transform duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="phone_iphone">phone_iphone</span>
+<span class="font-label-caps text-label-caps">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-transform duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-caps text-label-caps">Plans</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-transform duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-caps text-label-caps">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-transform duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+</nav>
+</body></html>

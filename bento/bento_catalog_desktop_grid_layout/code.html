@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .bento-tile {
+            border: 1px solid #cfc2d7; /* outline-variant */
+            transition: all 0.3s ease;
+        }
+        .bento-tile:hover {
+            box-shadow: 0 10px 30px -10px rgba(114, 0, 194, 0.1);
+            transform: translateY(-2px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#7200c2",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#734100",
+                        "secondary-fixed": "#e4e2e4",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1f1924",
+                        "surface-variant": "#eadfed",
+                        "outline-variant": "#cfc2d7",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#ddb7ff",
+                        "outline": "#7e7386",
+                        "on-error": "#ffffff",
+                        "primary-container": "#8e2de2",
+                        "background": "#fff7fe",
+                        "tertiary-container": "#955600",
+                        "inverse-surface": "#342e39",
+                        "on-primary-fixed-variant": "#6900b3",
+                        "on-primary-container": "#f1dcff",
+                        "on-primary-fixed": "#2c0050",
+                        "inverse-primary": "#ddb7ff",
+                        "surface": "#fff7fe",
+                        "secondary": "#5f5e60",
+                        "surface-container-highest": "#eadfed",
+                        "on-secondary-fixed-variant": "#474649",
+                        "on-surface": "#1f1924",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb872",
+                        "secondary-fixed-dim": "#c8c6c8",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#8621da",
+                        "secondary-container": "#e2dfe1",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f9edfc",
+                        "surface-bright": "#fff7fe",
+                        "surface-container-low": "#fbf0ff",
+                        "surface-container": "#f6eaf9",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#6a3c00",
+                        "on-surface-variant": "#4d4354",
+                        "on-secondary-fixed": "#1b1b1d",
+                        "on-tertiary-container": "#ffddc1",
+                        "on-secondary-container": "#636264",
+                        "tertiary-fixed": "#ffdcbe",
+                        "primary-fixed": "#f0dbff",
+                        "surface-container-high": "#f0e4f3",
+                        "on-tertiary-fixed": "#2d1600",
+                        "surface-dim": "#e1d6e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin": "48px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface-bright border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-margin py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary">Nexus Telecom</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1 transition-colors" href="#">Catalog</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Solutions</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">5G</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</nav>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<input class="bg-surface-container-low border-none rounded-full px-4 py-2 text-body-md w-64 focus:ring-2 focus:ring-primary" placeholder="Search devices..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-2 text-on-surface-variant">search</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:scale-95 duration-200 transition-transform"><span class="material-symbols-outlined text-primary">shopping_cart</span></button>
+<button class="hover:scale-95 duration-200 transition-transform"><span class="material-symbols-outlined text-primary">account_circle</span></button>
+</div>
+</div>
+</div>
+</header>
+<div class="flex min-h-screen pt-20">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 p-4 pt-24 bg-surface-container-low border-r border-outline-variant hidden md:flex flex-col z-40">
+<div class="mb-8 px-4">
+<div class="font-headline-sm text-headline-sm font-black text-primary">Nexus Pro</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant">Fleet Management</div>
+</div>
+<nav class="flex-1">
+<a class="text-on-surface-variant flex items-center px-4 py-3 mb-2 hover:bg-surface-container-highest rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined mr-3">grid_view</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="bg-primary-container text-on-primary-container rounded-xl flex items-center px-4 py-3 mb-2 translate-x-1 duration-300" href="#">
+<span class="material-symbols-outlined mr-3">router</span>
+<span class="font-label-caps text-label-caps">Equipment</span>
+</a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mb-2 hover:bg-surface-container-highest rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined mr-3">settings_input_antenna</span>
+<span class="font-label-caps text-label-caps">Network</span>
+</a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mb-2 hover:bg-surface-container-highest rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined mr-3">currency_exchange</span>
+<span class="font-label-caps text-label-caps">Trade-in</span>
+</a>
+<a class="text-on-surface-variant flex items-center px-4 py-3 mb-2 hover:bg-surface-container-highest rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined mr-3">construction</span>
+<span class="font-label-caps text-label-caps">Gear</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-primary rounded-2xl text-on-primary">
+<div class="font-label-caps text-label-caps mb-2">Exclusive Offer</div>
+<div class="font-body-md text-body-md font-bold mb-4">Upgrade to 5G</div>
+<button class="bg-white text-primary w-full py-2 rounded-xl font-label-caps text-label-caps">Get Started</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 p-gutter max-w-container-max mx-auto">
+<!-- Hero Bento Header -->
+<section class="grid grid-cols-12 gap-gutter mb-gutter">
+<div class="col-span-12 lg:col-span-8 bg-surface-container rounded-[24px] p-10 flex flex-col justify-center min-h-[400px] overflow-hidden relative border border-outline-variant">
+<div class="relative z-10 max-w-lg">
+<span class="bg-primary-fixed text-on-primary-fixed px-4 py-1 rounded-full font-label-caps text-label-caps inline-block mb-6">New Season</span>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-6">Unleash the Power of Nexus 5G</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Discover our most advanced collection of mobile devices, designed for those who demand precision and premium performance.</p>
+<button class="bg-primary-container text-white px-8 py-4 rounded-xl font-body-md font-semibold hover:scale-105 transition-transform">Explore Full Catalog</button>
+</div>
+<div class="absolute right-0 top-0 bottom-0 w-1/2 bg-cover bg-center opacity-80" style="background-image: url('https://lh3.googleusercontent.com/aida/ADBb0ujnXGt9Amvcpmhv5S2X4fNSCJWgntOthSG4fkYs7wdz94roZx0XR2jAmXz-dAEn20ajpmexDiIXe8iYyGPZri24N3JiVHhx6fYlecM3J6BsrbgKtp4T_1mhQQ27ICDMbdwWbCUApiHYGkQROnJ59onBh8XagKWDCATRTA874P4se8THxVP8cRuj1DtokqnjI7MSku1doZMWX6CsgWkZCAKhw9m20HPq-a81tsJ0YQGB2YBCJF30Qxn-0AaAslKCr7b7pabdho4C')">
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 grid grid-rows-2 gap-gutter">
+<div class="bg-primary rounded-[24px] p-8 text-on-primary flex flex-col justify-between">
+<span class="material-symbols-outlined text-4xl">bolt</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Trade-in Program</h3>
+<p class="font-body-md text-body-md opacity-90">Get up to $600 credit for your old device toward a new Nexus 5G.</p>
+</div>
+</div>
+<div class="bg-surface-container-highest rounded-[24px] p-8 flex flex-col justify-between border border-outline-variant">
+<span class="material-symbols-outlined text-4xl text-primary">local_shipping</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Fast Delivery</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Free 24-hour shipping on all flagship catalog items.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Filter/Tabs Section -->
+<div class="flex items-center justify-between mb-8">
+<div class="flex gap-4">
+<button class="px-6 py-2 bg-primary-container text-on-primary-container rounded-full font-label-caps text-label-caps">All Devices</button>
+<button class="px-6 py-2 bg-surface-container hover:bg-surface-variant transition-colors rounded-full font-label-caps text-label-caps">Smartphones</button>
+<button class="px-6 py-2 bg-surface-container hover:bg-surface-variant transition-colors rounded-full font-label-caps text-label-caps">Tablets</button>
+<button class="px-6 py-2 bg-surface-container hover:bg-surface-variant transition-colors rounded-full font-label-caps text-label-caps">Wearables</button>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined">filter_list</span>
+<span class="font-label-caps text-label-caps">Filter &amp; Sort</span>
+</div>
+</div>
+<!-- Product Grid (IMAGE_12 / Movistar Style) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter mb-margin">
+<!-- Product Card 1 -->
+<div class="bento-tile bg-surface-container-lowest rounded-[24px] p-6 flex flex-col">
+<div class="aspect-[4/5] bg-surface-container-low rounded-2xl mb-6 overflow-hidden flex items-center justify-center p-8">
+<img alt="Smartphone" class="max-w-full max-h-full object-contain" data-alt="A high-end, sleek smartphone with a glossy metallic violet finish rests on a pristine white marble surface. The lighting is bright and clean, characteristic of a professional studio shoot. The device features a sophisticated multi-lens camera system on the back. The overall mood is modern, premium, and minimalistic, perfectly aligning with a high-tech design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6lc_O890qwDC2fTFMcX6oAprpXfwznljHmeGUZS7xAkQ-JaftYlQjNUNlOukIGMm_3B0RT7IUzUVAt3BbE1HZGkx7UDtGlZlJpsryiku5LMRPj5bq4mThMBQoXui7K0Kswn-VU7Pe_1Qs4BUpS-gcNZu-_K0nWUavmF8Xto_Jb_YBq0I9jkrs-4EPeIvwyDCme6vaXLOoKu1MD2iQNKhByvrnGz8S2H-ALgm-h8vgkb-Ev7f7F7fZ-fn00nrnlW28TRgs3LdbAoQ"/>
+</div>
+<div class="flex-1">
+<div class="font-label-caps text-label-caps text-primary mb-1">Nexus Series</div>
+<h3 class="font-headline-sm text-headline-sm mb-2 text-on-surface">Nexus 14 Pro Max</h3>
+<div class="flex items-center gap-2 mb-4">
+<span class="font-headline-sm text-headline-sm text-on-surface">$1,199</span>
+<span class="font-body-md text-body-md text-on-surface-variant line-through">$1,299</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-3 mb-6">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Nexus Infinity Plan</div>
+<div class="font-body-md text-body-md font-semibold text-primary">Unlimited 5G + Roaming</div>
+</div>
+</div>
+<button class="w-full bg-primary-container text-white py-4 rounded-xl font-body-md font-bold hover:bg-primary transition-colors flex items-center justify-center gap-2">
+                        Lo quiero <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<!-- Product Card 2 -->
+<div class="bento-tile bg-surface-container-lowest rounded-[24px] p-6 flex flex-col">
+<div class="aspect-[4/5] bg-surface-container-low rounded-2xl mb-6 overflow-hidden flex items-center justify-center p-8">
+<img alt="Tablet" class="max-w-full max-h-full object-contain" data-alt="A large, ultra-thin professional tablet with a vibrant OLED screen displaying abstract colorful patterns in shades of purple and blue. The tablet is placed on a minimalist dark gray desk next to a digital stylus. Soft ambient lighting highlights the metallic edges and premium build quality. The aesthetic is professional and cutting-edge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV_F1GsMJC57BN5wmbsmMm6qeS0Oax9jTcTyU7L5mQdHK5DGmOEz4RpO6Z0pr5KcGLFZ3W-0wG5oENnW7CQQHeedQ65gWxdNSB_sBZauEzVgaDrooMRY079onZwLhs9-VQuEd5418RXpgfIJ9EbO385qJDTxOQ-R8atuBQglccUzBRr6wE0k3jbRXWPZhlY2NLA6A_DF4ekb2fZruuj9RcLLBW7qYwEPRxTCl9ZyQImgQKLach_1rWaVfP_J55x8hESyjh3lP0_Lg"/>
+</div>
+<div class="flex-1">
+<div class="font-label-caps text-label-caps text-primary mb-1">Nexus Pad</div>
+<h3 class="font-headline-sm text-headline-sm mb-2 text-on-surface">Nexus Tab X1</h3>
+<div class="flex items-center gap-2 mb-4">
+<span class="font-headline-sm text-headline-sm text-on-surface">$849</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-3 mb-6">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Data-Only Plan</div>
+<div class="font-body-md text-body-md font-semibold text-primary">100GB 5G High Speed</div>
+</div>
+</div>
+<button class="w-full bg-primary-container text-white py-4 rounded-xl font-body-md font-bold hover:bg-primary transition-colors flex items-center justify-center gap-2">
+                        Lo quiero <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<!-- Product Card 3 -->
+<div class="bento-tile bg-surface-container-lowest rounded-[24px] p-6 flex flex-col">
+<div class="aspect-[4/5] bg-surface-container-low rounded-2xl mb-6 overflow-hidden flex items-center justify-center p-8 relative">
+<span class="absolute top-4 right-4 bg-error text-white font-label-caps text-[10px] px-2 py-1 rounded-full uppercase">Sold Out</span>
+<img alt="Smartphone" class="max-w-full max-h-full object-contain grayscale" data-alt="A sleek black smartphone with a textured matte finish captured in a dramatic, low-light studio setting. Soft violet rim lighting defines the curves and edges of the device. The screen is off, reflecting a subtle purple glow. The overall feeling is one of high-end luxury and technological sophistication." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5JfRLj_3cvxWbReyoLn8v2khzzTqo3fKnWn_j8OG8xH34fXe_T_5P2s0t6gXpK_JC7GJECEmbuLTUOpqT1eH_85uDdEbKSRS1SlJKF5rd3vPqgSu6j6E8FU4CYkz6xCknyWp83MRXNNXyc4CGlLn8O88InVfqya1cNMGRss1QEzQT16wBn8hSwCGk8Qc0v-JFoZ9lSfdy_fYNNTp0IYRLzigQCMuu0D1u9YqzocS6_cSeX_21ZzKsMSCIO7krZc7_8y5lmhNUBI4"/>
+</div>
+<div class="flex-1">
+<div class="font-label-caps text-label-caps text-primary mb-1">Special Edition</div>
+<h3 class="font-headline-sm text-headline-sm mb-2 text-on-surface">Nexus 14 Stealth</h3>
+<div class="flex items-center gap-2 mb-4">
+<span class="font-headline-sm text-headline-sm text-on-surface">$1,499</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-3 mb-6">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Premium VIP Plan</div>
+<div class="font-body-md text-body-md font-semibold text-primary">Worldwide Connectivity</div>
+</div>
+</div>
+<button class="w-full bg-secondary text-white py-4 rounded-xl font-body-md font-bold opacity-50 cursor-not-allowed">
+                        Agotado
+                    </button>
+</div>
+<!-- Product Card 4 -->
+<div class="bento-tile bg-surface-container-lowest rounded-[24px] p-6 flex flex-col">
+<div class="aspect-[4/5] bg-surface-container-low rounded-2xl mb-6 overflow-hidden flex items-center justify-center p-8">
+<img alt="Smartphone" class="max-w-full max-h-full object-contain" data-alt="A slim modern smartphone with a glass back in a soft pearl white finish. The device is being held by a hand in a clean, bright minimalist office environment. Natural sunlight creates soft shadows and highlights the premium materials. The image conveys ease of use and everyday elegance within the tech space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOTiAxmZW0Z3TBtFy2-rtjxDyVQCufQF7yfCwbZd9c5tXjLLBmS1mnUdAyIcJKzDCgHTY8NWLf03T--IaK4RQYex8rfpTlNEe8yNACh7YdpOWzDVqGIgHkIpKRNbJzq_JKSlr7SeaYAyxvwWxKHo1tvXWeQJ7f8Yx0VgFcRe7spI-cXZ_4hMiVTH0F2eoG6GJxF2EzQ6FjkUyQad5ZAfD36PRzNN1_nGq_3PuCRXhjvV3f1vRknVcl6PEaqiisxlM8Tpc6_QVlYRA"/>
+</div>
+<div class="flex-1">
+<div class="font-label-caps text-label-caps text-primary mb-1">Lite Series</div>
+<h3 class="font-headline-sm text-headline-sm mb-2 text-on-surface">Nexus 14 SE</h3>
+<div class="flex items-center gap-2 mb-4">
+<span class="font-headline-sm text-headline-sm text-on-surface">$699</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-3 mb-6">
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Standard 5G Plan</div>
+<div class="font-body-md text-body-md font-semibold text-primary">25GB 5G + Social Apps</div>
+</div>
+</div>
+<button class="w-full bg-primary-container text-white py-4 rounded-xl font-body-md font-bold hover:bg-primary transition-colors flex items-center justify-center gap-2">
+                        Lo quiero <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</section>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-highest border-t border-outline-variant mt-gutter">
+<div class="w-full py-unit px-margin flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto">
+<div class="flex flex-col mb-4 md:mb-0">
+<div class="font-headline-sm text-headline-sm text-on-surface mb-2">Nexus Telecom</div>
+<div class="font-body-md text-body-md text-on-secondary-fixed-variant">© 2024 Nexus Telecom. Precision Engineered Connectivity.</div>
+</div>
+<div class="flex gap-8">
+<a class="font-label-caps text-label-caps text-on-secondary-fixed-variant hover:text-primary transition-opacity underline underline-offset-4" href="#">Privacy</a>
+<a class="font-label-caps text-label-caps text-on-secondary-fixed-variant hover:text-primary transition-opacity underline underline-offset-4" href="#">Terms</a>
+<a class="font-label-caps text-label-caps text-on-secondary-fixed-variant hover:text-primary transition-opacity underline underline-offset-4" href="#">Compliance</a>
+<a class="font-label-caps text-label-caps text-on-secondary-fixed-variant hover:text-primary transition-opacity underline underline-offset-4" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

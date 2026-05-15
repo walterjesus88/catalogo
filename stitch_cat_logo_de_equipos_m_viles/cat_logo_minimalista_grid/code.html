@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#f0eded",
+                        "on-surface": "#1b1c1c",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dcd9d9",
+                        "primary-fixed-dim": "#b9c3ff",
+                        "on-surface-variant": "#454651",
+                        "surface-bright": "#fbf9f8",
+                        "secondary-fixed": "#ffdad4",
+                        "on-primary-container": "#7687de",
+                        "inverse-surface": "#303030",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "inverse-primary": "#b9c3ff",
+                        "on-secondary-fixed-variant": "#930001",
+                        "surface-variant": "#e4e2e1",
+                        "surface-container-highest": "#e4e2e1",
+                        "background": "#fbf9f8",
+                        "surface": "#fbf9f8",
+                        "primary-container": "#001970",
+                        "on-tertiary-fixed-variant": "#004785",
+                        "tertiary": "#001127",
+                        "on-primary-fixed": "#001258",
+                        "on-tertiary-fixed": "#001c3a",
+                        "surface-container-high": "#eae8e7",
+                        "on-secondary-fixed": "#410000",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#fffbff",
+                        "tertiary-container": "#00264b",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#757683",
+                        "inverse-on-surface": "#f3f0f0",
+                        "on-background": "#1b1c1c",
+                        "surface-container-low": "#f6f3f2",
+                        "error": "#ba1a1a",
+                        "primary": "#00093c",
+                        "on-primary-fixed-variant": "#2e3f92",
+                        "surface-tint": "#4758ab",
+                        "secondary": "#ba0a06",
+                        "on-tertiary-container": "#3b8eec",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#a5c8ff",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#df2d1f",
+                        "primary-fixed": "#dee1ff",
+                        "tertiary-fixed": "#d4e3ff",
+                        "outline-variant": "#c5c5d3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "xl": "64px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "margin-desktop": "32px",
+                        "base": "8px",
+                        "lg": "40px",
+                        "margin-mobile": "16px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Work Sans"],
+                        "h1": ["Work Sans"],
+                        "body-sm": ["Work Sans"],
+                        "body-lg": ["Work Sans"],
+                        "h2": ["Work Sans"],
+                        "button": ["Work Sans"],
+                        "body-md": ["Work Sans"],
+                        "h3": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "h1": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "button": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "h3": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile h-16 border-b border-outline-variant">
+<div class="flex items-center">
+<button class="p-2 -ml-2 hover:bg-surface-container-low transition-colors rounded-full active:opacity-80">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+</button>
+</div>
+<h1 class="font-h2 text-h2 font-bold text-primary">TeleCom</h1>
+<div class="flex items-center">
+<button class="p-2 -mr-2 hover:bg-surface-container-low transition-colors rounded-full active:opacity-80">
+<span class="material-symbols-outlined text-primary" data-icon="shopping_cart">shopping_cart</span>
+</button>
+</div>
+</header>
+<main class="max-w-md mx-auto">
+<!-- Hero Section: Lifestyle Focus -->
+<section class="px-margin-mobile py-lg">
+<div class="relative overflow-hidden rounded-xl aspect-[16/9] mb-md bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="A professional product shot of a sleek, high-end smartphone resting on a minimalist marble surface. The lighting is soft and diffused, highlighting the clean lines and premium metallic finish of the device. The background is a neutral, airy gray that complements the corporate modern aesthetic. The overall mood is sophisticated and tranquil, emphasizing high-quality craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1k4ME2xx63Rhbji5uPixoP3Z3XDTMwsTSnscgJ6TKrr7xTJkF368FRvpbUWn3ykd6FIPRm_mhMzxAB2XplHNoO21IiU_D5zbfIFQKcj4_QztD0d1sW3PPatE_y8JNg9AnjQRbSaUDmu8RM3s0xDRrXQ6Mui-HfChzO0yJRCUlP97Xft1Gv5h_2Oja6IWRwj50vMKaR-sbbihaHVP0YuOtLH-70UZioeqxUr6xBVHxVvN0kw2zuify5bO41mSz0x8EfXww_YzS0xk"/>
+<div class="absolute bottom-4 left-4 right-4">
+<span class="font-label-caps text-label-caps bg-secondary text-on-secondary px-2 py-1 rounded-full mb-2 inline-block">NEW ARRIVAL</span>
+<h2 class="font-h2 text-h2 text-primary bg-surface/80 backdrop-blur-sm p-2 rounded">Evolution Series 15</h2>
+</div>
+</div>
+</section>
+<!-- Category Filter -->
+<section class="px-margin-mobile pb-md flex gap-sm overflow-x-auto no-scrollbar">
+<button class="whitespace-nowrap font-button text-button text-secondary border-b-2 border-secondary pb-1">All Products</button>
+<button class="whitespace-nowrap font-button text-button text-on-surface-variant pb-1">Smartphones</button>
+<button class="whitespace-nowrap font-button text-button text-on-surface-variant pb-1">Tablets</button>
+<button class="whitespace-nowrap font-button text-button text-on-surface-variant pb-1">Wearables</button>
+</section>
+<!-- Product Grid -->
+<section class="px-margin-mobile grid grid-cols-2 gap-x-gutter gap-y-lg">
+<!-- Product Card 1 -->
+<div class="flex flex-col">
+<div class="aspect-square bg-white rounded-lg mb-sm overflow-hidden flex items-center justify-center p-md">
+<img class="max-w-full max-h-full object-contain" data-alt="A high-resolution studio photograph of a premium smartphone on a pure white background. The image is captured from a front-facing perspective, showcasing the edge-to-edge glass display. The lighting is crisp and even, creating a clean, flat corporate look that emphasizes the phone's sleek profile. The color palette is dominated by neutral tones and subtle reflections on the glass surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzogH-oXD-OkVfAVySCFnaSKLsdlF2ffQ3nm9xwZJxk23WGGFILrSlFrV1OrQ7nPUlbAeoW1A7UhTHYey__cR7R40PDs67bWKt_EKIaPZGgjyysw2k2qIZBSgCkjh3O-VpWynRvUNOe8_5CheCCorJH7CaA6cHNiLevUQaYM2T5JN0QYqi-UUvFxboPLFWM4BRHxCjuVHSotaTfqKIWc-60ACkwRIA-HaG1M9PzejiAJJYdXJW9h_pEIRyAPpoDa3VvpdtDMAR3Rw"/>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs">Aura Phone 14</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-base">5G ready • 256GB</p>
+<p class="font-button text-button text-primary mb-md">$899.00</p>
+<button class="bg-secondary text-on-secondary py-base rounded-lg font-button text-button hover:opacity-90 active:scale-95 transition-all">Buy Now</button>
+</div>
+<!-- Product Card 2 -->
+<div class="flex flex-col">
+<div class="aspect-square bg-white rounded-lg mb-sm overflow-hidden flex items-center justify-center p-md">
+<img class="max-w-full max-h-full object-contain" data-alt="A minimalist professional photograph of a slim digital tablet positioned diagonally on a white surface. The image highlights the thin bezels and vibrant display of the tablet. The lighting is high-key and bright, creating an airy and modern atmosphere consistent with a luxury lifestyle tech brand. The composition is clean and focused on the device's minimalist design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBWAj5cEbc84LUFcFlFLY85YI2KkA1OoC2zvd2m-1sRUyrpe5eM30pkciEjEk9UsBodDac-naacNH5GVABGsrdEnn9Qedle2hCTIZFN80pSnniK4_y2iayOIy-Itir7xxO9MWm74BgXXelaqmfHuKYUpLFYGgOGLOIn6PWWvpKdaFFMWJ_OQr4rvOF9zKECyHCrJu63XQqA_mrKH-qyXn0WUumiCimbkaL_6BEPSulQDHJKXfkSI9m-IbX4SF_bl5BxyfIaVhetfk"/>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs">Pro Tablet X</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-base">Wi-Fi + Cellular</p>
+<p class="font-button text-button text-primary mb-md">$1,099.00</p>
+<button class="bg-secondary text-on-secondary py-base rounded-lg font-button text-button hover:opacity-90 active:scale-95 transition-all">Buy Now</button>
+</div>
+<!-- Subtle Divider -->
+<div class="col-span-2 border-t border-outline-variant my-base"></div>
+<!-- Product Card 3 -->
+<div class="flex flex-col">
+<div class="aspect-square bg-white rounded-lg mb-sm overflow-hidden flex items-center justify-center p-md">
+<img class="max-w-full max-h-full object-contain" data-alt="A studio shot of a modern smartwatch with a sleek metal band against a pristine white background. The image focuses on the detailed craftsmanship of the watch face and the high-resolution digital display. The lighting is soft but professional, emphasizing the premium quality of the materials. The overall aesthetic is clean, sophisticated, and corporate, highlighting the device as a high-end lifestyle accessory." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvjK3ypSFvQRJ_7Sr3v6BLzkqcPt4296SBtEpdBRkVvgToDp7iWTOW3grzJC2i-HaO1_SeZF5MjFY9WWDHnU4HHumYk4QzlvK7L3ULZMNz5jvtC3ZEwiwSPVlb2pBL9beNl9lA_YBHfg8TuVqxjD0ikLJhftk0FNmzQxgaixP1v9FqpJjs9KvlGyA0faXWc-P_a6J7k-cw77-ZXUULeOlSQL3YO8qfanRkHXhKT9RPfy2VlQsjwWtqWkW8yw0qPU6vsrn-xUdJbxM"/>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs">Watch Gen 6</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-base">Silver Stainless Steel</p>
+<p class="font-button text-button text-primary mb-md">$349.00</p>
+<button class="bg-secondary text-on-secondary py-base rounded-lg font-button text-button hover:opacity-90 active:scale-95 transition-all">Buy Now</button>
+</div>
+<!-- Product Card 4 -->
+<div class="flex flex-col">
+<div class="aspect-square bg-white rounded-lg mb-sm overflow-hidden flex items-center justify-center p-md">
+<img class="max-w-full max-h-full object-contain" data-alt="A professional studio photograph of minimalist wireless headphones presented in profile against a bright, clean white background. The lighting is meticulously controlled to show the smooth textures and ergonomic design. The image conveys a sense of high-fidelity audio quality and modern luxury. The visual style is flat and contemporary, suitable for a premium telecommunications catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNDSN0hZ2YdHhkqfrzcky9jL10ogAfTtuwq8uVYaQnhdxztQuDflKCJwBvnokcIQTdwqurAaxBKm4ZjJCxTtU1LVAJ4LKjLerNOR6AZW5dBVBg94-Dl5HoapkdcPvUMvrRbazzobyYO_cRmdXKFgP4lCxYFQ3hCUBnPvVkMs-oXt4psq2L9K2XWaGEk8hLk_DBye6Za1feUAtoCR9YjFfgyKrBkwiJvLZ7kzIuz4t6Gz9fI7bnCnZfW4DEiYY1_VChidMP2kE7OCY"/>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs">Sonic Buds Pro</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-base">Noise Cancelling</p>
+<p class="font-button text-button text-primary mb-md">$249.00</p>
+<button class="bg-secondary text-on-secondary py-base rounded-lg font-button text-button hover:opacity-90 active:scale-95 transition-all">Buy Now</button>
+</div>
+</section>
+<!-- Newsletter Section -->
+<section class="px-margin-mobile py-xl mt-xl bg-surface-container-low border-t border-outline-variant">
+<h2 class="font-h2 text-h2 text-primary mb-sm">Stay Updated</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">Get the latest on device launches and exclusive data plans.</p>
+<div class="flex gap-xs">
+<input class="flex-grow bg-white border border-outline px-md py-base rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="Email address" type="email"/>
+<button class="bg-primary text-on-primary px-lg rounded-lg font-button text-button active:scale-95 transition-transform">Join</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg px-margin-mobile flex flex-col md:flex-row justify-between items-center gap-base bg-surface-container-high border-t border-outline-variant mb-16">
+<h3 class="font-h3 text-h3 text-primary font-bold">TeleCom</h3>
+<nav class="flex flex-wrap justify-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Store Locator</a>
+</nav>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 TeleCom Inc. All rights reserved.</p>
+</footer>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full flex justify-around items-center h-16 px-4 bg-surface border-t border-outline-variant z-50">
+<button class="flex flex-col items-center justify-center text-secondary font-bold active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="phone_iphone">phone_iphone</span>
+<span class="font-label-caps text-label-caps">Shop</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-caps text-label-caps">Plans</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-caps text-label-caps">Cart</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</button>
+</nav>
+</body></html>
