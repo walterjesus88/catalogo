@@ -13,8 +13,8 @@ interface Category {
 }
 
 export default async function AdminCategories() {
-  initDb();
-  const categories = queryAll<Category>(
+  await initDb();
+  const categories = await queryAll<Category>(
     `SELECT c.*, (SELECT COUNT(*) FROM products WHERE category_id = c.id) as product_count
      FROM categories c ORDER BY c.name`
   );

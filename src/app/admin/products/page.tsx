@@ -17,8 +17,8 @@ interface Product {
 }
 
 export default async function AdminProducts() {
-  initDb();
-  const products = queryAll<Product>("SELECT * FROM products ORDER BY created_at DESC");
+  await initDb();
+  const products = await queryAll<Product>("SELECT * FROM products ORDER BY created_at DESC");
 
   return (
     <div>

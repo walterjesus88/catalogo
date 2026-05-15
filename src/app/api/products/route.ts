@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { queryAll, queryOne, runQuery, initDb } from "@/lib/db";
 
 export async function GET(request: NextRequest) {
-  initDb();
+  await initDb();
   const { searchParams } = new URL(request.url);
   const category = searchParams.get("category");
   const q = searchParams.get("q");
@@ -23,17 +23,17 @@ export async function GET(request: NextRequest) {
 
   sql += " ORDER BY created_at DESC";
 
-  const products = queryAll(sql, params);
+  const products = await queryAll(sql, params);
   return NextResponse.json(products);
 }
 
 export async function POST(request: NextRequest) {
-  initDb();
+  await initDb();
   const body = await request.json();
 
   const slug = body.slug || body.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
 
-  const result = runQuery<{ lastInsertRowid: number }>(
+  const result = await runQuery<{ lastInsertRowid: number }>(
     `INSERT INTO products (name, slug, description, short_description, price, sale_price, sku, stock, category_id, image_url, is_featured, is_active)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [

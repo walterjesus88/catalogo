@@ -4,8 +4,8 @@ import ProductForm from "@/components/ProductForm";
 export const dynamic = "force-dynamic";
 
 export default async function NewProductPage() {
-  initDb();
-  const categories = queryAll<{ id: number; name: string; slug: string }>(
+  await initDb();
+  const categories = await queryAll<{ id: number; name: string; slug: string }>(
     "SELECT id, name, slug FROM categories ORDER BY name"
   );
 

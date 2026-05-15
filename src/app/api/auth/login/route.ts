@@ -4,14 +4,14 @@ import { verifyPassword, createToken } from "@/lib/auth";
 
 export async function POST(request: NextRequest) {
   try {
-    initDb();
+    await initDb();
     const { email, password } = await request.json();
 
     if (!email || !password) {
       return NextResponse.json({ error: "Email y contraseña requeridos" }, { status: 400 });
     }
 
-    const user = queryOne<{ id: number; email: string; password_hash: string; name: string }>(
+    const user = await queryOne<{ id: number; email: string; password_hash: string; name: string }>(
       "SELECT * FROM users WHERE email = ?",
       [email]
     );

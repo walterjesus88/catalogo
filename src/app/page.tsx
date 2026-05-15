@@ -34,15 +34,15 @@ const categoryIcons: Record<string, typeof Smartphone> = {
 };
 
 async function getFeaturedProducts(): Promise<Product[]> {
-  initDb();
-  return queryAll<Product>(
+  await initDb();
+  return await queryAll<Product>(
     "SELECT * FROM products WHERE is_active = 1 AND is_featured = 1 ORDER BY created_at DESC"
   );
 }
 
 async function getNovedades(): Promise<Product[]> {
-  initDb();
-  return queryAll<Product>(
+  await initDb();
+  return await queryAll<Product>(
     "SELECT * FROM products WHERE is_active = 1 AND is_featured = 1 ORDER BY created_at DESC LIMIT 6"
   );
 }
@@ -52,8 +52,8 @@ async function getCategories(): Promise<Category[]> {
 }
 
 async function getProductCount(): Promise<{ count: number }> {
-  initDb();
-  return queryOne<{ count: number }>("SELECT COUNT(*) as count FROM products WHERE is_active = 1") || { count: 0 };
+  await initDb();
+  return await queryOne<{ count: number }>("SELECT COUNT(*) as count FROM products WHERE is_active = 1") || { count: 0 };
 }
 
 export default async function HomePage() {

@@ -32,8 +32,8 @@ interface Category {
 }
 
 async function getProduct(slug: string): Promise<(Product & { category_name: string | null; category_slug: string | null }) | null> {
-  initDb();
-  return queryOne<Product & { category_name: string | null; category_slug: string | null }>(
+  await initDb();
+  return await queryOne<Product & { category_name: string | null; category_slug: string | null }>(
     `SELECT p.*, c.name as category_name, c.slug as category_slug
      FROM products p
      LEFT JOIN categories c ON p.category_id = c.id
@@ -43,7 +43,7 @@ async function getProduct(slug: string): Promise<(Product & { category_name: str
 }
 
 async function getRelatedProducts(categoryId: number, currentId: number, limit = 4): Promise<Product[]> {
-  return queryAll<Product>(
+  return await queryAll<Product>(
     "SELECT * FROM products WHERE category_id = ? AND id != ? AND is_active = 1 ORDER BY RANDOM() LIMIT ?",
     [categoryId, currentId, limit]
   );
@@ -69,7 +69,7 @@ export default async function ProductPage({
   const inStock = product.stock > 0;
 
   const categoryMap: Record<number, string> = {};
-  const categories = queryAll<{ id: number; name: string }>("SELECT id, name FROM categories");
+  const categories = await queryAll<{ id: number; name: string }>("SELECT id, name FROM categories");
   categories.forEach((c) => {
     categoryMap[c.id] = c.name;
   });

@@ -9,8 +9,8 @@ export default async function EditCategoryPage({
 }: {
   params: { id: string };
 }) {
-  initDb();
-  const category = queryOne<{
+  await initDb();
+  const category = await queryOne<{
     id: number;
     name: string;
     slug: string;

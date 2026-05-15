@@ -155,7 +155,7 @@ const PRODUCTS = [
 
 async function seed() {
   console.log("Initializing database...");
-  initDb();
+  await initDb();
 
   const CATEGORIES = [
     { name: "Smartphones", slug: "smartphones", description: "Los últimos modelos de teléfonos inteligentes" },
@@ -166,19 +166,19 @@ async function seed() {
 
   console.log("Seeding categories...");
   for (const cat of CATEGORIES) {
-    const existing = queryOne<{ id: number }>("SELECT id FROM categories WHERE slug = ?", [cat.slug]);
+    const existing = await queryOne<{ id: number }>("SELECT id FROM categories WHERE slug = ?", [cat.slug]);
     if (!existing) {
-      runQuery("INSERT INTO categories (name, slug, description) VALUES (?, ?, ?)", [cat.name, cat.slug, cat.description]);
+      await runQuery("INSERT INTO categories (name, slug, description) VALUES (?, ?, ?)", [cat.name, cat.slug, cat.description]);
       console.log(`  ✓ ${cat.name}`);
     }
   }
 
   console.log("Seeding products...");
   for (const prod of PRODUCTS) {
-    const existing = queryOne<{ id: number }>("SELECT id FROM products WHERE slug = ?", [prod.slug]);
+    const existing = await queryOne<{ id: number }>("SELECT id FROM products WHERE slug = ?", [prod.slug]);
     if (!existing) {
-      const category = queryOne<{ id: number }>("SELECT id FROM categories WHERE slug = ?", [prod.category_slug]);
-      runQuery(
+      const category = await queryOne<{ id: number }>("SELECT id FROM categories WHERE slug = ?", [prod.category_slug]);
+      await runQuery(
         `INSERT INTO products (name, slug, description, short_description, price, sale_price, sku, stock, category_id, is_featured, is_active, image_url)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?)`,
         [
@@ -192,10 +192,10 @@ async function seed() {
   }
 
   console.log("Creating admin user...");
-  const existingAdmin = queryOne<{ id: number }>("SELECT id FROM users WHERE email = ?", [process.env.ADMIN_EMAIL || "admin@catalogo.local"]);
+  const existingAdmin = await queryOne<{ id: number }>("SELECT id FROM users WHERE email = ?", [process.env.ADMIN_EMAIL || "admin@catalogo.local"]);
   if (!existingAdmin) {
     const passwordHash = await hashPassword(process.env.ADMIN_PASSWORD || "admin123");
-    runQuery("INSERT INTO users (email, password_hash, name, role) VALUES (?, ?, ?, ?)", [
+    await runQuery("INSERT INTO users (email, password_hash, name, role) VALUES (?, ?, ?, ?)", [
       process.env.ADMIN_EMAIL || "admin@catalogo.local", passwordHash, "Administrador", "admin",
     ]);
     console.log("  ✓ Admin user created");

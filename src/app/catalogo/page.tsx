@@ -27,7 +27,7 @@ interface Category {
 }
 
 async function getProducts(categorySlug?: string, searchQuery?: string): Promise<Product[]> {
-  initDb();
+  await initDb();
   let sql = "SELECT * FROM products WHERE is_active = 1";
   const params: unknown[] = [];
 
@@ -43,7 +43,7 @@ async function getProducts(categorySlug?: string, searchQuery?: string): Promise
   }
 
   sql += " ORDER BY created_at DESC";
-  return queryAll<Product>(sql, params);
+  return await queryAll<Product>(sql, params);
 }
 
 async function getCategories(): Promise<Category[]> {

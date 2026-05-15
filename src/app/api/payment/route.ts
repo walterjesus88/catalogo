@@ -3,10 +3,10 @@ import { runQuery, initDb } from "@/lib/db";
 
 export async function POST(request: NextRequest) {
   try {
-    initDb();
+    await initDb();
     const { product_id, product_name, amount } = await request.json();
 
-    runQuery(
+    await runQuery(
       "INSERT INTO payment_logs (product_id, product_name, amount, method, status) VALUES (?, ?, ?, 'yape', 'pending')",
       [product_id || null, product_name, amount]
     );

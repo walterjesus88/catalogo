@@ -4,16 +4,16 @@ import { MessageSquare } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export default async function AdminContacts() {
-  initDb();
+  await initDb();
 
-  const total = queryOne<{ count: number }>("SELECT COUNT(*) as count FROM contact_logs") || { count: 0 };
-  const today = queryOne<{ count: number }>("SELECT COUNT(*) as count FROM contact_logs WHERE date(created_at) = date('now')") || { count: 0 };
+  const total = await queryOne<{ count: number }>("SELECT COUNT(*) as count FROM contact_logs") || { count: 0 };
+  const today = await queryOne<{ count: number }>("SELECT COUNT(*) as count FROM contact_logs WHERE date(created_at) = date('now')") || { count: 0 };
 
-  const topProducts = queryAll<{ product_name: string; count: number }>(
+  const topProducts = await queryAll<{ product_name: string; count: number }>(
     "SELECT product_name, COUNT(*) as count FROM contact_logs GROUP BY product_name ORDER BY count DESC LIMIT 5"
   );
 
-  const logs = queryAll<{ id: number; product_name: string; created_at: string }>(
+  const logs = await queryAll<{ id: number; product_name: string; created_at: string }>(
     "SELECT id, product_name, created_at FROM contact_logs ORDER BY created_at DESC LIMIT 50"
   );
 

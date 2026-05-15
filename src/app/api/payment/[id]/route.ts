@@ -1,19 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import Database from "better-sqlite3";
-import { queryOne, transaction, initDb } from "@/lib/db";
+import { queryOne, runQuery, initDb } from "@/lib/db";
 
 export async function PATCH(
   _request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    initDb();
+    await initDb();
     const paymentId = parseInt(params.id);
     if (isNaN(paymentId)) {
       return NextResponse.json({ error: "ID inválido" }, { status: 400 });
     }
 
-    const payment = queryOne<{
+    const payment = await queryOne<{
       id: number;
       product_id: number | null;
       status: string;
@@ -27,23 +26,24 @@ export async function PATCH(
       return NextResponse.json({ error: "Este pago ya fue confirmado" }, { status: 400 });
     }
 
-    transaction((db: Database.Database) => {
-      if (payment.product_id) {
-        const product = db.prepare(
-          "SELECT id, stock, name FROM products WHERE id = ?"
-        ).get(payment.product_id) as { id: number; stock: number; name: string } | undefined;
+    if (payment.product_id) {
+      const product = await queryOne<{ id: number; stock: number; name: string }>(
+        "SELECT id, stock, name FROM products WHERE id = ?",
+        [payment.product_id]
+      );
 
-        if (product && product.stock > 0) {
-          db.prepare(
-            "UPDATE products SET stock = stock - 1, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND stock > 0"
-          ).run(payment.product_id);
-        }
+      if (product && product.stock > 0) {
+        await runQuery(
+          "UPDATE products SET stock = stock - 1, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND stock > 0",
+          [payment.product_id]
+        );
       }
+    }
 
-      db.prepare(
-        "UPDATE payment_logs SET status = 'confirmed' WHERE id = ?"
-      ).run(paymentId);
-    });
+    await runQuery(
+      "UPDATE payment_logs SET status = 'confirmed' WHERE id = ?",
+      [paymentId]
+    );
 
     return NextResponse.json({ success: true });
   } catch (error) {

@@ -5,8 +5,8 @@ export async function GET(
   _request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  initDb();
-  const product = queryOne("SELECT * FROM products WHERE id = ?", [params.id]);
+  await initDb();
+  const product = await queryOne("SELECT * FROM products WHERE id = ?", [params.id]);
   if (!product) {
     return NextResponse.json({ error: "Producto no encontrado" }, { status: 404 });
   }
@@ -17,12 +17,12 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  initDb();
+  await initDb();
   const body = await request.json();
 
   const slug = body.slug || body.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
 
-  runQuery(
+  await runQuery(
     `UPDATE products SET name = ?, slug = ?, description = ?, short_description = ?, price = ?, sale_price = ?, sku = ?, stock = ?, category_id = ?, image_url = ?, is_featured = ?, is_active = ?, updated_at = CURRENT_TIMESTAMP
      WHERE id = ?`,
     [
@@ -49,7 +49,7 @@ export async function DELETE(
   _request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  initDb();
-  runQuery("DELETE FROM products WHERE id = ?", [params.id]);
+  await initDb();
+  await runQuery("DELETE FROM products WHERE id = ?", [params.id]);
   return NextResponse.json({ success: true });
 }

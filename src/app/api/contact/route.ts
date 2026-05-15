@@ -3,10 +3,10 @@ import { runQuery, initDb } from "@/lib/db";
 
 export async function POST(request: NextRequest) {
   try {
-    initDb();
+    await initDb();
     const { product_id, product_name, phone } = await request.json();
 
-    runQuery(
+    await runQuery(
       "INSERT INTO contact_logs (product_id, product_name, phone) VALUES (?, ?, ?)",
       [product_id || null, product_name, phone || null]
     );

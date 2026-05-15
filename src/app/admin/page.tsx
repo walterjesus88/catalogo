@@ -4,7 +4,7 @@ import { Package, FolderOpen, DollarSign, TrendingUp } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboard() {
-  initDb();
+  await initDb();
 
   const [
     productCount,
@@ -12,10 +12,10 @@ export default async function AdminDashboard() {
     totalValue,
     lowStock,
   ] = await Promise.all([
-    queryOne<{ count: number }>("SELECT COUNT(*) as count FROM products"),
-    queryOne<{ count: number }>("SELECT COUNT(*) as count FROM categories"),
-    queryOne<{ total: number }>("SELECT SUM(price * stock) as total FROM products WHERE is_active = 1"),
-    queryOne<{ count: number }>("SELECT COUNT(*) as count FROM products WHERE stock <= 5 AND is_active = 1"),
+    await queryOne<{ count: number }>("SELECT COUNT(*) as count FROM products"),
+    await queryOne<{ count: number }>("SELECT COUNT(*) as count FROM categories"),
+    await queryOne<{ total: number }>("SELECT SUM(price * stock) as total FROM products WHERE is_active = 1"),
+    await queryOne<{ count: number }>("SELECT COUNT(*) as count FROM products WHERE stock <= 5 AND is_active = 1"),
   ]);
 
   const stats = [

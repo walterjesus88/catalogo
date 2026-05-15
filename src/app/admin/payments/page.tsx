@@ -5,13 +5,13 @@ import ConfirmPaymentButton from "./ConfirmPaymentButton";
 export const dynamic = "force-dynamic";
 
 export default async function AdminPayments() {
-  initDb();
+  await initDb();
 
-  const total = queryOne<{ count: number }>("SELECT COUNT(*) as count FROM payment_logs") || { count: 0 };
-  const pending = queryOne<{ count: number }>("SELECT COUNT(*) as count FROM payment_logs WHERE status = 'pending'") || { count: 0 };
-  const totalAmount = queryOne<{ total: number }>("SELECT SUM(amount) as total FROM payment_logs") || { total: 0 };
+  const total = await queryOne<{ count: number }>("SELECT COUNT(*) as count FROM payment_logs") || { count: 0 };
+  const pending = await queryOne<{ count: number }>("SELECT COUNT(*) as count FROM payment_logs WHERE status = 'pending'") || { count: 0 };
+  const totalAmount = await queryOne<{ total: number }>("SELECT SUM(amount) as total FROM payment_logs") || { total: 0 };
 
-  const payments = queryAll<{
+  const payments = await queryAll<{
     id: number;
     product_name: string;
     amount: number;

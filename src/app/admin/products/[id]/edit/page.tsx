@@ -9,8 +9,8 @@ export default async function EditProductPage({
 }: {
   params: { id: string };
 }) {
-  initDb();
-  const product = queryOne<{
+  await initDb();
+  const product = await queryOne<{
     id: number;
     name: string;
     slug: string;
@@ -28,7 +28,7 @@ export default async function EditProductPage({
 
   if (!product) notFound();
 
-  const categories = queryAll<{ id: number; name: string; slug: string }>(
+  const categories = await queryAll<{ id: number; name: string; slug: string }>(
     "SELECT id, name, slug FROM categories ORDER BY name"
   );
 

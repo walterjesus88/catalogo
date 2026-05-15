@@ -5,8 +5,8 @@ export async function GET(
   _request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  initDb();
-  const category = queryOne("SELECT * FROM categories WHERE id = ?", [params.id]);
+  await initDb();
+  const category = await queryOne("SELECT * FROM categories WHERE id = ?", [params.id]);
   if (!category) {
     return NextResponse.json({ error: "Categoría no encontrada" }, { status: 404 });
   }
@@ -17,12 +17,12 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  initDb();
+  await initDb();
   const body = await request.json();
 
   const slug = body.slug || body.name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
 
-  runQuery(
+  await runQuery(
     "UPDATE categories SET name = ?, slug = ?, description = ?, image_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
     [body.name, slug, body.description || null, body.image_url || null, params.id]
   );
@@ -34,7 +34,7 @@ export async function DELETE(
   _request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  initDb();
-  runQuery("DELETE FROM categories WHERE id = ?", [params.id]);
+  await initDb();
+  await runQuery("DELETE FROM categories WHERE id = ?", [params.id]);
   return NextResponse.json({ success: true });
 }
