@@ -6,15 +6,24 @@ const DB_PATH = path.join(process.cwd(), "data", "catalogo.db");
 
 const USE_PG = !!process.env.SUPABASE_URL;
 
+const REF = "mzkexbwertxhbwsxdluo";
+const PASS = process.env.DATABASE_PASSWORD || "";
+const KEY = process.env.SUPABASE_KEY || "";
+const REGIONS = ["us-east-1", "us-west-1", "eu-west-1", "eu-central-1", "sa-east-1"];
+
 const PG_CONN_STR = process.env.DATABASE_URL || "";
 
 const PG_HOSTS = PG_CONN_STR
   ? [PG_CONN_STR]
   : [
-      `postgresql://postgres:${process.env.DATABASE_PASSWORD || ""}@db.mzkexbwertxhbwsxdluo.supabase.co:5432/postgres`,
-      `postgresql://postgres:${process.env.DATABASE_PASSWORD || ""}@aws-0-us-west-1.pooler.supabase.com:6543/postgres`,
-      `postgresql://postgres.mzkexbwertxhbwsxdluo:${process.env.SUPABASE_KEY || ""}@aws-0-us-west-1.pooler.supabase.com:6543/postgres`,
-      `postgresql://postgres.mzkexbwertxhbwsxdluo:${process.env.DATABASE_PASSWORD || ""}@aws-0-us-west-1.pooler.supabase.com:5432/postgres`,
+      ...REGIONS.map(
+        (r) =>
+          `postgresql://postgres.${REF}:${PASS}@aws-0-${r}.pooler.supabase.com:5432/postgres`
+      ),
+      ...REGIONS.map(
+        (r) =>
+          `postgresql://postgres.${REF}:${KEY}@aws-0-${r}.pooler.supabase.com:6543/postgres`
+      ),
     ];
 
 let pgPool: Pool | null = null;
