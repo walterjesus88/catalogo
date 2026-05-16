@@ -1,118 +1,57 @@
 import Database from "better-sqlite3";
 import path from "path";
-import { Pool } from "pg";
-import dns from "dns";
-import { promisify } from "util";
-
-const resolve6 = promisify(dns.resolve6);
+import { createClient } from "@supabase/supabase-js";
 
 const DB_PATH = path.join(process.cwd(), "data", "catalogo.db");
 
 const USE_PG = !!process.env.SUPABASE_URL;
 
-const REF = "mzkexbwertxhbwsxdluo";
-const PASS = process.env.DATABASE_PASSWORD || "";
-const KEY = process.env.SUPABASE_KEY || "";
-const REGIONS = ["us-east-1", "us-west-1", "eu-west-1", "eu-central-1", "sa-east-1"];
+const SUPABASE_URL = process.env.SUPABASE_URL || "";
+const SUPABASE_KEY = process.env.SUPABASE_KEY || "";
 
-const PG_CONN_STR = process.env.DATABASE_URL || "";
+let supabase: ReturnType<typeof createClient> | null = null;
 
-async function getDirectIPv6(): Promise<string | null> {
-  try {
-    const addrs = await resolve6(`db.${REF}.supabase.co`);
-    return addrs[0] || null;
-  } catch {
-    return null;
+function getSupabase() {
+  if (!supabase) {
+    supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
   }
+  return supabase;
 }
 
-function getPgHosts(ipv6: string | null): string[] {
-  if (PG_CONN_STR) return [PG_CONN_STR];
-
-  const hosts: string[] = [];
-
-  // Try direct via IPv6 address first (brackets for IPv6 in URI)
-  if (ipv6) {
-    hosts.push(
-      `postgresql://postgres:${PASS}@[${ipv6}]:5432/postgres`
-    );
-  }
-
-  // Transaction pooler (port 6543, Supavisor)
-  hosts.push(
-    `postgresql://postgres.${REF}:${PASS}@aws-0-us-east-1.pooler.supabase.com:6543/postgres`
-  );
-
-  // Session pooler (port 5432, PgBouncer) with ?pgbouncer=true
-  hosts.push(
-    `postgresql://postgres.${REF}:${PASS}@aws-0-us-east-1.pooler.supabase.com:5432/postgres?pgbouncer=true`
-  );
-
-  // Other regions transaction pooler
-  for (const r of REGIONS.filter(r => r !== "us-east-1")) {
-    hosts.push(
-      `postgresql://postgres.${REF}:${PASS}@aws-0-${r}.pooler.supabase.com:6543/postgres`
-    );
-  }
-
-  // Other regions session pooler
-  for (const r of REGIONS.filter(r => r !== "us-east-1")) {
-    hosts.push(
-      `postgresql://postgres.${REF}:${PASS}@aws-0-${r}.pooler.supabase.com:5432/postgres?pgbouncer=true`
-    );
-  }
-
-  // Try with SUPABASE_KEY
-  for (const r of REGIONS) {
-    hosts.push(
-      `postgresql://postgres.${REF}:${KEY}@aws-0-${r}.pooler.supabase.com:6543/postgres`
-    );
-  }
-
-  return hosts;
+function escapeSQL(val: unknown): string {
+  if (val === null || val === undefined) return "NULL";
+  if (typeof val === "number") return String(val);
+  if (typeof val === "boolean") return val ? "1" : "0";
+  if (typeof val === "bigint") return String(val);
+  const str = String(val);
+  return `'${str.replace(/'/g, "''")}'`;
 }
 
-let pgPool: Pool | null = null;
-let pgHosts: string[] = [];
-let pgHostIndex = 0;
-let dnsResolved = false;
-
-function resetPgPool(): void {
-  if (pgPool) { pgPool.end().catch(() => {}); pgPool = null; }
+function buildSQL(sql: string, params: unknown[]): string {
+  let i = 0;
+  return sql.replace(/\?/g, () => escapeSQL(params[i++]));
 }
 
-async function initPgHosts(): Promise<string[]> {
-  if (pgHosts.length > 0) return pgHosts;
-  const ipv6 = dnsResolved ? null : await getDirectIPv6();
-  dnsResolved = true;
-  pgHosts = getPgHosts(ipv6);
-  return pgHosts;
+async function callRpc<T>(name: string, args: Record<string, unknown>): Promise<T> {
+  const sb = getSupabase();
+  const { data, error } = await (sb.rpc as any)(name, args);
+  if (error) throw new Error(error.message);
+  return data as T;
 }
 
-async function withPg<T>(fn: (client: any) => Promise<T>): Promise<T> {
-  const hosts = await initPgHosts();
-  const startIndex = pgHostIndex;
-  for (let attempt = 0; attempt < hosts.length; attempt++) {
-    const idx = (startIndex + attempt) % hosts.length;
-    if (!pgPool || pgHostIndex !== idx) {
-      resetPgPool();
-      pgPool = new Pool({
-        connectionString: hosts[idx],
-        ssl: process.env.DATABASE_NO_SSL ? false : { rejectUnauthorized: false },
-        connectionTimeoutMillis: 8000,
-        max: 2,
-      });
-      pgHostIndex = idx;
-    }
-    try {
-      const client = await pgPool.connect();
-      try { return await fn(client); } finally { client.release(); }
-    } catch (e: any) {
-      resetPgPool();
-      if (attempt >= hosts.length - 1) throw e;
-    }
-  }
-  throw new Error("All database connections failed");
+async function rpcQueryAll<T>(sql: string, params: unknown[]): Promise<T[]> {
+  const data = await callRpc<unknown[]>("query_all", { sql: buildSQL(sql, params) });
+  return (data || []) as T[];
+}
+
+async function rpcQueryOne<T>(sql: string, params: unknown[]): Promise<T | null> {
+  const data = await callRpc<unknown>("query_one", { sql: buildSQL(sql, params) });
+  return (data || null) as T | null;
+}
+
+async function rpcRunQuery<T>(sql: string, params: unknown[]): Promise<T> {
+  const data = await callRpc<T>("exec_sql", { sql: buildSQL(sql, params) });
+  return data;
 }
 
 function normalizeSql(sql: string): string {
@@ -132,80 +71,24 @@ function getDb(): Database.Database {
   return db;
 }
 
-async function pgQueryOne<T>(sql: string, params: unknown[] = []): Promise<T | null> {
-  return withPg(async (client) => {
-    const result = await client.query(normalizeSql(sql), params);
-    return (result.rows[0] as T) || null;
-  });
-}
-
-async function pgQueryAll<T>(sql: string, params: unknown[] = []): Promise<T[]> {
-  return withPg(async (client) => {
-    const result = await client.query(normalizeSql(sql), params);
-    return result.rows as T[];
-  });
-}
-
-async function pgRunQuery<T>(sql: string, params: unknown[] = []): Promise<T> {
-  return withPg(async (client) => {
-    const isInsert = sql.trim().toUpperCase().startsWith("INSERT");
-    const query = isInsert ? normalizeSql(sql) + " RETURNING id" : normalizeSql(sql);
-    const result = await client.query(query, params);
-    if (isInsert) return { lastInsertRowid: result.rows[0]?.id } as T;
-    return { changes: result.rowCount } as T;
-  });
-}
-
 export async function initDb(): Promise<void> {
   if (USE_PG) {
-    await withPg(async (client) => {
-      await client.query(`
-        CREATE TABLE IF NOT EXISTS categories (
-          id BIGSERIAL PRIMARY KEY, name TEXT NOT NULL, slug TEXT UNIQUE NOT NULL,
-          description TEXT, image_url TEXT,
-          created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW()
-        );
-        CREATE TABLE IF NOT EXISTS products (
-          id BIGSERIAL PRIMARY KEY, name TEXT NOT NULL, slug TEXT UNIQUE NOT NULL,
-          description TEXT, short_description TEXT,
-          price DECIMAL(10,2) NOT NULL DEFAULT 0, sale_price DECIMAL(10,2),
-          sku TEXT UNIQUE, stock INTEGER NOT NULL DEFAULT 0,
-          category_id BIGINT REFERENCES categories(id),
-          image_url TEXT, images TEXT,
-          is_featured SMALLINT NOT NULL DEFAULT 0, is_active SMALLINT NOT NULL DEFAULT 1,
-          created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW()
-        );
-        CREATE TABLE IF NOT EXISTS users (
-          id BIGSERIAL PRIMARY KEY, email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL,
-          name TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'admin', created_at TIMESTAMPTZ DEFAULT NOW()
-        );
-        CREATE TABLE IF NOT EXISTS contact_logs (
-          id BIGSERIAL PRIMARY KEY, product_id BIGINT REFERENCES products(id),
-          product_name TEXT NOT NULL, phone TEXT, created_at TIMESTAMPTZ DEFAULT NOW()
-        );
-        CREATE TABLE IF NOT EXISTS payment_logs (
-          id BIGSERIAL PRIMARY KEY, product_id BIGINT REFERENCES products(id),
-          product_name TEXT NOT NULL, amount DECIMAL(10,2) NOT NULL,
-          method TEXT NOT NULL DEFAULT 'yape', status TEXT NOT NULL DEFAULT 'pending',
-          created_at TIMESTAMPTZ DEFAULT NOW()
-        );
-      `);
-    });
-  } else {
-    const db = getDb();
-    db.exec(`
-      CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, slug TEXT UNIQUE NOT NULL, description TEXT, image_url TEXT, created_at DATETIME DEFAULT CURRENT_TIMESTAMP, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP);
-      CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, slug TEXT UNIQUE NOT NULL, description TEXT, short_description TEXT, price DECIMAL(10,2) NOT NULL DEFAULT 0, sale_price DECIMAL(10,2), sku TEXT UNIQUE, stock INTEGER NOT NULL DEFAULT 0, category_id INTEGER REFERENCES categories(id), image_url TEXT, images TEXT, is_featured SMALLINT NOT NULL DEFAULT 0, is_active SMALLINT NOT NULL DEFAULT 1, created_at DATETIME DEFAULT CURRENT_TIMESTAMP, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP);
-      CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL, name TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'admin', created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
-      CREATE TABLE IF NOT EXISTS contact_logs (id INTEGER PRIMARY KEY AUTOINCREMENT, product_id INTEGER REFERENCES products(id), product_name TEXT NOT NULL, phone TEXT, created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
-      CREATE TABLE IF NOT EXISTS payment_logs (id INTEGER PRIMARY KEY AUTOINCREMENT, product_id INTEGER REFERENCES products(id), product_name TEXT NOT NULL, amount DECIMAL(10,2) NOT NULL, method TEXT NOT NULL DEFAULT 'yape', status TEXT NOT NULL DEFAULT 'pending', created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
-    `);
-    db.close();
+    // Tables already created by supabase-migration.sql
+    return;
   }
+  const db = getDb();
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, slug TEXT UNIQUE NOT NULL, description TEXT, image_url TEXT, created_at DATETIME DEFAULT CURRENT_TIMESTAMP, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP);
+    CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, slug TEXT UNIQUE NOT NULL, description TEXT, short_description TEXT, price DECIMAL(10,2) NOT NULL DEFAULT 0, sale_price DECIMAL(10,2), sku TEXT UNIQUE, stock INTEGER NOT NULL DEFAULT 0, category_id INTEGER REFERENCES categories(id), image_url TEXT, images TEXT, is_featured SMALLINT NOT NULL DEFAULT 0, is_active SMALLINT NOT NULL DEFAULT 1, created_at DATETIME DEFAULT CURRENT_TIMESTAMP, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP);
+    CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL, name TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'admin', created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
+    CREATE TABLE IF NOT EXISTS contact_logs (id INTEGER PRIMARY KEY AUTOINCREMENT, product_id INTEGER REFERENCES products(id), product_name TEXT NOT NULL, phone TEXT, created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
+    CREATE TABLE IF NOT EXISTS payment_logs (id INTEGER PRIMARY KEY AUTOINCREMENT, product_id INTEGER REFERENCES products(id), product_name TEXT NOT NULL, amount DECIMAL(10,2) NOT NULL, method TEXT NOT NULL DEFAULT 'yape', status TEXT NOT NULL DEFAULT 'pending', created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
+  `);
+  db.close();
 }
 
 export async function runQuery<T>(sql: string, params: unknown[] = []): Promise<T> {
-  if (USE_PG) return pgRunQuery<T>(sql, params);
+  if (USE_PG) return rpcRunQuery<T>(sql, params);
   const db = getDb();
   const result = db.prepare(sql).run(...params);
   db.close();
@@ -213,7 +96,7 @@ export async function runQuery<T>(sql: string, params: unknown[] = []): Promise<
 }
 
 export async function queryOne<T>(sql: string, params: unknown[] = []): Promise<T | null> {
-  if (USE_PG) return pgQueryOne<T>(sql, params);
+  if (USE_PG) return rpcQueryOne<T>(sql, params);
   const db = getDb();
   const result = db.prepare(sql).get(...params);
   db.close();
@@ -221,21 +104,9 @@ export async function queryOne<T>(sql: string, params: unknown[] = []): Promise<
 }
 
 export async function queryAll<T>(sql: string, params: unknown[] = []): Promise<T[]> {
-  if (USE_PG) return pgQueryAll<T>(sql, params);
+  if (USE_PG) return rpcQueryAll<T>(sql, params);
   const db = getDb();
   const result = db.prepare(sql).all(...params);
   db.close();
   return result as T[];
-}
-
-export async function transaction<T>(fn: (db: Database.Database) => T): Promise<T> {
-  const db = getDb();
-  try {
-    const result = db.transaction(() => fn(db))();
-    db.close();
-    return result;
-  } catch (error) {
-    db.close();
-    throw error;
-  }
 }
