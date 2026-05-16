@@ -16,14 +16,21 @@ const PG_CONN_STR = process.env.DATABASE_URL || "";
 const PG_HOSTS = PG_CONN_STR
   ? [PG_CONN_STR]
   : [
-      // New pooler format: [ref].pooler.supabase.com (no region needed)
-      `postgresql://postgres.${REF}:${PASS}@${REF}.pooler.supabase.com:5432/postgres`,
-      `postgresql://postgres.${REF}:${KEY}@${REF}.pooler.supabase.com:6543/postgres`,
-      // Legacy pooler format: aws-0-[region].pooler.supabase.com
-      ...REGIONS.map(
+      // Transaction pooler (port 6543, Supavisor): no pgbouncer param needed
+      `postgresql://postgres.${REF}:${PASS}@aws-0-us-east-1.pooler.supabase.com:6543/postgres`,
+      // Session pooler (port 5432, PgBouncer): requires ?pgbouncer=true
+      `postgresql://postgres.${REF}:${PASS}@aws-0-us-east-1.pooler.supabase.com:5432/postgres?pgbouncer=true`,
+      // Fallback: try other regions for transaction pooler
+      ...REGIONS.filter(r => r !== "us-east-1").map(
         (r) =>
-          `postgresql://postgres.${REF}:${PASS}@aws-0-${r}.pooler.supabase.com:5432/postgres`
+          `postgresql://postgres.${REF}:${PASS}@aws-0-${r}.pooler.supabase.com:6543/postgres`
       ),
+      // Fallback: other regions session pooler with ?pgbouncer=true
+      ...REGIONS.filter(r => r !== "us-east-1").map(
+        (r) =>
+          `postgresql://postgres.${REF}:${PASS}@aws-0-${r}.pooler.supabase.com:5432/postgres?pgbouncer=true`
+      ),
+      // Try with SUPABASE_KEY on transaction pooler
       ...REGIONS.map(
         (r) =>
           `postgresql://postgres.${REF}:${KEY}@aws-0-${r}.pooler.supabase.com:6543/postgres`
