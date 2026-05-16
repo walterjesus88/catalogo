@@ -11,6 +11,7 @@ const PG_CONN_STR = process.env.DATABASE_URL || "";
 const PG_HOSTS = PG_CONN_STR
   ? [PG_CONN_STR]
   : [
+      `postgresql://postgres:${process.env.DATABASE_PASSWORD || ""}@db.mzkexbwertxhbwsxdluo.supabase.co:5432/postgres`,
       `postgresql://postgres:${process.env.DATABASE_PASSWORD || ""}@aws-0-us-west-1.pooler.supabase.com:6543/postgres`,
       `postgresql://postgres.mzkexbwertxhbwsxdluo:${process.env.SUPABASE_KEY || ""}@aws-0-us-west-1.pooler.supabase.com:6543/postgres`,
       `postgresql://postgres.mzkexbwertxhbwsxdluo:${process.env.DATABASE_PASSWORD || ""}@aws-0-us-west-1.pooler.supabase.com:5432/postgres`,
