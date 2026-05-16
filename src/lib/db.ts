@@ -16,6 +16,10 @@ const PG_CONN_STR = process.env.DATABASE_URL || "";
 const PG_HOSTS = PG_CONN_STR
   ? [PG_CONN_STR]
   : [
+      // New pooler format: [ref].pooler.supabase.com (no region needed)
+      `postgresql://postgres.${REF}:${PASS}@${REF}.pooler.supabase.com:5432/postgres`,
+      `postgresql://postgres.${REF}:${KEY}@${REF}.pooler.supabase.com:6543/postgres`,
+      // Legacy pooler format: aws-0-[region].pooler.supabase.com
       ...REGIONS.map(
         (r) =>
           `postgresql://postgres.${REF}:${PASS}@aws-0-${r}.pooler.supabase.com:5432/postgres`
