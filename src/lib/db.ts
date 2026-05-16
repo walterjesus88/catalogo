@@ -1,6 +1,10 @@
 import Database from "better-sqlite3";
 import path from "path";
 import { Pool } from "pg";
+import dns from "dns";
+import { promisify } from "util";
+
+const resolve6 = promisify(dns.resolve6);
 
 const DB_PATH = path.join(process.cwd(), "data", "catalogo.db");
 
@@ -13,45 +17,87 @@ const REGIONS = ["us-east-1", "us-west-1", "eu-west-1", "eu-central-1", "sa-east
 
 const PG_CONN_STR = process.env.DATABASE_URL || "";
 
-const PG_HOSTS = PG_CONN_STR
-  ? [PG_CONN_STR]
-  : [
-      // Transaction pooler (port 6543, Supavisor): no pgbouncer param needed
-      `postgresql://postgres.${REF}:${PASS}@aws-0-us-east-1.pooler.supabase.com:6543/postgres`,
-      // Session pooler (port 5432, PgBouncer): requires ?pgbouncer=true
-      `postgresql://postgres.${REF}:${PASS}@aws-0-us-east-1.pooler.supabase.com:5432/postgres?pgbouncer=true`,
-      // Fallback: try other regions for transaction pooler
-      ...REGIONS.filter(r => r !== "us-east-1").map(
-        (r) =>
-          `postgresql://postgres.${REF}:${PASS}@aws-0-${r}.pooler.supabase.com:6543/postgres`
-      ),
-      // Fallback: other regions session pooler with ?pgbouncer=true
-      ...REGIONS.filter(r => r !== "us-east-1").map(
-        (r) =>
-          `postgresql://postgres.${REF}:${PASS}@aws-0-${r}.pooler.supabase.com:5432/postgres?pgbouncer=true`
-      ),
-      // Try with SUPABASE_KEY on transaction pooler
-      ...REGIONS.map(
-        (r) =>
-          `postgresql://postgres.${REF}:${KEY}@aws-0-${r}.pooler.supabase.com:6543/postgres`
-      ),
-    ];
+async function getDirectIPv6(): Promise<string | null> {
+  try {
+    const addrs = await resolve6(`db.${REF}.supabase.co`);
+    return addrs[0] || null;
+  } catch {
+    return null;
+  }
+}
+
+function getPgHosts(ipv6: string | null): string[] {
+  if (PG_CONN_STR) return [PG_CONN_STR];
+
+  const hosts: string[] = [];
+
+  // Try direct via IPv6 address first (brackets for IPv6 in URI)
+  if (ipv6) {
+    hosts.push(
+      `postgresql://postgres:${PASS}@[${ipv6}]:5432/postgres`
+    );
+  }
+
+  // Transaction pooler (port 6543, Supavisor)
+  hosts.push(
+    `postgresql://postgres.${REF}:${PASS}@aws-0-us-east-1.pooler.supabase.com:6543/postgres`
+  );
+
+  // Session pooler (port 5432, PgBouncer) with ?pgbouncer=true
+  hosts.push(
+    `postgresql://postgres.${REF}:${PASS}@aws-0-us-east-1.pooler.supabase.com:5432/postgres?pgbouncer=true`
+  );
+
+  // Other regions transaction pooler
+  for (const r of REGIONS.filter(r => r !== "us-east-1")) {
+    hosts.push(
+      `postgresql://postgres.${REF}:${PASS}@aws-0-${r}.pooler.supabase.com:6543/postgres`
+    );
+  }
+
+  // Other regions session pooler
+  for (const r of REGIONS.filter(r => r !== "us-east-1")) {
+    hosts.push(
+      `postgresql://postgres.${REF}:${PASS}@aws-0-${r}.pooler.supabase.com:5432/postgres?pgbouncer=true`
+    );
+  }
+
+  // Try with SUPABASE_KEY
+  for (const r of REGIONS) {
+    hosts.push(
+      `postgresql://postgres.${REF}:${KEY}@aws-0-${r}.pooler.supabase.com:6543/postgres`
+    );
+  }
+
+  return hosts;
+}
 
 let pgPool: Pool | null = null;
+let pgHosts: string[] = [];
 let pgHostIndex = 0;
+let dnsResolved = false;
 
 function resetPgPool(): void {
   if (pgPool) { pgPool.end().catch(() => {}); pgPool = null; }
 }
 
+async function initPgHosts(): Promise<string[]> {
+  if (pgHosts.length > 0) return pgHosts;
+  const ipv6 = dnsResolved ? null : await getDirectIPv6();
+  dnsResolved = true;
+  pgHosts = getPgHosts(ipv6);
+  return pgHosts;
+}
+
 async function withPg<T>(fn: (client: any) => Promise<T>): Promise<T> {
+  const hosts = await initPgHosts();
   const startIndex = pgHostIndex;
-  for (let attempt = 0; attempt < PG_HOSTS.length; attempt++) {
-    const idx = (startIndex + attempt) % PG_HOSTS.length;
+  for (let attempt = 0; attempt < hosts.length; attempt++) {
+    const idx = (startIndex + attempt) % hosts.length;
     if (!pgPool || pgHostIndex !== idx) {
       resetPgPool();
       pgPool = new Pool({
-        connectionString: PG_HOSTS[idx],
+        connectionString: hosts[idx],
         ssl: process.env.DATABASE_NO_SSL ? false : { rejectUnauthorized: false },
         connectionTimeoutMillis: 8000,
         max: 2,
@@ -63,7 +109,7 @@ async function withPg<T>(fn: (client: any) => Promise<T>): Promise<T> {
       try { return await fn(client); } finally { client.release(); }
     } catch (e: any) {
       resetPgPool();
-      if (attempt >= PG_HOSTS.length - 1) throw e;
+      if (attempt >= hosts.length - 1) throw e;
     }
   }
   throw new Error("All database connections failed");
