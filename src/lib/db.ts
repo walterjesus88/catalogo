@@ -6,18 +6,46 @@ const DB_PATH = path.join(process.cwd(), "data", "catalogo.db");
 
 const USE_PG = !!process.env.SUPABASE_URL;
 
-let pgPool: Pool | null = null;
+const PG_CONN_STR = process.env.DATABASE_URL || "";
 
-function getPgPool(): Pool {
-  if (!pgPool) {
-    const ref = new URL(process.env.SUPABASE_URL!).hostname.split(".")[0];
-    const pass = process.env.DATABASE_PASSWORD || "";
-    pgPool = new Pool({
-      connectionString: `postgresql://postgres.${ref}:${pass}@aws-0-us-west-1.pooler.supabase.com:5432/postgres`,
-      ssl: { rejectUnauthorized: false },
-    });
+const PG_HOSTS = PG_CONN_STR
+  ? [PG_CONN_STR]
+  : [
+      `postgresql://postgres:${process.env.DATABASE_PASSWORD || ""}@aws-0-us-west-1.pooler.supabase.com:6543/postgres`,
+      `postgresql://postgres.mzkexbwertxhbwsxdluo:${process.env.SUPABASE_KEY || ""}@aws-0-us-west-1.pooler.supabase.com:6543/postgres`,
+      `postgresql://postgres.mzkexbwertxhbwsxdluo:${process.env.DATABASE_PASSWORD || ""}@aws-0-us-west-1.pooler.supabase.com:5432/postgres`,
+    ];
+
+let pgPool: Pool | null = null;
+let pgHostIndex = 0;
+
+function resetPgPool(): void {
+  if (pgPool) { pgPool.end().catch(() => {}); pgPool = null; }
+}
+
+async function withPg<T>(fn: (client: any) => Promise<T>): Promise<T> {
+  const startIndex = pgHostIndex;
+  for (let attempt = 0; attempt < PG_HOSTS.length; attempt++) {
+    const idx = (startIndex + attempt) % PG_HOSTS.length;
+    if (!pgPool || pgHostIndex !== idx) {
+      resetPgPool();
+      pgPool = new Pool({
+        connectionString: PG_HOSTS[idx],
+        ssl: process.env.DATABASE_NO_SSL ? false : { rejectUnauthorized: false },
+        connectionTimeoutMillis: 8000,
+        max: 2,
+      });
+      pgHostIndex = idx;
+    }
+    try {
+      const client = await pgPool.connect();
+      try { return await fn(client); } finally { client.release(); }
+    } catch (e: any) {
+      resetPgPool();
+      if (attempt >= PG_HOSTS.length - 1) throw e;
+    }
   }
-  return pgPool;
+  throw new Error("All database connections failed");
 }
 
 function normalizeSql(sql: string): string {
@@ -30,7 +58,6 @@ function normalizeSql(sql: string): string {
     .replace(/AUTOINCREMENT/g, "");
 }
 
-// --- Sync SQLite helpers ---
 function getDb(): Database.Database {
   const db = new Database(DB_PATH);
   db.pragma("journal_mode = WAL");
@@ -38,228 +65,110 @@ function getDb(): Database.Database {
   return db;
 }
 
-// --- Main exported functions ---
+async function pgQueryOne<T>(sql: string, params: unknown[] = []): Promise<T | null> {
+  return withPg(async (client) => {
+    const result = await client.query(normalizeSql(sql), params);
+    return (result.rows[0] as T) || null;
+  });
+}
+
+async function pgQueryAll<T>(sql: string, params: unknown[] = []): Promise<T[]> {
+  return withPg(async (client) => {
+    const result = await client.query(normalizeSql(sql), params);
+    return result.rows as T[];
+  });
+}
+
+async function pgRunQuery<T>(sql: string, params: unknown[] = []): Promise<T> {
+  return withPg(async (client) => {
+    const isInsert = sql.trim().toUpperCase().startsWith("INSERT");
+    const query = isInsert ? normalizeSql(sql) + " RETURNING id" : normalizeSql(sql);
+    const result = await client.query(query, params);
+    if (isInsert) return { lastInsertRowid: result.rows[0]?.id } as T;
+    return { changes: result.rowCount } as T;
+  });
+}
 
 export async function initDb(): Promise<void> {
   if (USE_PG) {
-    const pool = getPgPool();
-    const client = await pool.connect();
-    try {
+    await withPg(async (client) => {
       await client.query(`
         CREATE TABLE IF NOT EXISTS categories (
-          id BIGSERIAL PRIMARY KEY,
-          name TEXT NOT NULL,
-          slug TEXT UNIQUE NOT NULL,
-          description TEXT,
-          image_url TEXT,
-          created_at TIMESTAMPTZ DEFAULT NOW(),
-          updated_at TIMESTAMPTZ DEFAULT NOW()
+          id BIGSERIAL PRIMARY KEY, name TEXT NOT NULL, slug TEXT UNIQUE NOT NULL,
+          description TEXT, image_url TEXT,
+          created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW()
         );
         CREATE TABLE IF NOT EXISTS products (
-          id BIGSERIAL PRIMARY KEY,
-          name TEXT NOT NULL,
-          slug TEXT UNIQUE NOT NULL,
-          description TEXT,
-          short_description TEXT,
-          price DECIMAL(10,2) NOT NULL DEFAULT 0,
-          sale_price DECIMAL(10,2),
-          sku TEXT UNIQUE,
-          stock INTEGER NOT NULL DEFAULT 0,
+          id BIGSERIAL PRIMARY KEY, name TEXT NOT NULL, slug TEXT UNIQUE NOT NULL,
+          description TEXT, short_description TEXT,
+          price DECIMAL(10,2) NOT NULL DEFAULT 0, sale_price DECIMAL(10,2),
+          sku TEXT UNIQUE, stock INTEGER NOT NULL DEFAULT 0,
           category_id BIGINT REFERENCES categories(id),
-          image_url TEXT,
-          images TEXT,
-          is_featured SMALLINT NOT NULL DEFAULT 0,
-          is_active SMALLINT NOT NULL DEFAULT 1,
-          created_at TIMESTAMPTZ DEFAULT NOW(),
-          updated_at TIMESTAMPTZ DEFAULT NOW()
+          image_url TEXT, images TEXT,
+          is_featured SMALLINT NOT NULL DEFAULT 0, is_active SMALLINT NOT NULL DEFAULT 1,
+          created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW()
         );
         CREATE TABLE IF NOT EXISTS users (
-          id BIGSERIAL PRIMARY KEY,
-          email TEXT UNIQUE NOT NULL,
-          password_hash TEXT NOT NULL,
-          name TEXT NOT NULL,
-          role TEXT NOT NULL DEFAULT 'admin',
-          created_at TIMESTAMPTZ DEFAULT NOW()
+          id BIGSERIAL PRIMARY KEY, email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL,
+          name TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'admin', created_at TIMESTAMPTZ DEFAULT NOW()
         );
         CREATE TABLE IF NOT EXISTS contact_logs (
-          id BIGSERIAL PRIMARY KEY,
-          product_id BIGINT REFERENCES products(id),
-          product_name TEXT NOT NULL,
-          phone TEXT,
-          created_at TIMESTAMPTZ DEFAULT NOW()
+          id BIGSERIAL PRIMARY KEY, product_id BIGINT REFERENCES products(id),
+          product_name TEXT NOT NULL, phone TEXT, created_at TIMESTAMPTZ DEFAULT NOW()
         );
         CREATE TABLE IF NOT EXISTS payment_logs (
-          id BIGSERIAL PRIMARY KEY,
-          product_id BIGINT REFERENCES products(id),
-          product_name TEXT NOT NULL,
-          amount DECIMAL(10,2) NOT NULL,
-          method TEXT NOT NULL DEFAULT 'yape',
-          status TEXT NOT NULL DEFAULT 'pending',
+          id BIGSERIAL PRIMARY KEY, product_id BIGINT REFERENCES products(id),
+          product_name TEXT NOT NULL, amount DECIMAL(10,2) NOT NULL,
+          method TEXT NOT NULL DEFAULT 'yape', status TEXT NOT NULL DEFAULT 'pending',
           created_at TIMESTAMPTZ DEFAULT NOW()
         );
       `);
-    } finally {
-      client.release();
-    }
+    });
   } else {
     const db = getDb();
     db.exec(`
-      CREATE TABLE IF NOT EXISTS categories (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        slug TEXT UNIQUE NOT NULL,
-        description TEXT,
-        image_url TEXT,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-      );
-      CREATE TABLE IF NOT EXISTS products (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        slug TEXT UNIQUE NOT NULL,
-        description TEXT,
-        short_description TEXT,
-        price DECIMAL(10,2) NOT NULL DEFAULT 0,
-        sale_price DECIMAL(10,2),
-        sku TEXT UNIQUE,
-        stock INTEGER NOT NULL DEFAULT 0,
-        category_id INTEGER REFERENCES categories(id),
-        image_url TEXT,
-        images TEXT,
-        is_featured SMALLINT NOT NULL DEFAULT 0,
-        is_active SMALLINT NOT NULL DEFAULT 1,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-      );
-      CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        email TEXT UNIQUE NOT NULL,
-        password_hash TEXT NOT NULL,
-        name TEXT NOT NULL,
-        role TEXT NOT NULL DEFAULT 'admin',
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-      );
-      CREATE TABLE IF NOT EXISTS contact_logs (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        product_id INTEGER REFERENCES products(id),
-        product_name TEXT NOT NULL,
-        phone TEXT,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-      );
-      CREATE TABLE IF NOT EXISTS payment_logs (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        product_id INTEGER REFERENCES products(id),
-        product_name TEXT NOT NULL,
-        amount DECIMAL(10,2) NOT NULL,
-        method TEXT NOT NULL DEFAULT 'yape',
-        status TEXT NOT NULL DEFAULT 'pending',
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-      );
-      CREATE INDEX IF NOT EXISTS idx_products_category ON products(category_id);
-      CREATE INDEX IF NOT EXISTS idx_products_active ON products(is_active);
-      CREATE INDEX IF NOT EXISTS idx_products_featured ON products(is_featured);
-      CREATE INDEX IF NOT EXISTS idx_categories_slug ON categories(slug);
-      CREATE INDEX IF NOT EXISTS idx_products_slug ON products(slug);
-      CREATE INDEX IF NOT EXISTS idx_contact_logs_product ON contact_logs(product_id);
-      CREATE INDEX IF NOT EXISTS idx_contact_logs_created ON contact_logs(created_at);
-      CREATE INDEX IF NOT EXISTS idx_payment_logs_status ON payment_logs(status);
+      CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, slug TEXT UNIQUE NOT NULL, description TEXT, image_url TEXT, created_at DATETIME DEFAULT CURRENT_TIMESTAMP, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP);
+      CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, slug TEXT UNIQUE NOT NULL, description TEXT, short_description TEXT, price DECIMAL(10,2) NOT NULL DEFAULT 0, sale_price DECIMAL(10,2), sku TEXT UNIQUE, stock INTEGER NOT NULL DEFAULT 0, category_id INTEGER REFERENCES categories(id), image_url TEXT, images TEXT, is_featured SMALLINT NOT NULL DEFAULT 0, is_active SMALLINT NOT NULL DEFAULT 1, created_at DATETIME DEFAULT CURRENT_TIMESTAMP, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP);
+      CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL, name TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'admin', created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
+      CREATE TABLE IF NOT EXISTS contact_logs (id INTEGER PRIMARY KEY AUTOINCREMENT, product_id INTEGER REFERENCES products(id), product_name TEXT NOT NULL, phone TEXT, created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
+      CREATE TABLE IF NOT EXISTS payment_logs (id INTEGER PRIMARY KEY AUTOINCREMENT, product_id INTEGER REFERENCES products(id), product_name TEXT NOT NULL, amount DECIMAL(10,2) NOT NULL, method TEXT NOT NULL DEFAULT 'yape', status TEXT NOT NULL DEFAULT 'pending', created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
     `);
     db.close();
   }
 }
 
 export async function runQuery<T>(sql: string, params: unknown[] = []): Promise<T> {
-  if (USE_PG) {
-    const pool = getPgPool();
-    const client = await pool.connect();
-    try {
-      const isInsert = sql.trim().toUpperCase().startsWith("INSERT");
-      const query = isInsert ? normalizeSql(sql) + " RETURNING id" : normalizeSql(sql);
-      const result = await client.query(query, params);
-      if (isInsert) {
-        return { lastInsertRowid: result.rows[0]?.id } as T;
-      }
-      return { changes: result.rowCount } as T;
-    } finally {
-      client.release();
-    }
-  } else {
-    const db = getDb();
-    const result = db.prepare(sql).run(...params);
-    db.close();
-    return result as T;
-  }
+  if (USE_PG) return pgRunQuery<T>(sql, params);
+  const db = getDb();
+  const result = db.prepare(sql).run(...params);
+  db.close();
+  return result as T;
 }
 
 export async function queryOne<T>(sql: string, params: unknown[] = []): Promise<T | null> {
-  if (USE_PG) {
-    const pool = getPgPool();
-    const client = await pool.connect();
-    try {
-      const result = await client.query(normalizeSql(sql), params);
-      return (result.rows[0] as T) || null;
-    } finally {
-      client.release();
-    }
-  } else {
-    const db = getDb();
-    const result = db.prepare(sql).get(...params);
-    db.close();
-    return (result as T) || null;
-  }
+  if (USE_PG) return pgQueryOne<T>(sql, params);
+  const db = getDb();
+  const result = db.prepare(sql).get(...params);
+  db.close();
+  return (result as T) || null;
 }
 
 export async function queryAll<T>(sql: string, params: unknown[] = []): Promise<T[]> {
-  if (USE_PG) {
-    const pool = getPgPool();
-    const client = await pool.connect();
-    try {
-      const result = await client.query(normalizeSql(sql), params);
-      return result.rows as T[];
-    } finally {
-      client.release();
-    }
-  } else {
-    const db = getDb();
-    const result = db.prepare(sql).all(...params);
-    db.close();
-    return result as T[];
-  }
+  if (USE_PG) return pgQueryAll<T>(sql, params);
+  const db = getDb();
+  const result = db.prepare(sql).all(...params);
+  db.close();
+  return result as T[];
 }
 
 export async function transaction<T>(fn: (db: Database.Database) => T): Promise<T> {
-  if (USE_PG) {
-    const pool = getPgPool();
-    const client = await pool.connect();
-    try {
-      await client.query("BEGIN");
-      try {
-        const db = new Database(DB_PATH);
-        db.pragma("journal_mode = WAL");
-        db.pragma("foreign_keys = ON");
-        try {
-          const result = await fn(db);
-          await client.query("COMMIT");
-          return result;
-        } finally {
-          db.close();
-        }
-      } catch (e) {
-        await client.query("ROLLBACK");
-        throw e;
-      }
-    } finally {
-      client.release();
-    }
-  } else {
-    const db = getDb();
-    try {
-      const result = db.transaction(() => fn(db))();
-      db.close();
-      return result;
-    } catch (error) {
-      db.close();
-      throw error;
-    }
+  const db = getDb();
+  try {
+    const result = db.transaction(() => fn(db))();
+    db.close();
+    return result;
+  } catch (error) {
+    db.close();
+    throw error;
   }
 }
