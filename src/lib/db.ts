@@ -11,8 +11,9 @@ let pgPool: Pool | null = null;
 function getPgPool(): Pool {
   if (!pgPool) {
     const ref = new URL(process.env.SUPABASE_URL!).hostname.split(".")[0];
+    const pass = process.env.DATABASE_PASSWORD || "";
     pgPool = new Pool({
-      connectionString: `postgresql://postgres:${process.env.DATABASE_PASSWORD}@db.${ref}.supabase.co:5432/postgres`,
+      connectionString: `postgresql://postgres.${ref}:${pass}@aws-0-us-west-1.pooler.supabase.com:5432/postgres`,
       ssl: { rejectUnauthorized: false },
     });
   }
