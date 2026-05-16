@@ -78,7 +78,7 @@ AS $$
 DECLARE
   result jsonb;
 BEGIN
-  EXECUTE 'SELECT COALESCE(json_agg(row_to_json(_t_)), ''[]''::jsonb) FROM (' || sql || ') _t_' INTO result;
+  EXECUTE 'SELECT COALESCE(json_agg(to_jsonb(_t_)), ''[]''::jsonb) FROM (' || sql || ') _t_' INTO result;
   RETURN result;
 END;
 $$;
@@ -91,7 +91,7 @@ AS $$
 DECLARE
   result jsonb;
 BEGIN
-  EXECUTE 'SELECT row_to_json(_t_) FROM (' || sql || ' LIMIT 1) _t_' INTO result;
+  EXECUTE 'SELECT to_jsonb(_t_) FROM (' || sql || ' LIMIT 1) _t_' INTO result;
   RETURN result;
 END;
 $$;
@@ -112,7 +112,7 @@ BEGIN
   is_insert := lower_sql ~ '^\s*insert';
 
   IF is_insert AND lower_sql ~ 'returning' THEN
-    EXECUTE 'WITH _ins AS (' || sql || ') SELECT json_agg(row_to_json(_ins)) FROM _ins' INTO result;
+    EXECUTE 'WITH _ins AS (' || sql || ') SELECT to_jsonb(_ins) FROM _ins' INTO result;
     RETURN COALESCE(result, '[]'::jsonb);
   END IF;
 
