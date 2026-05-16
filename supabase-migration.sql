@@ -78,7 +78,7 @@ AS $$
 DECLARE
   result jsonb;
 BEGIN
-  EXECUTE 'SELECT COALESCE(json_agg(to_jsonb(_t_)), ''[]''::jsonb) FROM (' || sql || ') _t_' INTO result;
+  EXECUTE 'SELECT COALESCE(jsonb_agg(to_jsonb(_t_)), ''[]''::jsonb) FROM (' || sql || ') _t_' INTO result;
   RETURN result;
 END;
 $$;
