@@ -36,6 +36,11 @@
 - Seed images replaced CDN URLs (PNG/WebP) with Unsplash JPEG URLs for Android compatibility
 - Added proper Contacto screen (WhatsApp, Yape, Dirección cards)
 - Added proper Cuenta screen (store info, links, version)
+- Migrated from pg Pool to Supabase REST API via RPC functions (`query_all`, `query_one`, `exec_sql`)
+- Fixed `json_agg` → `jsonb_agg` / `row_to_json` → `to_jsonb` for consistent jsonb types
+- Login API confirmed working on Vercel: `POST /api/auth/login` → `{"success":true}` + Set-Cookie
+- Diagnostic error detail revealed curl.exe encoding was the cause of earlier "Error interno"
+- Flutter `api_config.dart` updated with Vercel prod URL and `useLocal` toggle
 
 ### In Progress
 - (none)
