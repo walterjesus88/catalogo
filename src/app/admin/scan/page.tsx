@@ -17,6 +17,7 @@ interface ScannedProduct {
 
 export default function ScanPage() {
   const scannerRef = useRef<Html5Qrcode | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [scanning, setScanning] = useState(false);
   const [scannedSku, setScannedSku] = useState("");
   const [product, setProduct] = useState<ScannedProduct | null>(null);
@@ -24,6 +25,7 @@ export default function ScanPage() {
   const [stockUpdate, setStockUpdate] = useState<number>(0);
   const [updating, setUpdating] = useState(false);
   const [message, setMessage] = useState("");
+  const [cameraError, setCameraError] = useState("");
 
   useEffect(() => {
     return () => {
@@ -33,39 +35,64 @@ export default function ScanPage() {
     };
   }, []);
 
-  const startScanning = async () => {
-    setScanning(true);
+  useEffect(() => {
+    if (!scanning || !containerRef.current) return;
+
+    let cancelled = false;
+    const elId = "scanner-container-inner";
+
+    const startCam = async () => {
+      try {
+        const scanner = new Html5Qrcode(elId);
+        scannerRef.current = scanner;
+
+        await scanner.start(
+          { facingMode: "environment" },
+          { fps: 15, qrbox: { width: 280, height: 150 } },
+          async (decodedText) => {
+            if (cancelled) return;
+            await scanner.stop();
+            scannerRef.current = null;
+            setScanning(false);
+            setScannedSku(decodedText);
+            lookupProduct(decodedText);
+          },
+          () => {}
+        );
+      } catch {
+        if (!cancelled) {
+          setScanning(false);
+          setCameraError("No se pudo acceder a la cámara. Asegúrate de permitir el acceso.");
+        }
+      }
+    };
+
+    startCam();
+
+    return () => {
+      cancelled = true;
+      if (scannerRef.current) {
+        scannerRef.current.stop().catch(() => {});
+        scannerRef.current = null;
+      }
+    };
+  }, [scanning]);
+
+  const startScanning = () => {
+    setCameraError("");
     setProduct(null);
     setNotFound(false);
     setScannedSku("");
     setMessage("");
-
-    try {
-      const scanner = new Html5Qrcode("scanner-container");
-      scannerRef.current = scanner;
-
-      await scanner.start(
-        { facingMode: "environment" },
-        { fps: 15, qrbox: { width: 280, height: 150 } },
-        async (decodedText) => {
-          await scanner.stop();
-          setScanning(false);
-          setScannedSku(decodedText);
-          lookupProduct(decodedText);
-        },
-        () => {}
-      );
-    } catch {
-      setScanning(false);
-      setMessage("Error al acceder a la cámara. Asegúrate de permitir el acceso.");
-    }
+    setScanning(true);
   };
 
   const stopScanning = async () => {
     if (scannerRef.current) {
       await scannerRef.current.stop();
-      setScanning(false);
+      scannerRef.current = null;
     }
+    setScanning(false);
   };
 
   const lookupProduct = async (sku: string) => {
@@ -119,6 +146,9 @@ export default function ScanPage() {
             <p className="text-body-lg text-on-surface-variant mb-6">
               Escanea el código de barras de un producto para consultar o actualizar su stock
             </p>
+            {cameraError && (
+              <p className="text-error text-body-md mb-4">{cameraError}</p>
+            )}
             <button onClick={startScanning} className="btn-bento w-auto px-8 py-4 inline-flex items-center gap-3 text-lg">
               <Camera className="h-6 w-6" />
               Iniciar escáner
@@ -127,8 +157,8 @@ export default function ScanPage() {
         )}
 
         {scanning && (
-          <div>
-            <div id="scanner-container" className="w-full max-w-md mx-auto rounded-2xl overflow-hidden bg-black" />
+          <div ref={containerRef}>
+            <div id="scanner-container-inner" className="w-full max-w-md mx-auto rounded-2xl overflow-hidden bg-black" style={{ minHeight: 300 }} />
             <div className="text-center mt-4">
               <button onClick={stopScanning} className="text-error hover:underline text-body-md">
                 Cancelar
