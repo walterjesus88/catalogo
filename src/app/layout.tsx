@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   description: "Los mejores smartphones, laptops y accesorios de computación",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
