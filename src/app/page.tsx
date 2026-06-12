@@ -141,18 +141,11 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Novedades 3D Section */}
+          {/* Novedades */}
           {novedades.length >= 2 && (
             <div className="mb-12">
               <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-3">
-                  <span className="bg-orange-500 text-white p-1.5 rounded-lg">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                    </svg>
-                  </span>
-                  <h2 className="text-headline-md font-bold text-on-surface">Novedades 3D</h2>
-                </div>
+                <h2 className="text-headline-md font-bold text-on-surface">Novedades</h2>
                 <Link href="/catalogo" className="text-label-caps font-label-caps text-primary hover:underline">
                   Explorar →
                 </Link>
@@ -160,30 +153,19 @@ export default async function HomePage() {
               <div className="overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide"
                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 <div className="flex gap-6 min-w-max">
-                  {novedades.map((product, i) => (
+                  {novedades.map((product) => (
                     <Link
                       key={product.id}
                       href={`/producto/${product.slug}`}
-                      className="group flex-shrink-0 w-64 snap-center"
-                      style={{
-                        perspective: '1000px',
-                      }}
+                      className="flex-shrink-0 w-64 snap-center"
                     >
-                      <div className="relative transition-all duration-500 ease-out"
-                           style={{
-                             transform: `rotateY(${(i - (novedades.length - 1) / 2) * 4}deg) scale(${1 - Math.abs(i - (novedades.length - 1) / 2) * 0.02})`,
-                             transformStyle: 'preserve-3d',
-                           }}>
-                        <div className="group-hover:scale-[1.02] group-hover:rotateY-0 transition-all duration-300">
-                          <ProductCard
-                            product={{
-                              ...product,
-                              short_description: product.short_description || null,
-                            }}
-                            categoryLabel={product.category_id ? categoryMap[product.category_id] : undefined}
-                          />
-                        </div>
-                      </div>
+                      <ProductCard
+                        product={{
+                          ...product,
+                          short_description: product.short_description || null,
+                        }}
+                        categoryLabel={product.category_id ? categoryMap[product.category_id] : undefined}
+                      />
                     </Link>
                   ))}
                 </div>
