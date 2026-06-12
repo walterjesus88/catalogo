@@ -120,7 +120,7 @@ export default async function HomePage() {
 
           {/* Categories Bento Grid */}
           <div className="mb-8">
-            <h2 className="text-headline-md font-bold text-on-surface mb-6">Categorías</h2>
+            <h2 className="text-lg sm:text-headline-sm font-bold text-on-surface mb-6">Categorías</h2>
             <div className="grid grid-cols-4 gap-3 sm:gap-4">
               {categories.map((category) => {
                 const Icon = categoryIcons[category.slug] || Smartphone;
@@ -145,7 +145,7 @@ export default async function HomePage() {
           {novedades.length >= 2 && (
             <div className="mb-12">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-headline-md font-bold text-on-surface">Novedades</h2>
+                <h2 className="text-lg sm:text-headline-sm font-bold text-on-surface">Novedades</h2>
                 <Link href="/catalogo" className="text-label-caps font-label-caps text-primary hover:underline">
                   Explorar →
                 </Link>
