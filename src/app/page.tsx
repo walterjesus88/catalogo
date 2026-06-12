@@ -74,16 +74,16 @@ export default async function HomePage() {
       <Navbar />
 
       <main className="flex-1 pt-20">
-        {/* Hero Bento Header */}
+        {/* Hero Bento Header - hidden on mobile */}
         <section className="max-w-container-max mx-auto px-4 lg:px-12 py-8">
-          <div className="grid grid-cols-12 gap-6 mb-8">
+          <div className="hidden lg:grid grid-cols-12 gap-6 mb-8">
             {/* Main Hero Tile */}
-            <div className="col-span-12 lg:col-span-8 bg-surface-container rounded-bento p-6 sm:p-8 lg:p-10 flex flex-col justify-center min-h-[280px] sm:min-h-[360px] overflow-hidden relative border border-outline-variant">
+            <div className="col-span-8 bg-surface-container rounded-bento p-10 flex flex-col justify-center min-h-[360px] overflow-hidden relative border border-outline-variant">
               <div className="relative z-10 max-w-lg">
-                <span className="bg-primary-fixed text-on-primary-fixed px-4 py-1 rounded-full text-label-caps font-label-caps inline-block mb-4 sm:mb-6">
+                <span className="bg-primary-fixed text-on-primary-fixed px-4 py-1 rounded-full text-label-caps font-label-caps inline-block mb-6">
                   Nuevo Catálogo
                 </span>
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl text-on-surface mb-4 sm:mb-6">
+                <h1 className="text-5xl text-on-surface mb-6">
                   Tecnología al mejor precio
                 </h1>
                 <p className="text-body-lg text-on-surface-variant mb-8">
@@ -100,7 +100,7 @@ export default async function HomePage() {
             </div>
 
             {/* Side Tiles */}
-            <div className="col-span-12 lg:col-span-4 grid grid-rows-2 gap-6">
+            <div className="col-span-4 grid grid-rows-2 gap-6">
               <div className="bg-primary rounded-bento p-8 text-on-primary flex flex-col justify-between">
                 <Zap className="h-10 w-10 mb-4" />
                 <div>
