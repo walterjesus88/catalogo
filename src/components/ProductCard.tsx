@@ -52,11 +52,11 @@ export default function ProductCard({ product, categoryLabel }: ProductCardProps
 
         <div className="flex items-center gap-2 mb-4">
           <span className="text-headline-sm font-headline-sm text-on-surface">
-            ${hasDiscount ? product.sale_price!.toFixed(2) : product.price.toFixed(2)}
+            S/ {hasDiscount ? product.sale_price!.toFixed(2) : product.price.toFixed(2)}
           </span>
           {hasDiscount && (
             <span className="text-body-md text-on-surface-variant line-through">
-              ${product.price.toFixed(2)}
+              S/ {product.price.toFixed(2)}
             </span>
           )}
         </div>

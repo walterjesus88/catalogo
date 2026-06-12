@@ -57,9 +57,9 @@ export default async function AdminProducts() {
                 </td>
                 <td className="px-6 py-4 text-body-md text-on-surface-variant">{product.sku || "-"}</td>
                 <td className="px-6 py-4">
-                  <div className="text-body-md font-medium text-on-surface">${product.price.toFixed(2)}</div>
+                  <div className="text-body-md font-medium text-on-surface">S/ {product.price.toFixed(2)}</div>
                   {product.sale_price && (
-                    <div className="text-sm text-error">${product.sale_price.toFixed(2)}</div>
+                    <div className="text-sm text-error">S/ {product.sale_price.toFixed(2)}</div>
                   )}
                 </td>
                 <td className="px-6 py-4">

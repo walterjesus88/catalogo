@@ -185,7 +185,7 @@ export default function ScanPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-on-surface-variant">Precio</span>
-                <span className="text-on-surface">${product.price.toFixed(2)}</span>
+                    <span className="text-on-surface">S/ {product.price.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-on-surface-variant">Stock actual</span>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Camera } from "lucide-react";
 
 interface CategoryFormProps {
   initialData?: { id?: number; name: string; slug: string; description: string; image_url: string };
@@ -18,6 +19,7 @@ export default function CategoryForm({ initialData, isNew }: CategoryFormProps) 
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [uploading, setUploading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -96,15 +98,65 @@ export default function CategoryForm({ initialData, isNew }: CategoryFormProps) 
       </div>
 
       <div>
-        <label className="block text-body-md font-medium text-on-surface-variant mb-1">URL de imagen</label>
-        <input
-          type="url"
-          name="image_url"
-          value={form.image_url}
-          onChange={handleChange}
-          className="w-full rounded-xl border border-outline-variant bg-surface-container-low px-4 py-3 text-body-md text-on-surface focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
-          placeholder="https://..."
-        />
+        <label className="block text-body-md font-medium text-on-surface-variant mb-1">Imagen</label>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex-1">
+            <input
+              type="url"
+              name="image_url"
+              value={form.image_url}
+              onChange={handleChange}
+              className="w-full rounded-xl border border-outline-variant bg-surface-container-low px-4 py-3 text-body-md text-on-surface focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="https://... o sube una foto"
+            />
+          </div>
+          <label className="btn-bento-outline w-auto px-6 py-3 cursor-pointer inline-flex items-center gap-2 shrink-0">
+            {uploading ? (
+              "Subiendo..."
+            ) : (
+              <>
+                <Camera className="h-5 w-5" />
+                Subir foto
+              </>
+            )}
+            <input
+              type="file"
+              accept="image/*"
+              capture="environment"
+              className="hidden"
+              disabled={uploading}
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+                setUploading(true);
+                try {
+                  const fd = new FormData();
+                  fd.append("file", file);
+                  fd.append("folder", "categories");
+                  const res = await fetch("/api/upload", { method: "POST", body: fd });
+                  const data = await res.json();
+                  if (data.url) {
+                    setForm((prev) => ({ ...prev, image_url: data.url }));
+                  }
+                } catch {
+                  setError("Error al subir imagen");
+                } finally {
+                  setUploading(false);
+                }
+              }}
+            />
+          </label>
+        </div>
+        {form.image_url && (
+          <div className="mt-3 relative w-40 h-40 rounded-xl overflow-hidden bg-surface-container-highest">
+            <img
+              src={form.image_url}
+              alt="Preview"
+              className="w-full h-full object-contain"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = "none" }}
+            />
+          </div>
+        )}
       </div>
 
       <div className="flex justify-end gap-3">

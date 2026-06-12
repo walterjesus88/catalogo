@@ -21,7 +21,7 @@ export default async function AdminDashboard() {
   const stats = [
     { label: "Productos", value: productCount?.count || 0, icon: Package, color: "text-primary", bg: "bg-primary-fixed" },
     { label: "Categorías", value: categoryCount?.count || 0, icon: FolderOpen, color: "text-on-primary-container", bg: "bg-primary-container" },
-    { label: "Valor Inventario", value: `$${(totalValue?.total || 0).toFixed(2)}`, icon: DollarSign, color: "text-tertiary", bg: "bg-tertiary-fixed" },
+    { label: "Valor Inventario", value: `S/ ${(totalValue?.total || 0).toFixed(2)}`, icon: DollarSign, color: "text-tertiary", bg: "bg-tertiary-fixed" },
     { label: "Stock Bajo", value: lowStock?.count || 0, icon: TrendingUp, color: "text-error", bg: "bg-error-container" },
   ];
 

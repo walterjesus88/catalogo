@@ -130,15 +130,15 @@ export default async function ProductPage({
               {hasDiscount ? (
                 <>
                   <span className="text-headline-md font-bold text-on-surface">
-                    ${product.sale_price!.toFixed(2)}
+                    S/ {product.sale_price!.toFixed(2)}
                   </span>
                   <span className="text-body-lg text-on-surface-variant line-through">
-                    ${product.price.toFixed(2)}
+                    S/ {product.price.toFixed(2)}
                   </span>
                 </>
               ) : (
                 <span className="text-headline-md font-bold text-on-surface">
-                  ${product.price.toFixed(2)}
+                  S/ {product.price.toFixed(2)}
                 </span>
               )}
             </div>
