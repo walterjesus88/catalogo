@@ -128,10 +128,10 @@ export default async function HomePage() {
                   <Link
                     key={category.id}
                     href={`/catalogo/${category.slug}`}
-                    className="bento-tile p-6 text-center hover:border-primary/50 transition-colors group"
+                    className="bento-tile p-4 sm:p-6 text-center hover:border-primary/50 transition-colors group"
                   >
-                    <Icon className="h-8 w-8 text-primary mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                    <h3 className="text-headline-sm text-on-surface group-hover:text-primary transition-colors">
+                    <Icon className="h-6 w-6 text-primary mx-auto mb-2 group-hover:scale-110 transition-transform" />
+                    <h3 className="text-sm sm:text-headline-sm font-semibold sm:font-bold text-on-surface group-hover:text-primary transition-colors break-words">
                       {category.name}
                     </h3>
                     <p className="hidden sm:block text-body-md text-on-surface-variant mt-1 text-sm">{category.description}</p>
