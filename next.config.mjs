@@ -7,7 +7,8 @@ const nextConfig = {
       { protocol: "https", hostname: "i02.appmifile.com" },
       { protocol: "https", hostname: "dlcdnwebimgs.asus.com" },
       { protocol: "https", hostname: "media.kingston.com" },
-      { protocol: "https", hostname: "**" },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "unsplash.com" },
     ],
   },
 };
