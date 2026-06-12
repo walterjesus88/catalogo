@@ -27,7 +27,7 @@ export default async function AdminDashboard() {
 
   return (
     <div>
-      <h1 className="text-headline-md font-bold text-on-surface mb-8">Dashboard</h1>
+      <h1 className="text-lg sm:text-headline-md font-bold text-on-surface mb-6 sm:mb-8">Dashboard</h1>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8">
         {stats.map((stat) => (

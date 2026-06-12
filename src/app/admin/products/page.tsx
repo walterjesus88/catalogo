@@ -30,7 +30,7 @@ export default async function AdminProducts() {
         </Link>
       </div>
 
-      <div className="bento-tile overflow-hidden">
+      <div className="bento-tile overflow-x-auto">
         <table className="min-w-full divide-y divide-outline-variant/30">
           <thead className="bg-surface-container-highest">
             <tr>

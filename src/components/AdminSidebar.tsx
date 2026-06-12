@@ -11,7 +11,7 @@ const navItems = [
 
 export default function AdminSidebar() {
   return (
-    <aside className="w-64 border-r border-outline-variant bg-surface-container-low min-h-screen flex flex-col">
+    <aside className="hidden md:flex w-64 border-r border-outline-variant bg-surface-container-low min-h-screen flex-col">
       <div className="p-6 border-b border-outline-variant">
         <Link href="/" className="flex items-center gap-2 text-lg font-bold text-primary hover:text-primary-container transition-colors">
           <Store className="h-5 w-5" />

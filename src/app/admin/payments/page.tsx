@@ -60,7 +60,7 @@ export default async function AdminPayments() {
         </div>
       </div>
 
-      <div className="bento-tile overflow-hidden">
+      <div className="bento-tile overflow-x-auto">
         <h2 className="text-headline-sm font-bold text-on-surface p-6 pb-0">Historial de pagos</h2>
         <table className="min-w-full divide-y divide-outline-variant/30 mt-4">
           <thead className="bg-surface-container-highest">
