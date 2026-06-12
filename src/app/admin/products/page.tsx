@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { queryAll, initDb } from "@/lib/db";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Camera } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -24,10 +24,16 @@ export default async function AdminProducts() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-headline-md font-bold text-on-surface">Productos</h1>
-        <Link href="/admin/products/new" className="btn-bento w-auto px-6 py-3">
-          <Plus className="h-4 w-4 mr-2" />
-          Nuevo producto
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link href="/admin/scan" className="btn-bento-outline w-auto px-4 py-3 flex items-center gap-2">
+            <Camera className="h-4 w-4" />
+            <span className="hidden sm:inline">Escanear</span>
+          </Link>
+          <Link href="/admin/products/new" className="btn-bento w-auto px-6 py-3">
+            <Plus className="h-4 w-4 mr-2" />
+            Nuevo producto
+          </Link>
+        </div>
       </div>
 
       <div className="bento-tile overflow-x-auto">

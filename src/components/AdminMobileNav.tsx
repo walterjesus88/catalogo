@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Package, FolderOpen, MessageSquare, Wallet, LogOut } from "lucide-react";
+import { LayoutDashboard, Package, FolderOpen, MessageSquare, Wallet, LogOut, Camera } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/products", label: "Productos", icon: Package },
   { href: "/admin/categories", label: "Categorías", icon: FolderOpen },
+  { href: "/admin/scan", label: "Escanear", icon: Camera },
   { href: "/admin/contacts", label: "Contactos", icon: MessageSquare },
   { href: "/admin/payments", label: "Pagos", icon: Wallet },
 ];

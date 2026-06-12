@@ -45,6 +45,40 @@ export async function PUT(
   return NextResponse.json({ success: true });
 }
 
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  await initDb();
+  const body = await request.json();
+
+  const updates: string[] = [];
+  const values: unknown[] = [];
+
+  if (body.stock !== undefined) {
+    updates.push("stock = ?");
+    values.push(parseInt(body.stock) || 0);
+  }
+  if (body.price !== undefined) {
+    updates.push("price = ?");
+    values.push(parseFloat(body.price) || 0);
+  }
+  if (body.name !== undefined) {
+    updates.push("name = ?");
+    values.push(body.name);
+  }
+
+  if (updates.length === 0) {
+    return NextResponse.json({ error: "No fields to update" }, { status: 400 });
+  }
+
+  updates.push("updated_at = CURRENT_TIMESTAMP");
+  values.push(params.id);
+
+  await runQuery(`UPDATE products SET ${updates.join(", ")} WHERE id = ?`, values);
+  return NextResponse.json({ success: true });
+}
+
 export async function DELETE(
   _request: NextRequest,
   { params }: { params: { id: string } }

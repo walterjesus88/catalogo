@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { LayoutDashboard, Package, FolderOpen, LogOut, Store, MessageSquare, Wallet } from "lucide-react";
+import { LayoutDashboard, Package, FolderOpen, LogOut, Store, MessageSquare, Wallet, Camera } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/products", label: "Productos", icon: Package },
   { href: "/admin/categories", label: "Categorías", icon: FolderOpen },
+  { href: "/admin/scan", label: "Escanear", icon: Camera },
   { href: "/admin/contacts", label: "Contactos", icon: MessageSquare },
   { href: "/admin/payments", label: "Pagos", icon: Wallet },
 ];
