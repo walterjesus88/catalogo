@@ -38,3 +38,16 @@ export async function DELETE(
   await runQuery("DELETE FROM categories WHERE id = ?", [params.id]);
   return NextResponse.json({ success: true });
 }
+
+export async function POST(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const formData = await request.formData();
+  const method = formData.get("_method");
+  if (method === "DELETE") {
+    await initDb();
+    await runQuery("DELETE FROM categories WHERE id = ?", [params.id]);
+  }
+  return NextResponse.redirect(new URL("/admin/categories", request.url));
+}
