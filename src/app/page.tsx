@@ -134,7 +134,7 @@ export default async function HomePage() {
                     <h3 className="text-headline-sm text-on-surface group-hover:text-primary transition-colors">
                       {category.name}
                     </h3>
-                    <p className="text-body-md text-on-surface-variant mt-1 text-sm">{category.description}</p>
+                    <p className="hidden sm:block text-body-md text-on-surface-variant mt-1 text-sm">{category.description}</p>
                   </Link>
                 );
               })}

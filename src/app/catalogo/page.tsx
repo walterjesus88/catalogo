@@ -24,6 +24,7 @@ interface Category {
   id: number;
   name: string;
   slug: string;
+  description: string | null;
 }
 
 async function getProducts(categorySlug?: string, searchQuery?: string): Promise<Product[]> {
@@ -79,6 +80,11 @@ export default async function CatalogPage({
           <h1 className="text-headline-md font-bold text-on-surface">
             {currentCategory ? currentCategory.name : "Catálogo"}
           </h1>
+          {currentCategory?.description && (
+            <p className="text-body-md text-on-surface-variant mt-1">
+              {currentCategory.description}
+            </p>
+          )}
           <p className="text-body-md text-on-surface-variant mt-1">
             {products.length} producto{products.length !== 1 ? "s" : ""}
             {searchParams.q && ` para "${searchParams.q}"`}
