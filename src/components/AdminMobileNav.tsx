@@ -37,15 +37,13 @@ export default function AdminMobileNav() {
             </Link>
           );
         })}
-        <form action="/api/auth/logout" method="POST">
-          <button
-            type="submit"
-            className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-xl text-on-surface-variant hover:text-error transition-colors"
-          >
-            <LogOut className="h-5 w-5" />
-            <span className="text-[10px] font-medium">Salir</span>
-          </button>
-        </form>
+        <button
+          onClick={() => { window.location.href = "/api/auth/logout"; }}
+          className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-xl text-on-surface-variant hover:text-error transition-colors"
+        >
+          <LogOut className="h-5 w-5" />
+          <span className="text-[10px] font-medium">Salir</span>
+        </button>
       </div>
     </nav>
   );
