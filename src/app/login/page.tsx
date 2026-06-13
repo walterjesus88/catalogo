@@ -43,7 +43,7 @@ export default function LoginPage() {
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 text-on-primary">
             <Smartphone className="h-8 w-8" />
-            <span className="text-2xl font-bold">TechStore</span>
+            <span className="text-2xl font-bold">Catálogo Digital</span>
           </Link>
           <p className="mt-2 text-on-primary/80">Panel de Administración</p>
         </div>

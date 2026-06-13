@@ -16,7 +16,7 @@ export default function AdminSidebar() {
       <div className="p-6 border-b border-outline-variant">
         <Link href="/" className="flex items-center gap-2 text-lg font-bold text-primary hover:text-primary-container transition-colors">
           <Store className="h-5 w-5" />
-          TechStore Admin
+          Catálogo Digital
         </Link>
       </div>
 

@@ -11,7 +11,7 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-surface-bright border-b border-outline-variant">
       <div className="flex justify-between items-center w-full px-4 lg:px-12 py-4 max-w-container-max mx-auto">
         <Link href="/" className="text-headline-md font-bold text-primary">
-          TechStore
+          Catálogo Digital
         </Link>
 
         <nav className="hidden md:flex gap-8 items-center">

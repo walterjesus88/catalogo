@@ -8,10 +8,10 @@ export default function Footer() {
         <div className="flex flex-col mb-4 md:mb-0">
           <div className="flex items-center gap-2 mb-2">
             <Smartphone className="h-5 w-5 text-primary" />
-            <span className="text-headline-sm text-on-surface">TechStore</span>
+            <span className="text-headline-sm text-on-surface">Catálogo Digital</span>
           </div>
           <span className="text-body-md text-on-secondary-fixed-variant">
-            © {new Date().getFullYear()} TechStore. Tecnología al mejor precio.
+            © {new Date().getFullYear()} Catálogo Digital. Sistema de catálogo online.
           </span>
         </div>
         <div className="flex gap-8">

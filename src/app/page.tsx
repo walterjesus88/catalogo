@@ -81,19 +81,19 @@ export default async function HomePage() {
             <div className="col-span-8 bg-surface-container rounded-bento p-10 flex flex-col justify-center min-h-[360px] overflow-hidden relative border border-outline-variant">
               <div className="relative z-10 max-w-lg">
                 <span className="bg-primary-fixed text-on-primary-fixed px-4 py-1 rounded-full text-label-caps font-label-caps inline-block mb-6">
-                  Nuevo Catálogo
+                  Demo
                 </span>
                 <h1 className="text-5xl text-on-surface mb-6">
-                  Tecnología al mejor precio
+                  Catálogo Digital para tu negocio
                 </h1>
                 <p className="text-body-lg text-on-surface-variant mb-8">
-                  Descubre nuestra selección de smartphones, laptops y accesorios de computación con los mejores precios del mercado.
+                  Panel de administración, WhatsApp, Yape, app móvil y escáner de código de barras. Todo listo en minutos.
                 </p>
                 <Link
                   href="/catalogo"
                   className="bg-primary-container text-on-primary-container px-8 py-4 rounded-bento-sm font-bold text-body-md hover:bg-primary hover:text-on-primary transition-all inline-block"
                 >
-                  Explorar Catálogo
+                  Ver Catálogo Demo
                 </Link>
               </div>
               <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-primary/10 to-transparent" />
@@ -104,15 +104,15 @@ export default async function HomePage() {
               <div className="bg-primary rounded-bento p-8 text-on-primary flex flex-col justify-between">
                 <Zap className="h-10 w-10 mb-4" />
                 <div>
-                  <h3 className="text-headline-sm mb-2">Ofertas Exclusivas</h3>
-                  <p className="text-body-md opacity-90">Hasta 30% de descuento en productos seleccionados.</p>
+                  <h3 className="text-headline-sm mb-2">Admin Panel</h3>
+                  <p className="text-body-md opacity-90">Gestiona productos, stock y pedidos desde un panel fácil de usar.</p>
                 </div>
               </div>
               <div className="bg-surface-container-highest rounded-bento p-8 flex flex-col justify-between border border-outline-variant">
                 <Truck className="h-10 w-10 text-primary mb-4" />
                 <div>
-                  <h3 className="text-headline-sm text-on-surface mb-2">Envío Rápido</h3>
-                  <p className="text-body-md text-on-surface-variant">Entrega en 24-48hs en productos destacados.</p>
+                  <h3 className="text-headline-sm text-on-surface mb-2">WhatsApp + Yape</h3>
+                  <p className="text-body-md text-on-surface-variant">Tus clientes consultan y pagan directo desde el catálogo.</p>
                 </div>
               </div>
             </div>

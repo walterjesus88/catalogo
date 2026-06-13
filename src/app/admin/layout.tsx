@@ -18,10 +18,21 @@ export default async function AdminLayout({
 
   return (
     <div className="min-h-screen bg-surface">
+      <div className="bg-primary-container text-on-primary-container text-center py-2 px-4 text-label-caps font-label-caps">
+        ⚡ Demo — ¿Quieres tu propio catálogo? Escríbeme al{" "}
+        <a
+          href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP || "51999999999"}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline font-bold"
+        >
+          WhatsApp
+        </a>
+      </div>
       <div className="md:hidden flex items-center gap-2 px-4 py-3 border-b border-outline-variant bg-surface-bright">
         <Link href="/" className="flex items-center gap-2 text-lg font-bold text-primary">
           <Store className="h-5 w-5" />
-          TechStore Admin
+          Catálogo Digital
         </Link>
       </div>
       <div className="flex">
