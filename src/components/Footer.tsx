@@ -18,6 +18,9 @@ export default function Footer() {
           <Link href="/catalogo" className="text-label-caps text-on-secondary-fixed-variant hover:text-primary transition-opacity underline underline-offset-4">
             Catálogo
           </Link>
+          <Link href="/vender" className="text-label-caps text-on-secondary-fixed-variant hover:text-primary transition-opacity underline underline-offset-4">
+            ¿Tu catálogo?
+          </Link>
           <Link href="/admin" className="text-label-caps text-on-secondary-fixed-variant hover:text-primary transition-opacity underline underline-offset-4">
             Admin
           </Link>

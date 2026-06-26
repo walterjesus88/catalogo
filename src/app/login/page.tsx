@@ -107,6 +107,16 @@ export default function LoginPage() {
               {loading ? "Ingresando..." : "Ingresar"}
             </button>
           </form>
+
+          <div className="mt-4 text-center">
+            <button
+              type="button"
+              onClick={() => { setEmail("admin@catalogo.local"); setPassword("admin123"); }}
+              className="text-label-caps font-label-caps text-on-surface-variant/60 hover:text-primary transition-colors"
+            >
+              Demo: admin@catalogo.local / admin123
+            </button>
+          </div>
         </div>
 
         <p className="mt-6 text-center text-body-md text-on-primary/80">
